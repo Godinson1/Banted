@@ -1,0 +1,8 @@
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const SET_ERROR = 'SET_ERROR'
+export const SET_AUTHENTICATED = 'SET_AUTHENTICATED'
+export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED'
+export const LOADING_UI = 'LOADING_UI' 
+export const SET_USER = 'SET_USER'
+export const LIKE_BANTER = 'LIKE_BANTER'
+export const UNLIKE_BANTER = 'UNLIKE_BANTER'
