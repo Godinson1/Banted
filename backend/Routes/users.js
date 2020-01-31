@@ -270,6 +270,7 @@ router.post("/:id/profile-image", upload.single('userImage'), auth, (req, res) =
     const profileImage = req.file;
     User.findById(req.params.id)
         .then(user => {
+            if (req.params.id !== req.user.id) return res.status(401).json({ message: "Unauthorized" })
             user.userImage = profileImage.filename;
             user.save()
                 .then(() => res.status(200).json({ message: "Profile Image Updated Successfully!" }))
@@ -280,17 +281,17 @@ router.post("/:id/profile-image", upload.single('userImage'), auth, (req, res) =
         .catch(() => res.status(500).json({ error: "Something went wrong!" }))
 });
 
+//Get Banters for Authenticated User's timeline
 router.route('/user/timeline').get(auth, (req, res) => {
     Follow.find({followerId: {$eq: req.user.id}})
         .then(data => {
-            let followerHandle = {};
-            data.forEach(handle => {
-                followerHandle = handle.handle;
+            console.log(data);
+            let followerHandle = [];
+            data.map(handle => {
+                followerHandle.push(handle.handle);
             });
-            console.log(followerHandle);
-            Banter.find({$and: [{banterHandle: {$eq: req.user.handle}}, {banterHandle: {$eq: followerHandle}}]})
+            Banter.find({$or: [{banterHandle: {$eq: req.user.handle}}, {banterHandle: {$in: followerHandle}}]}).sort({createdAt: -1})
                 .then(banters => {
-                   // console.log(banters);
                     if(banters == '') return res.status(400).json({ message: "No banters Yet!.. Create one or follow other banted users to see banters.." })
                     res.json(banters)
                 })
