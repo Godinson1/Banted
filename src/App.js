@@ -9,6 +9,7 @@ import login from './Pages/login';
 import register from './Pages/register';
 import home from './Pages/home';
 import welcome from './Pages/welcome';
+import test from './Pages/test';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path='/login' component={login} />
           <Route exact path='/register' component={register} />
           <Route exact path='/home' component={home} />
+          <Route exact path='/test' component={test} />
         </Switch>
         </div>
       </Router>

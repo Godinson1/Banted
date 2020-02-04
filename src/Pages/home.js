@@ -7,9 +7,6 @@ import {
   } from 'antd';
 
 
-
-
-
 const Home = () => {
 
   const { TextArea } = Input;
@@ -43,23 +40,27 @@ const Home = () => {
   };
 
  
-const bants = banters ? banters.map(bant => (
-          <div>
+const bants = banters ? banters.map(bant => {  
+         return (<div key={bant._id}>
          <Meta key={bant._id} className="bant"
             avatar={
               <Avatar size={74} src={'/BantedImages/profileImages/' + bant.userImage} />
             }
-            title={bant.banterHandle}
+            title={'@' + bant.banterHandle}
             description={bant.banter}
           /> 
-           <Icon type="message" /> {bant.commentCount} &nbsp;&nbsp;&nbsp;&nbsp;  <Icon type="heart" />  {bant.likeCount} 
-           <br/>
-           <img src ={'/BantedImages/BanterImages/' + bant.banterImage} />        
+          <br/>
+           {bant.banterImage.map(image => {
+            return <img src={image} alt='img' width='150' id='bantImage' height='150'/>
+          })} 
+          <br /><br/>
+          <div id='icons'><Icon type="message" /> {bant.commentCount} &nbsp;&nbsp;&nbsp;&nbsp;  <Icon type="heart" />  {bant.likeCount} </div>
           <Divider />
-          </div>
-)) : 'loading...';
-
-
+         </div> 
+         
+         )   
+         
+}) : 'loading...';
 
     return (
         <Row>
@@ -105,11 +106,9 @@ const bants = banters ? banters.map(bant => (
             </Card>
           </div>
           </Col>
-          <Col span={6}><img alt='profile' src='/BantedImages/profileImages/ffff.jpg' /></Col>
+          <Col span={6}><img alt='profile' src='/BantedImages/profileImages/ffff.jpg' alt='pimg'/></Col>
         </Row>
     );
   }
-
-
 
 export default Home

@@ -10,7 +10,7 @@ export const LoginUser = (user, history) => (dispatch) => {
             console.log(res.data);
             const BToken = res.data.token;
             localStorage.setItem('BToken', BToken);
-            axios.defaults.headers.common['x-auth-token'] = BToken;
+            axios.defaults.headers.common['banted-token'] = BToken;
             dispatch(getUserData());
             history.push('/home');
         })

@@ -58,3 +58,12 @@ code {
   text-decoration: none;
   list-style: none;
 }
+
+#bantImage {
+  padding: 5px;
+  margin-left: 128px;
+}
+
+#icons {
+  margin-left: 133px;
+}

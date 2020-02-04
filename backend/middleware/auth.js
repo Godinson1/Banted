@@ -1,6 +1,5 @@
 const config = require('config');
 const jwt = require('jsonwebtoken');
-let User = require('../models/userModels');
 
 
 const auth = (req, res, next) => {
@@ -10,13 +9,7 @@ const auth = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, config.get('jwt_Secret'));
-
         req.user = decoded;
-       // console.log(decoded)
-        User.find()
-            .then(data => {
-                req.user.username = data[0].username;
-            });
         next();
     } catch(e) {
          res.status(400).json({ msg: "Invalid Token" });

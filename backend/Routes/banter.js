@@ -38,7 +38,7 @@ router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
 
     const reqFiles = [];
     for (var i = 0; i < req.files.length; i++) {
-        reqFiles.push(req.files[i].filename)
+        reqFiles.push('/BantedImages/BanterImages/' + req.files[i].filename);
     }
 
 
@@ -72,14 +72,17 @@ router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
 //To get all banters
 
 router.route('/').get((req, res) => {
-    Banter.find().sort({createdAt : -1})
-        .then(user => {
-            return res.status(200).json(user);
+        Banter.countDocuments({})
+            .then(data => {
+    Banter.aggregate([ { $sample: { size: data } } ])
+        .then(banter => {
+            return res.status(200).json(banter);
         })
         .catch(err => {
             console.log(err);
             return res.status(500).json({ error: "Something went wrong!" });
         })
+    });
 });
 
 //For Comments on Banter
