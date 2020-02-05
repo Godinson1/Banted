@@ -22,7 +22,7 @@ const Navbar = () => {
       >
         <Menu.Item key="1" ><Link to="/login">Login</Link></Menu.Item>
         <Menu.Item key="2" ><Link to="/register">Register</Link></Menu.Item>
-        <Menu.Item key="3" ><Link to="/logout">Logout</Link></Menu.Item>
+        <Menu.Item key="3" onClick={handleLogOut}><Link to="/logout">Logout</Link></Menu.Item>
       </Menu>
       <Link to="/">
       <Avatar className="avatar" size={44} src={img}/>

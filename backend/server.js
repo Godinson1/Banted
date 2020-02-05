@@ -19,8 +19,8 @@ app.use((req, res, next) => {
 const pusher = new Pusher({
 
     appId: '928318',
-    key: 'ff6e8b5bae84541857cb',
-    secret: 'b76001b3f4edb82d9927',
+    key: config.get('pusher_Key'),
+    secret: config.get('pusher_Secret'),
     cluster: 'eu',
     encrypted: true
 

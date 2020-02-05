@@ -18,7 +18,7 @@ const Home = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/banters')
+    axios.get('/banters')
       .then(res => {
         setBanter(res.data);
         console.log(res.data);
@@ -46,7 +46,7 @@ const bants = banters ? banters.map(bant => {
          return (<div key={bant._id}>
          <Meta key={bant._id} className="bant"
             avatar={
-              <Avatar size={74} src={'/BantedImages/profileImages/' + bant.userImage} />
+              <Avatar size={100} src={'/BantedImages/profileImages/' + bant.userImage} />
             }
             title={'@' + bant.banterHandle + '  ' + '  ' + '-' + '  ' + dayjs(bant.createdAt).fromNow()}
             description={bant.banter}
