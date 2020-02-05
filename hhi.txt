@@ -1,1 +1,0 @@
-?keepAlive=true&poolSize=100&autoReconnect=true&socketTimeoutMS=6000000&connectTimeoutMS=6000000hio
