@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { 
   Layout, Input, Card, Button,
    Modal, Row, Col, Avatar, 
@@ -39,20 +41,22 @@ const Home = () => {
     setVisible(false);
   };
 
- 
+dayjs.extend(relativeTime);
 const bants = banters ? banters.map(bant => {  
          return (<div key={bant._id}>
          <Meta key={bant._id} className="bant"
             avatar={
               <Avatar size={74} src={'/BantedImages/profileImages/' + bant.userImage} />
             }
-            title={'@' + bant.banterHandle}
+            title={'@' + bant.banterHandle + '  ' + '  ' + '-' + '  ' + dayjs(bant.createdAt).fromNow()}
             description={bant.banter}
           /> 
           <br/>
+          <div className="imageContainer">
            {bant.banterImage.map(image => {
-            return <img src={image} alt='img' width='150' id='bantImage' height='150'/>
+            return <img src={image} alt='img' width='200' id='bantImage' height='150'/>
           })} 
+          </div>
           <br /><br/>
           <div id='icons'><Icon type="message" /> {bant.commentCount} &nbsp;&nbsp;&nbsp;&nbsp;  <Icon type="heart" />  {bant.likeCount} </div>
           <Divider />
@@ -63,9 +67,11 @@ const bants = banters ? banters.map(bant => {
 }) : 'loading...';
 
     return (
+     
         <Row>
           <Col span={18}>
           <div style={{ margin: '40px 250px' }} >
+          <div className="scroll">
             <Card title="Banted" style={{ width: 700 }} extra={
             <Button type="primary" onClick={showModal}>
                Bant
@@ -104,6 +110,7 @@ const bants = banters ? banters.map(bant => {
               {bants} <br/>
             </Content>
             </Card>
+            </div>
           </div>
           </Col>
           <Col span={6}><img alt='profile' src='/BantedImages/profileImages/ffff.jpg' alt='pimg'/></Col>
