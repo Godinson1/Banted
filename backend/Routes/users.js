@@ -4,55 +4,61 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 let User = require('../models/userModels');
 const auth = require('../middleware/auth');
-const multer = require('multer');
-const uuidv4 = require('uuid/v4');
 const Follow = require('../models/followModel');
 const Banter = require('../models/bantModel');
-
-const DIR = '../public/BantedImages/profileImages/';
-    const storage = multer.diskStorage({
-        destination: (req, file, cb) => {
-            cb(null, DIR);
-        },
-        filename: (req, file, cb) => {
-            const filename = file.originalname.toLowerCase().split(' ').join('-');
-            cb(null, uuidv4() + '-' + filename);
-        }
-    });
-
-    const upload = multer({
-        storage: storage,
-        fileFilter: (req, file, cb) => {
-            if (file.mimetype == 'image/jpg' || file.mimetype == 'image/png' || file.mimetype == 'image/jpeg' || file.mimetype == 'image/gif') {
-                 return cb(null, true);
-            } else {
-                 cb("Error: Images Only!");
-            }
-        }
-    });
+const Like = require('../models/likeModel');
+const upload = require('../Helpers/multer');
 
 
-//Get all Users
-router.route('/').get((req, res) => {
-    User.find()
-        .then(user => res.json(user))
+
+//Get authenticated user Users
+router.route('/').get(auth, (req, res) => {
+    let userData = {};
+    User.find({handle: {$eq: req.user.handle}})
+        .select('-password')
+        .then(user => {
+            userData.credentials = user;
+            Like.find({userHandle: {$eq: req.user.handle}})
+                .then(likes => {
+                    userData.likes = [];
+                    userData.likes.push(likes);
+                    return res.json(userData);
+                })
+        })
         .catch(err => {
             console.log(err);
             return res.json(500).json({ message: "Something went Wrong!" });
         });
 });
 
-router.route('/register').post((req, res) => {
 
+//All users
+router.get('/users', async (req, res) => {
+
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ message: "Something went wrong!" })
+    }
+    
+})
+
+
+//Register User
+router.route('/register').post( async (req, res) => {
+
+    //Destructure fields from request body
     const { name, handle, email, password } = req.body;
 
-    if(!name || !handle || !email || !password) return res.status(400).json({message: "Please enter all details.."});
+    try {
 
-    User.findOne({handle})
-        .then(user => {
-            if (user) return res.status(400).json({ message: "This handle is already taken!" });
-        });
+    //Check for existing user
+    const user = await User.findOne({ handle });
+    if (user) return res.status(400).json({ message: "This handle is already taken!" });
     
+    //Create new User
     const userDetails = new User({
         name,
         handle,
@@ -62,244 +68,246 @@ router.route('/register').post((req, res) => {
         following: 0
     });
 
+    //Hash password before saving to database
     bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(userDetails.password, salt, (err, hash) => {
+        bcrypt.hash(userDetails.password, salt, async (err, hash) => {
             if (err) throw err;
             userDetails.password = hash;
-            userDetails.save()
-                .then(user => {
-                    jwt.sign(
-                        {id: user.id, handle: user.handle, userImage: user.userImage},
-                        config.get('jwt_Secret'),
-                        {expiresIn: 3600},
-                        (err, token) => {
-                            if (err) throw err;
-                            res.json({
-                                token,
-                                user: {
-                                    userId: user.id,
-                                    name: user.name,
-                                    handle: user.handle,
-                                    email: user.email,
-                                    followers: user.followers,
-                                    following: user.following
-                                }
-                            })
+        
+            //Save new user to database
+            const user = await userDetails.save();
+
+            //Sign Up user with Jwt token
+            jwt.sign(
+                {id: user.id, handle: user.handle, userImage: user.userImage},
+                config.get('jwt_Secret'),
+                {expiresIn: 3600},
+                (err, token) => {
+                    if (err) throw err;
+                    res.json({
+                        token,
+                        user: {
+                            userId: user.id,
+                            name: user.name,
+                            handle: user.handle,
+                            email: user.email,
+                            followers: user.followers,
+                            following: user.following
                         }
-                    )
-                })
-                .catch(err => {
-                    console.error(err);
-                    return res.status(500).json({ message: "Something went wrong!" });
-                });
-        })
-    })
+                    });
+                }
+            );
+        });
+    });
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ message: "Something went wrong!" });
+    }
 });
 
-router.route('/login').post((req, res) => {
+
+//Login User
+router.route('/login').post( async (req, res) => {
+
+    //Destructure fields from request body
     const { email, password } = req.body;
 
-    if (!email || !password) return res.status(400).json({ message: "Please enter all fields.." });
+    try {
+     
+    //Check for existing user with email
+    const user = await User.findOne({ email });
+    if(!user) return res.status(400).json({ message: "User does not exist.." });
 
-    User.findOne({email})
-        .then(user => {
-            if(!user) return res.status(400).json({ message: "User does not exist.." });
+    //Compare hashed password to check validity
+    const isMatched = await bcrypt.compare(password, user.password);
+    if (!isMatched) return res.status(400).json({ message: "Invalid credentials.." });
 
-            bcrypt.compare(password, user.password)
-                .then(isMatched => {
-                    if (!isMatched) return res.status(400).json({ message: "Invalid credentials.." });
+    //Log user in with token
+    jwt.sign(
+        {id: user.id, handle: user.handle, userImage: user.userImage},
+        config.get('jwt_Secret'),
+        {expiresIn: 3600},
+        (err, token) => {
+            if (err) throw err;
+            res.json({
+                token,
+                user: {
+                    userId: user.id,
+                    name: user.name,
+                    handle: user.handle,
+                    email: user.email
+                }
+            });
+        }
+    );
 
-                    jwt.sign(
-                        {id: user.id, handle: user.handle, userImage: user.userImage},
-                        config.get('jwt_Secret'),
-                        {expiresIn: 3600},
-                        (err, token) => {
-                            if (err) throw err;
-                            res.json({
-                                token,
-                                user: {
-                                    userId: user.id,
-                                    name: user.name,
-                                    handle: user.handle,
-                                    email: user.email
-                                }
-                            })
-                        }
-                    )
-                })
-        })
-        .catch(err => {
-            console.error(err);
-            return res.status(500).json({ error: "Something went wrong.." })
-        });
-
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ error: "Something went wrong.." })
+    }                   
+            
 });
 
-router.route('/:id/follow').get(auth, (req, res) => {
-    let userData;
-    const userDoc = User.findById(req.params.id);
-    userDoc
-        .then(user => {
-            userData = user;   
-        Follow.findOne({$and: [{handle: {$eq: user.handle}}, {followerId: {$eq: req.user.id}}]})
-            .then(data => {
-                if(data) {
-                    return res.status(400).json({ message: "User already followed.." });
-                } else {
-                    const followed = new Follow({
-                        name: user.name,
-                        handle: user.handle,
-                        userId: user._id,
-                        followerId: req.user.id,
-                        followerHandle: req.user.handle
-                    });
 
-        followed.save()
-            .then(() => {
-                userData.followers++;
-                userDoc
-                    .then(banter => {
-                        banter.followers = userData.followers;
-                        banter.save()
-                            .then(() => {
-                                User.findById(req.user.id)
-                                .then(data => {
-                                    data.following++; 
-                                    data.save()
-                                        .then(data => {
-                                            console.log(data);
-                                            return res.status(200).json({message: `You followed @${banter.handle}`});
-                                        })
-                            })
-                        })
-                    })
-                
-            })
-                    }
+
+//Follow a User
+router.route('/:id/follow').get(auth, async (req, res) => {
+
+    let userData;
+
+    try {
+        
+    //Find user by Id and store in variable userDoc
+    const userDoc = await User.findById(req.params.id);
+    userData = userDoc;
+
+    //Check if user is already followed - Return error if true otherwise follow user
+    const isFollowed = await Follow.findOne({$and: [{handle: {$eq: userData.handle}}, {followerId: {$eq: req.user.id}}]});
+    if(isFollowed) {
+        return res.status(400).json({ message: "User already followed.." });
+    } else {
+        const newFollowed = new Follow({
+            name: userData.name,
+            handle: userData.handle,
+            userId: userData._id,
+            followerId: req.user.id,
+            followerHandle: req.user.handle
+        });
+    
+        await newFollowed.save();
+        userData.followers++;
+        const userFollowed = await userData.save();
+        const userFollowing = await User.findById(req.user.id);
+        userFollowing.following++;
+        await userFollowing.save();
+        return res.status(200).json({message: `You followed @${userFollowed.handle}`});
+    }
+
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ message: "Something went wrong" });
+    } 
             
-            })
-            .catch(err => {
-                console.error(err);
-                return res.status(500).json({ message: "Something went wrong" });
-            })
-    })
-            
-})
+});
 
 
 //Get Authenticated User
-router.get('/:handle', auth, (req, res) => {
+router.get('/:handle', auth, async (req, res) => {
     let userData = {};
-    User.find({handle: {$eq: req.params.handle}})
-        .select('-password')
-        .then(data => {
-            if(data == '') {
-                return res.status(400).json({ message: `User with @${req.params.handle} not found` })
-            } else {
-                userData.userInformation = data;
-            Follow.find({handle: {$eq: req.params.handle}}).sort({createdAt: -1})
-                .then(followers => {
-                    userData.followers = followers;
-                    Follow.find({followerHandle: {$eq: req.params.handle}})
-                        .then(following => {
-                            userData.following = following;
-                            Banter.find({banterHandle: {$eq: req.params.handle}}).sort({createdAt: -1})
-                                .then(banter => {
-                                    userData.banters = banter;
-                                    return res.status(200).json(userData);
-                                })
-                        })
-                })
-              
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            return res.status(500).json({ message: "Something went wrong.." });
-        });
+
+    try {
+         //Find user and exclude password
+    const user = await User.find({handle: {$eq: req.params.handle}}).select('-password');
+    
+    //Check if user exists - If true return error otherwise get user
+    if(user == '') {
+        return res.status(400).json({ message: `User with @${req.params.handle} not found` });
+    } else {
+        userData.userInformation = user;
+        const followers = await Follow.find({handle: {$eq: req.params.handle}}).sort({createdAt: -1});
+        userData.followers = followers;
+        const following = await Follow.find({followerHandle: {$eq: req.params.handle}});
+        userData.following = following;
+        const banters = await Banter.find({banterHandle: {$eq: req.params.handle}}).sort({createdAt: -1});
+        userData.banters = banters;
+        return res.status(200).json(userData);
+    }
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ message: "Something went wrong.." });
+    }
+            
 });
+
 
 //Unfollow User
-router.route('/:id/unfollow').get(auth, (req, res) => {
+router.route('/:id/unfollow').get(auth, async (req, res) => {
     let userData;
-    User.findById(req.params.id)
-        .then(data => {
-            if(!data) {
-                return res.status(404).json({ message: "User not found" });
-            } else {
-                userData = data;
-            }
-        })
-        .then(data => {
-            Follow.find({$and: [{userId: {$eq: req.params.id}}, {followerId: {$eq: req.user.id}}]})
-             .then(doc => {
-                 if(doc == '') {
-                     return res.status(400).json({ message: "User not followed.." })
-                 } else {
-                userData.followers--;
-                User.findById(req.params.id)
-                    .then(data => {
-                        data.followers = userData.followers;
-                        data.save()
-                        .then(() => {
-                            User.find({_id: req.user.id})
-                             .then(data => {
-                                data[0].following--;
-                                data[0].save()
-                                    .then(() => {
-                                        Follow.deleteOne({$and: [{userId: {$eq: req.params.id}}, {followerId: {$eq: req.user.id}}]})
-                                            .then(() => {
-                                                return res.status(200).json({ message: `You unfollowed @${userData.handle}` });
-                                            })
-                                    })
-                            })
-                        })
-                    })
-                 }     
-             })
-        })
-        .catch(err => {
-            console.log(err);
-            return res.status(500).json({ message: "Something went wrong!" })
-        });
+
+    try {
+
+        //Find user to unfollow - if not found return error else store user
+        const user = await User.findById(req.params.id);
+        if(!user) {
+            return res.status(404).json({ message: "User not found" });
+        } else {
+            userData = user;
+        }
+
+        //Check if user is followed - if not followed return error else unfollow
+        const isFollowed = await Follow.find({$and: [{userId: {$eq: req.params.id}}, {followerId: {$eq: req.user.id}}]});
+        if(isFollowed == '') {
+            return res.status(400).json({ message: "User not followed.." });
+        } else {
+            userData.followers--;
+            await userData.save();
+            const user = await User.findById(req.user.id);
+            user.following--;
+            await user.save();
+
+            //Delete follow document and return message
+            await Follow.deleteOne({$and: [{userId: {$eq: req.params.id}}, {followerId: {$eq: req.user.id}}]});
+            return res.status(200).json({ message: `You unfollowed @${userData.handle}` });
+        }
+
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ message: "Something went wrong!" });
+    }
+        
+            
 });
+
 
 //Upload profile picture
-
-router.post("/:id/profile-image", upload.single('userImage'), auth, (req, res) => {
+router.post("/:id/profile-image", upload.single('userImage'), auth, async (req, res) => {
+    
+    //Store file in variable profileImage
     const profileImage = req.file;
-    User.findById(req.params.id)
-        .then(user => {
-            if (req.params.id !== req.user.id) return res.status(401).json({ message: "Unauthorized" })
-            user.userImage = profileImage.filename;
-            user.save()
-                .then(() => res.status(200).json({ message: "Profile Image Updated Successfully!" }))
-                .catch(err => {
-                     res.status(400).json({ err: err.code })
-                })
-        })
-        .catch(() => res.status(500).json({ error: "Something went wrong!" }))
+
+    //Check if param id equals logged in user id - If not return error
+    if (req.params.id !== req.user.id) return res.status(401).json({ message: "Unauthorized" });
+
+   
+    try {
+
+        //Find user by id and update with uploaded file name
+        const user = await User.findById(req.params.id);
+        user.userImage = profileImage.filename;
+        await user.save();
+        return res.status(200).json({ message: "Profile Image Updated Successfully!" });
+
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ error: "Something went wrong!" });
+    }
+            
 });
 
+
 //Get Banters for Authenticated User's timeline
-router.route('/user/timeline').get(auth, (req, res) => {
-    Follow.find({followerId: {$eq: req.user.id}})
-        .then(data => {
-            console.log(data);
-            let followerHandle = [];
-            data.map(handle => {
-                followerHandle.push(handle.handle);
-            });
-            Banter.find({$or: [{banterHandle: {$eq: req.user.handle}}, {banterHandle: {$in: followerHandle}}]}).sort({createdAt: -1})
-                .then(banters => {
-                    if(banters == '') return res.status(400).json({ message: "No banters Yet!.. Create one or follow other banted users to see banters.." })
-                    res.json(banters)
-                })
-                .catch(err => {
-                    console.error(err);
-                    return res.status(500).json({ message: "Something went wrong.." });
-                });
-        })
-})
+router.route('/user/timeline').get(auth, async (req, res) => {
+
+    try {
+        let followerHandle = [];
+
+        //Retrieve all user handles in follow doc
+        const follow = await Follow.find({followerId: {$eq: req.user.id}});
+        follow.map(handle => {
+            followerHandle.push(handle.handle);
+        });
+    
+        //Find all banter - Followers or authenticated user
+        const associatedBanters = await Banter.find({$or: [{banterHandle: {$eq: req.user.handle}}, {banterHandle: {$in: followerHandle}}]}).sort({createdAt: -1});
+        if(associatedBanters == '') return res.status(400).json({ message: "No banters Yet!.. Create one or follow other banted users to see banters.." })
+        return res.status(200).json(associatedBanters);
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ message: "Something went wrong.." });
+    }
+            
+               
+});
+
 
 module.exports = router;

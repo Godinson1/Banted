@@ -5,16 +5,11 @@ const app = express();
 const config = require('config');
 require('dotenv').config();
 const Pusher = require('pusher');
+const userRoutes = require('./Routes/users');
+const banterRoutes = require('./Routes/banter');
 
 app.use(cors());
 app.use(express.json());
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    next();
-  });
 
 const pusher = new Pusher({
 
@@ -22,13 +17,13 @@ const pusher = new Pusher({
     key: config.get('pusher_Key'),
     secret: config.get('pusher_Secret'),
     cluster: 'eu',
-    encrypted: true
+    useTLS: true,
 
 });
 
 const channel = 'banters';
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 const uri = config.get('ATLAS_URI');
 mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
@@ -68,8 +63,7 @@ connection.once('open', () => {
 });
 
 
-const userRoutes = require('./Routes/users');
-const banterRoutes = require('./Routes/banter');
+
 
 app.use('/users', userRoutes);
 app.use('/banters', banterRoutes);

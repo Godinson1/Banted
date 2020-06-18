@@ -1,47 +1,26 @@
 const router = require('express').Router();
 const Banter = require('../models/bantModel');
-const multer = require('multer');
-const uuidv4 = require('uuid/v4');
 const auth = require('../middleware/auth');
-const User = require('../models/userModels');
 const Comment = require('../models/commentModel');
 const Like = require('../models/likeModel');
+const upload = require('../Helpers/multer');
 
-//Configuring Multer
-    const DIR = '../public/BantedImages/BanterImages/';
-    const storage = multer.diskStorage({
-        destination: (req, file, cb) => {
-            cb(null, DIR);
-        },
-        filename: (req, file, cb) => {
-            const filename = file.originalname.toLowerCase().split(' ').join('-');
-            cb(null, uuidv4() + '-' + filename);
-        }
-    });
 
-    const upload = multer({
-        storage: storage,
-        fileFilter: (req, file, cb) => {
-            if (file.mimetype == 'image/jpg' || file.mimetype == 'image/png' || file.mimetype == 'image/jpeg' || file.mimetype == 'image/gif' || file.mimetype == 'video/mp4') {
-                 return cb(null, true);
-            } else {
-                 cb("Error: Images Only!");
-            }
-        }
-    });
 
 //To upload banter
-
 router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
+    
+    const reqFiles = [];
 
+    //If empty field - return eror
     if(req.body.banter == '') return res.status(400).json({ msg: 'Banter cannot be empty' });
 
-    const reqFiles = [];
+    //Map through each file and push customize path to Array - reqFiles
     for (var i = 0; i < req.files.length; i++) {
-        reqFiles.push('/BantedImages/BanterImages/' + req.files[i].filename);
+        reqFiles.push({source: '/BantedImages/BanterImages/' + req.files[i].filename});
     }
 
-
+    //Create new banter
     const newBanter = {
         banter: req.body.banter,
         banterHandle: req.user.handle,
@@ -50,8 +29,9 @@ router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
         commentCount: 0,
         userImage: req.user.userImage
     }
-
     const newBant = new Banter(newBanter);
+
+    //Save bant to database
     newBant.save()
         .then(data => res.json({
             banterId: data._id,
@@ -64,195 +44,191 @@ router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
         }))
         .catch(err => {
             console.log(err);
-            return res.status(500).json({ msg: "Something went Wrong" })
-        })
+            return res.status(500).json({ msg: "Something went Wrong" });
+        });
+
 });
+
 
 
 //To get all banters
+router.route('/').get( async (req, res) => {
 
-router.route('/').get((req, res) => {
-        Banter.countDocuments({})
-            .then(data => {
-    Banter.aggregate([ { $sample: { size: data } } ])
-        .then(banter => {
-            return res.status(200).json(banter);
-        })
-        .catch(err => {
-            console.log(err);
-            return res.status(500).json({ error: "Something went wrong!" });
-        })
-    });
+    try {
+
+        //Get length of all banter
+        const bantLength = await Banter.countDocuments({});
+
+        //Sort banter randomly and return banter
+        const randomBanter = await Banter.aggregate([ { $sample: { size: bantLength } } ]);
+        return res.status(200).json(randomBanter);
+
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ error: "Something went wrong!" });
+    }
+            
 });
+
 
 //For Comments on Banter
+router.route('/:id/comment').post(auth, async (req, res) => {
 
-router.route('/:id/comment').post(auth, (req, res) => {
-    Banter.findById(req.params.id)
-        .then(bant => {
-            if(!bant) {
-                return res.status(404).json({ error: "Banter not found" });
-            }
+    try {
 
-                const newComment = {
-                body: req.body.body,
-                banterHandle: req.user.handle,
-                banterImage: req.user.userImage,
-                banterId: req.params.id
-                }
+        //Check if banter exist
+        const bant = await Banter.findById(req.params.id);
+        if(!bant) {
+            return res.status(404).json({ error: "Banter not found" });
+        }
 
-                const comment = new Comment(newComment);
-                comment.save()
-                    .then(() => {
-                        Banter.findById(req.params.id)
-                        .then(bant => {
-                            bant.commentCount++;
-                            bant.save()
-                            .then(() => res.json({ message: `You commented on ${bant.banterHandle}'s banter..` }))
-                        })
-                    })
-        })
-        .catch(err => {
-            console.log(err);
-            return res.status(500).json({ error: "Something went wrong" });
-        })
+        //Create new comment on banter
+        const newComment = new Comment({
+            body: req.body.body,
+            banterHandle: req.user.handle,
+            banterImage: req.user.userImage,
+            banterId: req.params.id
+        });
+        
+        //Save comment to database
+        await comment.save();
+        bant.commentCount++;
+        await bant.save();
+        return res.json({ message: `You commented on ${bant.banterHandle}'s banter..` });
+
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({ error: "Something went wrong" });
+    }
+           
 });
 
-///For Liking a banter
 
-router.route('/:id/like').get(auth, (req, res) => {
+
+///For Liking a banter
+router.route('/:id/like').get(auth, async (req, res) => {
     
-    const likeDocument = Like.find({$and: [{userHandle: {$eq: req.user.handle}}, {banterId: {$eq: req.params.id}}]});
     let banterData;
-    Banter.findById(req.params.id)
-    .then(banter => {
+
+    try {
+       
+        //Check for banter
+        const banter = await Banter.findById(req.params.id);
         if (banter) {
             banterData = banter;
-            banterData.id = banter._id;
-            return likeDocument;
+            banterData.banterId = banter._id;
         } else {
             return res.status(404).json({ banter: "Banter not found!" });
         }
-        
-    })
-    .then(data => {
-        if(data == '') {
+
+        //Check if liked
+        const likeDocument = await Like.find({$and: [{userHandle: {$eq: req.user.handle}}, {banterId: {$eq: req.params.id}}]});
+        if(likeDocument == '') {
+
             const likes = new Like({
                 banterId: req.params.id,
                 userHandle: req.user.handle
             });
-            likes.save()
-                .then(() => {
-                    banterData.likeCount++
-                    Banter.findById(req.params.id)
-                        .then(data => {
-                            data.likeCount = banterData.likeCount;
-                            data.save()
-                                .then(() => res.json({ message: "Banter liked successfully" }))
-                        })
-                })
+            await likes.save();
+            banterData.likeCount++
+            await banterData.save();
+            return res.status(200).json(banterData);
+                        
         } else {
-            return res.status(400).json({ error: "Banter already liked" })
+                return res.status(400).json({ error: "Banter already liked" });
         }
-    })
-    .catch(err => {
+    } catch(err) {
         console.error(err);
-        return res.status(500).json({ error: "Something went wrong!" })
-    })
-
+        return res.status(500).json({ error: "Something went wrong!" });
+    }
 
 });
 
-//For unliking banter
 
-router.route('/:id/unlike').get(auth, (req, res) => {
-    
-    const likeDocument = Like.find({$and: [{userHandle: {$eq: req.user.handle}}, {banterId: {$eq: req.params.id}}]});
-    let banterData;
-    Banter.findById(req.params.id)
-        .then(banter => {
+
+//For unliking banter
+router.route('/:id/unlike').get(auth, async (req, res) => {
+
+        let banterData;
+        try {
+            
+            //Check for banter
+            const banter = await Banter.findById(req.params.id);
             if (banter) {
                 banterData = banter;
-                banterData.id = banter._id;
-                return likeDocument;
+                banterData.banterId = banter._id;
             } else {
                 return res.status(404).json({ banter: "Banter not found!" });
             }
-            
-        })
-        .then(data => {
-            console.log(data);
-            if(data == '') {
+
+            //Check for like document and delete (unlike)
+            const likeDocument = await Like.find({$and: [{userHandle: {$eq: req.user.handle}}, {banterId: {$eq: req.params.id}}]});
+            console.log(likeDocument);  
+            if(likeDocument == '') {
                 return res.status(400).json({ error: "Banter not liked" })
             } else {
-                return Like.deleteOne({userHandle: {$eq: req.user.handle}})
-                    .then(() => {
-                        banterData.likeCount--;
-                        Banter.findById(req.params.id)
-                            .then(bant => {
-                                bant.likeCount = banterData.likeCount;
-                                bant.save()
-                                    .then(() => res.json({ message: "Banter Unliked Successfully!" }))
-                            })         
-                    })
+                await Like.deleteOne({userHandle: {$eq: req.user.handle}});
+                banterData.likeCount--;
+                await banterData.save();
+                return res.status(200).json(banterData);
             }
-        })
-        .catch(err => {
+        } catch(err) {
             console.error(err);
             return res.status(500).json({ error: "Something went wrong!" })
-        })
-
+        }
+            
 });
+
+
 
 //Get each Banter with comments
+router.route('/:id').get(auth, async (req, res) => {
 
-router.route('/:id').get(auth, (req, res) => {
     let banterData;
-    Banter.findById(req.params.id)
-        .then(data => {
-            if(!data) {
-                return res.status(404).json({ error: "Banter not found" });
-            }
-            banterData = data;
-            banterData.banterId = data._id;
-        })
-        .then(() => {
-            Comment.find({banterId: {$eq: req.params.id}}).sort({createdAt : -1})
-                .then(comments => {
-                  return res.json({
-                      banterData,
-                      comments
-                  });
-                })
-           
-        })
-        .catch(err => {
-            console.error(err);
-            return res.status(500).json({ error: "Something went wrong!" })
-        })
+    try {
+       
+        //Check for banter
+        const banter = await Banter.findById(req.params.id);
+        if (banter) {
+            banterData = banter;
+            banterData.banterId = banter._id;
+        } else {
+            return res.status(404).json({ banter: "Banter not found!" });
+        }
+
+        //Check for comments
+        const comments = await Comment.find({banterId: {$eq: req.params.id}}).sort({createdAt : -1});
+        return res.status(200).json({ banterData, comments });
+        
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ error: "Something went wrong!" })
+    }
+                   
 });
 
-//Delete a Banter
 
-router.route('/:id').delete(auth, (req, res) => {
-   Banter.findById(req.params.id)
-        .then(bant => {
-            if(!bant) {
-                return res.status(404).json({ error: "Banter not found" });
-            }
-            if (bant.banterHandle !== req.user.handle) {
-                    res.status(403).json({ error: "Unauthorised" })
-            } else {
-                Banter.deleteOne({_id : {$eq: req.params.id}})
-                .then(() => {
-                    return res.json({ message: "Banter deleted successfully!" })
-                })
-            }
-            })
-            .catch(err => {
-                console.error(err);
-                return res.status(500).json({ error: "Something went wrong!" })
-            });
+
+//Delete a Banter
+router.route('/:id').delete(auth, async (req, res) => {
+
+    try {
+        const bant = await Banter.findById(req.params.id)
+        if(!bant) {
+            return res.status(404).json({ error: "Banter not found" });
+        }
+
+        if (bant.banterHandle !== req.user.handle) {
+                res.status(403).json({ error: "Unauthorised" });
+        } else {
+            await Banter.deleteOne({_id : {$eq: req.params.id}});
+            return res.status(200).json({ message: "Banter deleted successfully!" });
+        }
+    } catch(err) {
+        console.error(err);
+        return res.status(500).json({ error: "Something went wrong!" })
+    }
+   
 });
 
 
