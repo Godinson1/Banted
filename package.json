@@ -34,7 +34,7 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy": "http://localhost:4000",
+    "proxy": "http://localhost:4000/api/",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

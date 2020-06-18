@@ -52,8 +52,35 @@ code {
 }
 
 .bant {
-  margin-left: 50px;
+  margin-top: 40px;
+  margin-left: 40px;
   font-size: 20px;
   text-decoration: none;
   list-style: none;
+}
+
+#bantImage {
+  padding: 5px;
+  margin-left: 128px;
+}
+
+#icons {
+  margin-left: 133px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 800px;
+  width: 800px;
+  padding: 1rem
+}
+
+.imageContainer {
+  margin: 10px;
+  width: 400px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  justify-content: start;
+  align-content: space-around;
 }
