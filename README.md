@@ -46,5 +46,5 @@ So I'm open to contributions for this application. Suggestions, Feature implemen
 ## CONTACT ME
 
 Hit me up!
+
 [Twitter](https://twitter.com/iamgodinson/)
-[Gmail](godinson45@gmail.com)
