@@ -3,19 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.css';
 import {Provider} from 'react-redux';
 import store from './store';
-import Navbar from './Components/Navbar';
 import AuthRoute from './util/AuthRoute'
 //Pages
 import login from './Pages/login';
 import register from './Pages/register';
 import home from './Pages/home';
-import welcome from './Pages/welcome';
 import JwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { SET_AUTHENTICATED } from './actions/types';
 import { logoutUser, getUserData } from './actions/userActions'
+import { getBanters } from './actions/banterActions'
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 const token = localStorage.BToken;
 if (token) {
@@ -27,6 +26,7 @@ if (token) {
     store.dispatch({type: SET_AUTHENTICATED});
     axios.defaults.headers.common['banted-token'] = token;
     store.dispatch(getUserData());
+    store.dispatch(getBanters());
   }
 }
 
@@ -34,12 +34,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Navbar />
         <div className="container">
         <Switch>
-          <Route exact path='/' component={home} />
-          <AuthRoute exact path='/login' component={login} />
-          <AuthRoute exact path='/register' component={register} />
+          <AuthRoute exact path='/' component={home} />
+          <Route exact path='/login' component={login} />
+          <Route exact path='/register' component={register} />
         </Switch>
         </div>
       </Router>

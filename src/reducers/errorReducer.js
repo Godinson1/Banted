@@ -1,17 +1,22 @@
-import { CLEAR_ERROR, SET_ERROR, LOADING_UI } from '../actions/types'
+import { CLEAR_ERROR, SET_ERROR, LOADING_UI, LOADING_REG_LOG } from '../actions/types'
 
 const initialState = {
     loading: false,
+    loading_reg_log: false,
     errors: null,
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
+        case LOADING_REG_LOG:
+            return {
+                loading_reg_log: true
+            }
         case SET_ERROR:
             return {
                 ...state,
-                loading: false,
-                errors: action.payload
+                loading_reg_log: false,
+                errors: action.payload,
             }
         case CLEAR_ERROR:
             return {

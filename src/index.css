@@ -1,55 +1,11 @@
 @import '~antd/dist/antd.css';
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-#components-layout-demo-top .logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0;
-  float: right;
-}
-
 .avatar {
   float: left;
   left: 20;
   margin-top: 100;
 }
 
-.form {
-  width: 900;
-  text-align: center;
-}
-
-
-.ant-carousel .slick-slide {
-  text-align: center;
-  height: 600px;
-  line-height: 160px;
-  background: #364d79;
-  overflow: hidden;
-}
-
-.ant-carousel .slick-slide h3 {
-  color: #fff;
-}
-
-.login-form {
-  max-width: 400px;
-  width: 100%;
-  display: inline-block;
-}
 
 .bant {
   margin-top: 40px;
@@ -83,4 +39,48 @@ code {
   grid-template-rows: auto auto;
   justify-content: start;
   align-content: space-around;
+}
+
+.register {
+  display: grid;
+  place-content: center;
+  margin: 150px 0 150px 0;
+}
+
+.login {
+  display: grid;
+  place-content: center;
+  margin: 150px 0 150px 0;
+}
+
+#reg-image {
+  margin: 50px 0 0 100px;
+}
+
+.side {
+  background-color: rgb(16, 2, 49);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.first-side {
+  margin: 50px 0 0 30px;
+}
+
+li {
+  list-style-type: none;
+  margin-top: 50px;
+}
+
+.menu {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 70px;
+  color: white;
+}
+
+#btn {
+  height: 50px;
+  width: 70px;
 }

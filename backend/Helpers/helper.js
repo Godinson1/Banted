@@ -11,3 +11,8 @@ const isEmail = (email) => {
     else return false;
 }
 
+module.exports = {
+    isEmail,
+    isEmpty
+}
+
