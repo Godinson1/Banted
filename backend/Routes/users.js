@@ -8,6 +8,7 @@ const Follow = require('../models/followModel');
 const Banter = require('../models/bantModel');
 const Like = require('../models/likeModel');
 const upload = require('../Helpers/multer');
+const { isEmail } = require('../Helpers/helper');
 
 
 
@@ -52,11 +53,18 @@ router.route('/register').post( async (req, res) => {
     //Destructure fields from request body
     const { name, handle, email, password } = req.body;
 
+    //Check for valid email
+    if(!isEmail(email)) return res.status(400).json({ error: "Must be a valid email address!" })
+
     try {
 
-    //Check for existing user
+    //Check for existing email
+    const emailExist = await User.findOne({ email });
+    if(emailExist) return res.status(400).json({ error: `User with ${email} already exist!` });
+
+    //Check for existing handle
     const user = await User.findOne({ handle });
-    if (user) return res.status(400).json({ message: "This handle is already taken!" });
+    if (user) return res.status(400).json({ error: `@${handle} is already taken. Try another!` });
     
     //Create new User
     const userDetails = new User({
@@ -101,7 +109,7 @@ router.route('/register').post( async (req, res) => {
     });
     } catch(err) {
         console.error(err);
-        return res.status(500).json({ message: "Something went wrong!" });
+        return res.status(500).json({ error: "Something went wrong!" });
     }
 });
 
@@ -112,15 +120,18 @@ router.route('/login').post( async (req, res) => {
     //Destructure fields from request body
     const { email, password } = req.body;
 
+    //Check for valid email
+    if(!isEmail(email)) return res.status(400).json({ error: "Must be a valid email address" });
+
     try {
      
     //Check for existing user with email
     const user = await User.findOne({ email });
-    if(!user) return res.status(400).json({ message: "User does not exist.." });
+    if(!user) return res.status(400).json({ error: "User does not exist.." });
 
     //Compare hashed password to check validity
     const isMatched = await bcrypt.compare(password, user.password);
-    if (!isMatched) return res.status(400).json({ message: "Invalid credentials.." });
+    if (!isMatched) return res.status(400).json({ error: "Invalid credentials.." });
 
     //Log user in with token
     jwt.sign(

@@ -1,5 +1,9 @@
-import { SET_USER, SET_ERROR, LOADING_UI, CLEAR_ERROR, SET_UNAUTHENTICATED  } from '../actions/types';
+import { SET_USER, SET_ERROR, LOADING_UI,
+         CLEAR_ERROR, SET_UNAUTHENTICATED,
+         LOADING_REG_LOG  
+       } from '../actions/types';
 import axios from 'axios';
+import { getBanters } from './banterActions'
 
 
 export const LoginUser = (user, history) => (dispatch) => {
@@ -10,6 +14,7 @@ export const LoginUser = (user, history) => (dispatch) => {
             console.log(res.data);
             setAuthorization(res.data.token);
             dispatch(getUserData());
+            dispatch(getBanters());
             dispatch({type: CLEAR_ERROR});
             history.push('/');
         })
@@ -24,7 +29,7 @@ export const LoginUser = (user, history) => (dispatch) => {
 
 export const RegisterUser = (newData, history) => (dispatch) => {
 
-    dispatch({type: LOADING_UI});
+    dispatch({type: LOADING_REG_LOG});
     axios.post('/users/register', newData)
         .then(res => {
             console.log(res.data);
@@ -38,13 +43,13 @@ export const RegisterUser = (newData, history) => (dispatch) => {
                 type: SET_ERROR,
                 payload: err.response.data
             })
-            console.log(err.response.data);
+            console.log(err);
         })
 }
 
 
 export const getUserData = () => (dispatch) => {
-    axios.get('/users/user')
+    axios.get('/users/')
         .then(res => {
             console.log(res.data);
             dispatch({
@@ -56,10 +61,11 @@ export const getUserData = () => (dispatch) => {
 }
 
 export const logoutUser = () => dispatch => {
+    dispatch({type: LOADING_REG_LOG});
     localStorage.removeItem('BToken');
-    delete axios.defaults.common.headers['banted-token']
+    //delete axios.defaults.common.headers['banted-token']
     dispatch ({type: SET_UNAUTHENTICATED});
-
+    window.location.href = '/login'
 }
     
 const setAuthorization = (token) => {
