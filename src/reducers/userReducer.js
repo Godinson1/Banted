@@ -1,12 +1,15 @@
-import { SET_USER, LOADING_UI, SET_AUTHENTICATED,
-         SET_UNAUTHENTICATED, LIKE_BANTER, LOADING_REG_LOG,
-         UNLIKE_BANTER } from '../actions/types';
+import { SET_USER, LOADING_UI, SET_AUTHENTICATED, SET_USERS,
+         LIKE_BANTER, UNLIKE_BANTER, SET_UNAUTHENTICATED, SET_PROFILE, FOLLOW_USER, 
+         UNFOLLOW_USER } from '../actions/types';
 
 const initialState = {
     authenticated: false,
-    loading: false,
+    loading_fol: false,
+    likes: [],
     credentials: {},
-    likes: []
+    users: [],
+    following: [],
+    profile: {},
 }
 
 export default function(state = initialState, action){
@@ -19,31 +22,62 @@ export default function(state = initialState, action){
         case SET_UNAUTHENTICATED:
             return initialState;
         case SET_USER:
-        return {
-            authenticated: true,
-            loading: false,
-            credentials: action.payload
-        };
+            return {
+                ...state,
+                authenticated: true,
+                loading: false,
+                credentials: action.payload,
+                following: action.payload.following,
+                likes: action.payload.likes
+            };
+        case SET_USERS:
+            return {
+                ...state,
+                users: action.payload
+            };
         case LOADING_UI: 
             return {
                 ...state,
-                loading: true
+                loading_fol: true
             };
         case LIKE_BANTER:
             return {
                 ...state,
                 likes: [
                     ...state.likes,
-                    {
-                        userHandle: state.likes.userHandle,
-                        banterId: action.payload.banterId
-                    }
+                    action.payload.like
                 ]
             };
         case UNLIKE_BANTER:
             return {
                 ...state,
-                likes: state.likes.filter((like) => like.banterId !== action.payload.banterId)
+                likes: [state.likes.filter((like) => like.banterId !== action.payload.banterData._id)]
+            };
+        case SET_PROFILE:
+            return {
+                ...state,
+                profile: action.payload
+            };
+        case FOLLOW_USER:
+            state.profile.userInformation[0] = action.payload.user
+            state.profile.followers = action.payload.followers
+            state.profile.following = action.payload.following
+            return {
+                ...state,
+                loading_fol: false,
+                following: [
+                    ...state.following,
+                    action.payload.isFollowed
+                ]
+            };
+        case UNFOLLOW_USER:
+            state.profile.userInformation[0] = action.payload.user
+            state.profile.followers = action.payload.followers
+            state.profile.following = action.payload.following
+            return {
+                ...state,
+                loading_fol: false,
+                following: [state.following.filter((follow) => follow._id !== action.payload.isFollowed._id)]
             };
         default:
             return state;

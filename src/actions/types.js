@@ -9,3 +9,8 @@ export const UNLIKE_BANTER = 'UNLIKE_BANTER'
 export const LOADING_REG_LOG = 'LOADING_REG_LOG'
 export const GET_ALL_BANTER = 'GET_ALL_BANTER'
 export const LOADING_BANTERS = 'LOADING_BANTERS'
+export const SET_PROFILE = 'SET_PROFILE'
+export const SET_USERS = 'SET_USERS'
+export const FOLLOW_USER = 'FOLLOW_USER'
+export const UNFOLLOW_USER = 'UNFOLLOW_USER'
+

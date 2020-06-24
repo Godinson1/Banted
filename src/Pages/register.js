@@ -57,25 +57,30 @@ const Signup = (props) => {
                     <Input
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         placeholder="Enter Name" value={name} name="name" onChange={handleNameChange}
+                        required
                     />
                     </FormItem>
                     <FormItem>
                     <FormItem>
                         <Input
                             prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Email" value={email} name="email" onChange={handleEmailChange}
+                            placeholder="Email" value={email} name="email" 
+                            onChange={handleEmailChange}
+                            required
                         />
                     </FormItem>
                     <Input
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        placeholder="Banter Handle" value={handle} name="handle" onChange={handleHandleChange}
+                        placeholder="Banter Handle" value={handle} name="handle" 
+                        onChange={handleHandleChange} required
                     />
                     </FormItem>
                     <Form.Item>
                     <Input
                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         type="password"
-                        placeholder="Password" value={password} name="password" onChange={handlePasswordChange}
+                        placeholder="Password" value={password} name="password" 
+                        onChange={handlePasswordChange} required
                     />
                     </Form.Item>
                     <Form.Item>
@@ -84,7 +89,7 @@ const Signup = (props) => {
                          disabled={state && state.errors && state.errors.loading_reg_log}
                          >
                             {state && state.errors && state.errors.loading_reg_log ? 
-                            'Registering..' : ' Register'} 
+                            <span id="log-reg">Registering..<Spin size="small" /></span> : ' Register'} 
                         </Button>
                         &nbsp;&nbsp;Already have an account ?<Link to="/login"> Login Here!</Link>
                     </Form.Item>

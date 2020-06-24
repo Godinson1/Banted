@@ -5,13 +5,16 @@ import {Provider} from 'react-redux';
 import store from './store';
 import AuthRoute from './util/AuthRoute'
 //Pages
-import login from './Pages/login';
-import register from './Pages/register';
-import home from './Pages/home';
+import Login from './Pages/login';
+import Register from './Pages/register';
+import Home from './Pages/home';
+import Profile from './Pages/Profile';
+
+//Config
 import JwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { SET_AUTHENTICATED } from './actions/types';
-import { logoutUser, getUserData } from './actions/userActions'
+import { logoutUser, getUserData, getUsers } from './actions/userActions'
 import { getBanters } from './actions/banterActions'
 
 axios.defaults.baseURL = 'http://localhost:5000';
@@ -27,6 +30,7 @@ if (token) {
     axios.defaults.headers.common['banted-token'] = token;
     store.dispatch(getUserData());
     store.dispatch(getBanters());
+    store.dispatch(getUsers());
   }
 }
 
@@ -36,9 +40,10 @@ const App = () => {
       <Router>
         <div className="container">
         <Switch>
-          <AuthRoute exact path='/' component={home} />
-          <Route exact path='/login' component={login} />
-          <Route exact path='/register' component={register} />
+          <AuthRoute exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route path='/profile' component={Profile} />
         </Switch>
         </div>
       </Router>

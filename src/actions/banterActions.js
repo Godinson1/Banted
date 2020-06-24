@@ -1,4 +1,6 @@
-import { GET_ALL_BANTER, LOADING_BANTERS, SET_ERROR } from './types'
+import { GET_ALL_BANTER, LOADING_BANTERS, SET_ERROR, 
+         LIKE_BANTER, UNLIKE_BANTER, LOADING_UI, 
+        } from './types'
 import axios from 'axios';
 
 export const getBanters = () => async (dispatch) => {
@@ -13,9 +15,29 @@ export const getBanters = () => async (dispatch) => {
     }catch(err){
         dispatch({
             type: SET_ERROR,
-            payload: err.response.data
+            payload: err.response
         });
         console.log(err.response);
     }
    
+}
+
+export const likeBanter = (id) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/banters/${id}/like`);
+        console.log(res.data);
+        dispatch({ type: LIKE_BANTER, payload: res.data });
+    } catch(err) {
+        console.log(err.response);
+    }
+}
+
+export const unlikeBanter = (id) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/banters/${id}/unlike`);
+        dispatch({ type: UNLIKE_BANTER, payload: res.data });
+        console.log(res.data);
+    } catch(err) {
+        console.log(err);
+    }
 }

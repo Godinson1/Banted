@@ -21,7 +21,7 @@
 }
 
 #icons {
-  margin-left: 133px;
+  margin-left: 160px;
 }
 
 .scroll {
@@ -32,13 +32,10 @@
 }
 
 .imageContainer {
-  margin: 10px;
-  width: 400px;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  justify-content: start;
-  align-content: space-around;
+  width: 500px;
+  margin-left: 160px;
+  justify-content: center;
+  align-content: center;
 }
 
 .register {
@@ -58,7 +55,14 @@
 }
 
 .side {
-  background-color: rgb(16, 2, 49);
+  background-color: rgb(2, 14, 44);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.s-side {
+  background-color: rgba(0, 0, 0, 0.384);
   position: fixed;
   width: 100%;
   height: 100%;
@@ -68,9 +72,19 @@
   margin: 50px 0 0 30px;
 }
 
+.second-side {
+  margin: 10px 0 0 15px;
+}
+
+
 li {
   list-style-type: none;
   margin-top: 50px;
+  cursor: pointer;
+}
+
+li:hover {
+  color: rgb(53, 53, 243)
 }
 
 .menu {
@@ -80,7 +94,278 @@ li {
   color: white;
 }
 
+.banner {
+  max-width: 100%;
+  height: 250px;
+  background-color: rgb(177, 171, 248);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 500px;
+}
+
+#top-prof {
+  margin-top: 3px;
+}
+
+#avatar-profile {
+  margin: 180px 0 0 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+#avatar-profiles {
+  margin: 255px 0 0 600px;
+  position: absolute;
+  z-index: 1;
+}
+
+.people {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+
+#oo{
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#op{
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+#os{
+  color: grey;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#name-prof {
+  font-size: 15px;
+}
+
+#handle-prof {
+  font-size: 12px;
+  color: grey;
+}
+
+#handle-profs {
+  font-size: 12px;
+  color: grey;
+  margin-left: 70px;
+}
+
+
+.back {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+#isFol{
+  font-size: 1.4em;
+  margin-top: 170px;
+  text-align: center;
+}
+
+#fol {
+  margin-top: 10px;
+}
+
+#cont {
+  margin-top: 20px;
+}
+
+#name {
+  line-height: 10px;
+  list-style-type: none;
+}
+
+.info {
+  margin: 80px 0 0 25px;
+}
+
+.pymn {
+  margin-top: 10px;
+}
+
+.trends {
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.384);
+  margin-top: 10px 0 0 10px;
+}
+
+.trendss {
+  width: 350px;
+  height: 350px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.384);
+  margin-top: 10px 0 0 10px;
+}
+
+.menus {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  margin: 150px 0 0 10px;
+  padding-top: 50px;
+}
+
+.handle {
+  cursor: pointer;
+}
+
 #btn {
   height: 50px;
   width: 70px;
+}
+
+#spin {
+  text-align: center;
+  margin-top: 500px;
+}
+
+#spins {
+  text-align: center;
+  margin-top: 300px;
+}
+
+.form {
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+}
+
+.search {
+  width: 300px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: transparent;
+  border: blue 2px solid;
+  padding: 5px;
+  font-size: 17px;
+}
+
+.input-search {
+  border: none;
+  background: transparent;
+}
+
+#dove {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding-left: 10px;
+}
+
+#ss {
+  margin-left: 350px;
+}
+
+#nn {
+  margin:0 50px 0 10px;
+}
+
+
+#log-reg {
+  font-style: italic;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.follow {
+  width: 130px;
+  height: 35px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: transparent;
+  border: rgb(73, 73, 255) 2px solid;
+  color: blue;
+  cursor: pointer;
+}
+
+.following {
+  width: 130px;
+  height: 35px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: blue;
+  border: rgb(73, 73, 255) 2px solid;
+  color: white;
+  cursor: pointer;
+}
+
+.edit {
+  width: 170px ;
+  height: 15px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: transparent;
+  color: rgb(50, 95, 243);
+  cursor: pointer;
+  text-align: center;
+  padding: 5px;
+}
+
+.banter {
+  width: 170px ;
+  height: 35px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: transparent;
+  border: blue 2px solid;
+  color: rgb(50, 95, 243);
+  cursor: pointer;
+  margin: 10px 0 0 300px;
+  text-align: center;
+}
+
+.banter:hover {
+  background-color: blue;
+  color: white;
+}
+
+.banter:focus{
+  outline: none;
+}
+
+.following:focus{
+  outline: none;
+}
+
+.follow:focus{
+  outline: none;
+}
+
+.input-search:focus{
+  outline: none;
+  color: white;
+}
+
+.like-button:focus {
+  outline: none;
+}
+
+.like-button {
+  font-size: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.like-icon {
+  color: rgb(83, 83, 230);
 }

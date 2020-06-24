@@ -1,6 +1,6 @@
-import { SET_USER, SET_ERROR, LOADING_UI,
-         CLEAR_ERROR, SET_UNAUTHENTICATED,
-         LOADING_REG_LOG  
+import { SET_USER, SET_ERROR, LOADING_UI, UNFOLLOW_USER,
+         CLEAR_ERROR, SET_UNAUTHENTICATED, FOLLOW_USER,
+         LOADING_REG_LOG, SET_PROFILE, SET_USERS 
        } from '../actions/types';
 import axios from 'axios';
 import { getBanters } from './banterActions'
@@ -8,7 +8,7 @@ import { getBanters } from './banterActions'
 
 export const LoginUser = (user, history) => (dispatch) => {
 
-    dispatch({type: LOADING_UI});
+    dispatch({type: LOADING_REG_LOG});
     axios.post('/users/login', user)
         .then(res => {
             console.log(res.data);
@@ -42,8 +42,7 @@ export const RegisterUser = (newData, history) => (dispatch) => {
             dispatch({
                 type: SET_ERROR,
                 payload: err.response.data
-            })
-            console.log(err);
+            });
         })
 }
 
@@ -59,6 +58,61 @@ export const getUserData = () => (dispatch) => {
         })
         .catch(err => console.log(err));
 }
+
+
+export const getUser = (handle) => async (dispatch) => {
+    try {
+        const res = await axios.get(`/users/${handle}`);
+        dispatch({
+            type: SET_PROFILE,
+            payload: res.data
+        });
+    }catch(err) {
+        console.log(err.response);
+    }
+}
+
+
+export const getUsers = () => (dispatch) => {
+    axios.get('/users/users')
+        .then(res => {
+            console.log(res.data.map(user => user.name));
+            dispatch({
+                type: SET_USERS,
+                payload: res.data
+            })
+        })
+        .catch(err => console.log(err));
+}
+
+//Follow User
+export const followUser = (handle) => async (dispatch) => {
+    dispatch({ type: LOADING_UI });
+    try {
+        const res = await axios.get(`/users/follow/${handle}`);
+        dispatch({
+            type: FOLLOW_USER,
+            payload: res.data
+        });
+    }catch(err) {
+        console.log(err.response.data);
+    }
+}
+
+//Unfollow User
+export const unFollowUser = (handle) => async (dispatch) => {
+    dispatch({ type: LOADING_UI });
+    try {
+        const res = await axios.get(`/users/unfollow/${handle}`);
+        dispatch({
+            type: UNFOLLOW_USER,
+            payload: res.data
+        })
+    }catch(err) {
+        console.log(err);
+    }
+}
+
 
 export const logoutUser = () => dispatch => {
     dispatch({type: LOADING_REG_LOG});

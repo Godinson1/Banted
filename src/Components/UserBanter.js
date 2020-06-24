@@ -4,12 +4,12 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { Spin, Avatar, Icon, Divider, Card, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import Carousel from 'react-images';
-import { Link } from 'react-router-dom';
-import LikeButton from '../util/LikeButton';
+import LikeButton from '../util/LikeButton'
 
 
 
-const Banter = (props) => {
+
+const UserBanter = (props) => {
 
     const banters = useSelector(state => state.banters)
     //const dispatch = useDispatch();
@@ -33,15 +33,15 @@ const Banter = (props) => {
 
     return(
         <div>
-          {banters && banters.banters ? banters.banters.map(bant => {
+          {props.banters ? props.banters.map(bant => {
             return (<div key={bant._id}>
               <Meta key={bant._id} className="bant"
                  avatar={
-                   !bant.userImage ?
-                   <Avatar size={100} src='/images/no-img.png'/>
-                   :  <Avatar size={100} src={'/BantedImages/profileImages/' + bant.userImage} />
+                  !bant.userImage ?
+                  <Avatar size={100} src='/images/no-img.png'/>
+                  :  <Avatar size={100} src={'/BantedImages/profileImages/' + bant.userImage} />
                  }
-                 title={<Link to={`/profile?handle=${bant.banterHandle}`}>{bant.name  + '  ' + '  ' + '@' + bant.banterHandle + '  ' + '  ' + '-' + '  ' + dayjs(bant.createdAt).fromNow()}</Link>}
+                 title={bant.name  + '  ' + '  ' + '@' + bant.banterHandle + '  ' + '  ' + '-' + '  ' + dayjs(bant.createdAt).fromNow()}
                  description={bant.banter}
                /> 
                <br/>
@@ -68,4 +68,4 @@ const Banter = (props) => {
 
 }
 
-export default Banter;
+export default UserBanter;

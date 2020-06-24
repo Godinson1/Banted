@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form, Icon, Input, Button, Typography, Row, Col } from 'antd';
+import { Form, Icon, Input, Button, Typography, Row, Col, message, Spin } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 import Link from 'react-router-dom/Link';
 import { LoginUser } from '../actions/userActions';
@@ -12,6 +12,11 @@ const Login = (props) => {
   const { Title } = Typography;
   const dispatch = useDispatch();
   const state = useSelector(state => state);
+
+  if(state && state.errors && state.errors.errors) {
+    message.error(state.errors.errors.error, 7);
+  }
+
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -40,7 +45,8 @@ const Login = (props) => {
         <FormItem>
         <Input
           prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          placeholder="Email" value={email} name="email" onChange={handleEmailChange}
+          placeholder="Email" value={email} name="email" 
+          onChange={handleEmailChange} required
         />
         </FormItem>
         <Form.Item
@@ -52,7 +58,7 @@ const Login = (props) => {
         <Input
           prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           type="password" value={password} name="password" onChange={handlePasswordChange}
-          placeholder="Password"
+          placeholder="Password" required
         />
         </Form.Item>
         <Form.Item>
@@ -61,7 +67,7 @@ const Login = (props) => {
           disabled={state && state.errors && state.errors.loading_reg_log}
           >
              {state && state.errors && state.errors.loading_reg_log ? 
-              'Logging in..' : ' Log in'} 
+              <span id="log-reg">Logging in..<Spin size="small" /></span> : ' Log in'} 
           </Button>
           &nbsp;&nbsp;Don't have an account ? <Link to="/register"> Register Here!</Link>
         </Form.Item>
