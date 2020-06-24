@@ -7,37 +7,38 @@ const auth = require('../middleware/auth');
 const Follow = require('../models/followModel');
 const Banter = require('../models/bantModel');
 const Like = require('../models/likeModel');
-const upload = require('../Helpers/multer');
+const {upload} = require('../Helpers/multer');
 const { isEmail } = require('../Helpers/helper');
 
 
 
-//Get authenticated user Users
-router.route('/').get(auth, (req, res) => {
+//Get authenticated user 
+router.route('/').get(auth, async (req, res) => {
     let userData = {};
-    User.find({handle: {$eq: req.user.handle}})
-        .select('-password')
-        .then(user => {
-            userData.credentials = user;
-            Like.find({userHandle: {$eq: req.user.handle}})
-                .then(likes => {
-                    userData.likes = [];
-                    userData.likes.push(likes);
-                    return res.json(userData);
-                })
-        })
-        .catch(err => {
-            console.log(err);
-            return res.json(500).json({ message: "Something went Wrong!" });
-        });
+    try {
+        const user = await User.find({handle: {$eq: req.user.handle}}).select('-password');
+        userData.credentials = user;
+        const followers = await Follow.find({handle: {$eq: req.user.handle}}).sort({createdAt: -1});
+        userData.followers = followers;
+        const following = await Follow.find({followerHandle: {$eq: req.user.handle}});
+        userData.following = following;
+        const banters = await Banter.find({banterHandle: {$eq: req.user.handle}}).sort({createdAt: -1});
+        userData.banters = banters;
+        const likes = await Like.find({ userHandle: {$eq: req.user.handle} }).sort({ createdAt: -1 });
+        userData.likes = likes;
+        return res.status(200).json(userData);
+    }catch(err) {
+        console.log(err);
+        return res.json(500).json({ message: "Something went Wrong!" });
+    }      
 });
 
 
 //All users
-router.get('/users', async (req, res) => {
+router.get('/users', auth, async (req, res) => {
 
     try {
-        const users = await User.find();
+        const users = await User.find({ handle: {$ne: req.user.handle} });
         res.status(200).json(users);
     } catch(err) {
         console.log(err);
@@ -87,7 +88,7 @@ router.route('/register').post( async (req, res) => {
 
             //Sign Up user with Jwt token
             jwt.sign(
-                {id: user.id, handle: user.handle, userImage: user.userImage},
+                {id: user.id, name: user.name, handle: user.handle, userImage: user.userImage},
                 config.get('jwt_Secret'),
                 {expiresIn: 3600},
                 (err, token) => {
@@ -135,7 +136,7 @@ router.route('/login').post( async (req, res) => {
 
     //Log user in with token
     jwt.sign(
-        {id: user.id, handle: user.handle, userImage: user.userImage},
+        {id: user.id, name: user.name, handle: user.handle, userImage: user.userImage},
         config.get('jwt_Secret'),
         {expiresIn: 3600},
         (err, token) => {
@@ -162,36 +163,44 @@ router.route('/login').post( async (req, res) => {
 
 
 //Follow a User
-router.route('/:id/follow').get(auth, async (req, res) => {
+router.route('/follow/:handle').get(auth, async (req, res) => {
 
     let userData;
-
+  
     try {
         
-    //Find user by Id and store in variable userDoc
-    const userDoc = await User.findById(req.params.id);
-    userData = userDoc;
-
+    //Find user to unfollow - if not found return error else store user
+    const user = await User.findOne({handle: req.params.handle});
+    if(!user) {
+        return res.status(404).json({ message: "User not found" });
+    } else {
+        userData = user;
+    }
     //Check if user is already followed - Return error if true otherwise follow user
     const isFollowed = await Follow.findOne({$and: [{handle: {$eq: userData.handle}}, {followerId: {$eq: req.user.id}}]});
     if(isFollowed) {
         return res.status(400).json({ message: "User already followed.." });
     } else {
+        console.log(req.user.name);
         const newFollowed = new Follow({
             name: userData.name,
             handle: userData.handle,
             userId: userData._id,
+            followerName: req.user.name,
+            followerImage: req.user.userImage,
             followerId: req.user.id,
-            followerHandle: req.user.handle
+            followerHandle: req.user.handle,
         });
     
-        await newFollowed.save();
+        const isFollowed = await newFollowed.save();
         userData.followers++;
-        const userFollowed = await userData.save();
+        await userData.save();
         const userFollowing = await User.findById(req.user.id);
         userFollowing.following++;
         await userFollowing.save();
-        return res.status(200).json({message: `You followed @${userFollowed.handle}`});
+        const followers = await Follow.find({handle: {$eq: req.params.handle}}).sort({createdAt: -1});
+        const following = await Follow.find({followerHandle: {$eq: req.params.handle}}).sort({ createdAt: -1 });
+        return res.status(200).json({isFollowed, user, followers, following});
     }
 
     } catch(err) {
@@ -221,6 +230,8 @@ router.get('/:handle', auth, async (req, res) => {
         userData.following = following;
         const banters = await Banter.find({banterHandle: {$eq: req.params.handle}}).sort({createdAt: -1});
         userData.banters = banters;
+        const likes = await Like.find({ userHandle: {$eq: req.params.handle} }).sort({ createdAt: -1 });
+        userData.likes = likes;
         return res.status(200).json(userData);
     }
     } catch(err) {
@@ -232,13 +243,13 @@ router.get('/:handle', auth, async (req, res) => {
 
 
 //Unfollow User
-router.route('/:id/unfollow').get(auth, async (req, res) => {
+router.route('/unfollow/:handle').get(auth, async (req, res) => {
     let userData;
 
     try {
 
         //Find user to unfollow - if not found return error else store user
-        const user = await User.findById(req.params.id);
+        const user = await User.findOne({handle: req.params.handle});
         if(!user) {
             return res.status(404).json({ message: "User not found" });
         } else {
@@ -246,19 +257,19 @@ router.route('/:id/unfollow').get(auth, async (req, res) => {
         }
 
         //Check if user is followed - if not followed return error else unfollow
-        const isFollowed = await Follow.find({$and: [{userId: {$eq: req.params.id}}, {followerId: {$eq: req.user.id}}]});
+        const isFollowed = await Follow.find({$and: [{handle: {$eq: req.params.handle}}, {followerId: {$eq: req.user.id}}]});
         if(isFollowed == '') {
             return res.status(400).json({ message: "User not followed.." });
         } else {
             userData.followers--;
             await userData.save();
-            const user = await User.findById(req.user.id);
-            user.following--;
-            await user.save();
-
-            //Delete follow document and return message
-            await Follow.deleteOne({$and: [{userId: {$eq: req.params.id}}, {followerId: {$eq: req.user.id}}]});
-            return res.status(200).json({ message: `You unfollowed @${userData.handle}` });
+            const users = await User.findById(req.user.id).select('-password');
+            users.following--;
+            await users.save();
+            await Follow.deleteOne({$and: [{handle: {$eq: req.params.handle}}, {followerId: {$eq: req.user.id}}]});
+            const followers = await Follow.find({handle: {$eq: req.params.handle}}).sort({createdAt: -1});
+            const following = await Follow.find({followerHandle: {$eq: req.params.handle}}).sort({ createdAt: -1 });
+            return res.status(200).json({isFollowed, user, followers, following});
         }
 
     } catch(err) {

@@ -11,6 +11,9 @@ const BanterSchema = new Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String
+    },
     banterImage: {
         type: Array
     },

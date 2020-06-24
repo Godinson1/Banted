@@ -16,6 +16,12 @@ const followSchema = new Schema({
     },
     followerHandle: {
         type: String
+    },
+    followerName: {
+        type: String
+    },
+    followerImage: {
+        type: String
     }
 },
 {

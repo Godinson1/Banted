@@ -3,12 +3,12 @@ const Banter = require('../models/bantModel');
 const auth = require('../middleware/auth');
 const Comment = require('../models/commentModel');
 const Like = require('../models/likeModel');
-const upload = require('../Helpers/multer');
+const {uploadMultiple} = require('../Helpers/multer');
 
 
 
 //To upload banter
-router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
+router.post('/banter', uploadMultiple.array('banterImage', 4), auth, (req, res) => {
     
     const reqFiles = [];
 
@@ -20,10 +20,13 @@ router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
         reqFiles.push({source: '/BantedImages/BanterImages/' + req.files[i].filename});
     }
 
+    console.log(req.user.name);
+
     //Create new banter
     const newBanter = {
         banter: req.body.banter,
         banterHandle: req.user.handle,
+        name: req.user.name,
         banterImage: reqFiles,
         likeCount: 0,
         commentCount: 0,
@@ -36,6 +39,7 @@ router.post('/banter', upload.array('banterImage', 4), auth, (req, res) => {
         .then(data => res.json({
             banterId: data._id,
             banter: data.banter,
+            name: data.name,
             banterHandle: data.banterHandle,
             banterImage: data.banterImage,
             likeCount: data.likeCount,
@@ -129,10 +133,10 @@ router.route('/:id/like').get(auth, async (req, res) => {
                 banterId: req.params.id,
                 userHandle: req.user.handle
             });
-            await likes.save();
+            const like = await likes.save();
             banterData.likeCount++
             await banterData.save();
-            return res.status(200).json(banterData);
+            return res.status(200).json({banterData, like});
                         
         } else {
                 return res.status(400).json({ error: "Banter already liked" });
@@ -162,15 +166,14 @@ router.route('/:id/unlike').get(auth, async (req, res) => {
             }
 
             //Check for like document and delete (unlike)
-            const likeDocument = await Like.find({$and: [{userHandle: {$eq: req.user.handle}}, {banterId: {$eq: req.params.id}}]});
-            console.log(likeDocument);  
-            if(likeDocument == '') {
+            const like = await Like.find({$and: [{userHandle: {$eq: req.user.handle}}, {banterId: {$eq: req.params.id}}]}); 
+            if(like == '') {
                 return res.status(400).json({ error: "Banter not liked" })
             } else {
                 await Like.deleteOne({userHandle: {$eq: req.user.handle}});
                 banterData.likeCount--;
                 await banterData.save();
-                return res.status(200).json(banterData);
+                return res.status(200).json({banterData});
             }
         } catch(err) {
             console.error(err);
