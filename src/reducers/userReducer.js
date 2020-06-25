@@ -41,6 +41,8 @@ export default function(state = initialState, action){
                 loading_fol: true
             };
         case LIKE_BANTER:
+            let index = state.profile.banters.findIndex((banter) => banter._id === action.payload.banterData._id)
+            state.profile.banters[index] = action.payload.banterData
             return {
                 ...state,
                 likes: [
@@ -49,6 +51,8 @@ export default function(state = initialState, action){
                 ]
             };
         case UNLIKE_BANTER:
+            let i = state.profile.banters.findIndex((banter) => banter._id === action.payload.banterData._id)
+            state.profile.banters[i] = action.payload.banterData
             return {
                 ...state,
                 likes: [state.likes.filter((like) => like.banterId !== action.payload.banterData._id)]

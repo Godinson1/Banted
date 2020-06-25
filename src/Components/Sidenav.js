@@ -10,6 +10,8 @@ import {
           MessageOutlined, DownOutlined
  } from '@ant-design/icons';
  import { logoutUser, getUser } from '../actions/userActions';
+import { Link } from 'react-router-dom';
+
 
 const Sidenav = () => {
 
@@ -58,7 +60,14 @@ const Sidenav = () => {
       <span className="menu"><li><PieChartOutlined /> &nbsp; Explore</li></span>
       <span className="menu"><li><MessageOutlined /> &nbsp; Message</li></span>
       <span className="menu"><li><Badge count={0}><NotificationOutlined /></Badge> &nbsp; Notifications</li></span>
-      <span className="menu"><li><UserOutlined onClick={logoutUser}/> &nbsp; Profile</li></span>
+      <span className="menu">
+        <li>
+        {user && user.credentials ?
+        (<div><UserOutlined onClick={logoutUser}/> 
+        <Link to={`/profile?handle=${user.credentials[0].handle}`}>
+         &nbsp; Profile
+         </Link></div>)
+         : ('')}</li></span>
       <span className="menu"><li>
       <Button size="large" onClick={showModal} shape="round">Banter Jare!</Button>
       </li>

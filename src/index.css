@@ -33,9 +33,15 @@
 
 .imageContainer {
   width: 500px;
-  margin-left: 160px;
+  margin-left: 2px;
   justify-content: center;
   align-content: center;
+  padding-top: 10px;
+  object-fit: cover;
+}
+
+.img {
+  object-fit: cover;
 }
 
 .register {
@@ -136,6 +142,7 @@ li:hover {
   cursor: pointer;
 }
 
+
 #op{
   color: black;
   font-size: 15px;
@@ -200,18 +207,18 @@ li:hover {
 
 .trends {
   width: 350px;
-  height: 350px;
+  height: 300px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.384);
-  margin-top: 10px 0 0 10px;
+  margin-top: 40px;
 }
 
 .trendss {
   width: 350px;
-  height: 350px;
+  height: 300px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.384);
-  margin-top: 10px 0 0 10px;
+  margin: 10px 0 0 15px;
 }
 
 .menus {
@@ -261,10 +268,72 @@ li:hover {
   background: transparent;
 }
 
+.input-searchs {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  color: white;
+}
+
+.input-searchs:focus {
+  outline: none;
+}
+
+#home {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 60px 0 0 10px;
+  color: white;
+  padding-top: 50px;
+}
+
+#homes {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 90px 0 0 10px;
+  color: white;
+  padding-top: 90px;
+}
+
+.grid-home {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 550px;
+}
+
+.grid-homes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 390px;
+}
+
 #dove {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.create {
+  height: 210px;
+  background-color: indigo;
+}
+
+.bo {
+  border: 2px solid gray;
+}
+
+#pic {
+  font-size: 40px;
+  margin-left: 80px;
+  color: gray;
+  cursor: pointer;
+}
+
+#doves {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 0 0 50px;
   padding-left: 10px;
 }
 
@@ -305,6 +374,21 @@ li:hover {
   color: white;
   cursor: pointer;
 }
+
+.followings {
+  width: 130px;
+  height: 35px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: blue;
+  border: rgb(73, 73, 255) 2px solid;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 5px 10px 5px 10px;
+}
+
 
 .edit {
   width: 170px ;
@@ -359,11 +443,23 @@ li:hover {
   outline: none;
 }
 
+#comment {
+  font-size: 20px;
+  cursor: pointer;
+  color: gray;
+}
+
+#count {
+  font-size: 20px;
+  color: gray;
+}
+
 .like-button {
-  font-size: 25px;
+  font-size: 20px;
   background: none;
   border: none;
   cursor: pointer;
+  color: gray;
 }
 
 .like-icon {

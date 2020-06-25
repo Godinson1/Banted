@@ -35,21 +35,37 @@ const Banter = (props) => {
         <div>
           {banters && banters.banters ? banters.banters.map(bant => {
             return (<div key={bant._id}>
-              <Meta key={bant._id} className="bant"
-                 avatar={
-                   !bant.userImage ?
-                   <Avatar size={100} src='/images/no-img.png'/>
-                   :  <Avatar size={100} src={'/BantedImages/profileImages/' + bant.userImage} />
-                 }
-                 title={<Link to={`/profile?handle=${bant.banterHandle}`}>{bant.name  + '  ' + '  ' + '@' + bant.banterHandle + '  ' + '  ' + '-' + '  ' + dayjs(bant.createdAt).fromNow()}</Link>}
-                 description={bant.banter}
-               /> 
-               <br/>
-               <div className="imageContainer" onClick={() => toggleModal(bant.banterImage)}>
-                    <Carousel views={bant.banterImage} />
-               </div>
-               <br /><br/>
-               <div id='icons'><Icon type="message" /> {bant.commentCount} &nbsp;&nbsp;&nbsp;&nbsp;  <LikeButton banterId={bant._id}/>  {bant.likeCount} </div>
+              <div id="doves">
+              <div>
+              {
+                !bant.userImage ?
+                <Avatar size={70} src='/images/no-img.png'/>
+                :  <Avatar size={70} src={'/BantedImages/profileImages/' + bant.userImage} />
+              }
+              </div>
+              <div id="nn">
+              <span id="os">
+              <Link to={`/profile?handle=${bant.banterHandle}`}>
+                {bant.name} @{bant.banterHandle}
+              </Link> - {dayjs(bant.createdAt).fromNow()}
+              </span><br/>
+                <span id="os">{bant.banter}</span>
+                {bant.banterImage.length !== 0 ? (
+                 <div className="imageContainer" onClick={() => toggleModal(bant.banterImage)}>
+                 <Carousel views={bant.banterImage} />
+                  </div>
+                ):('')}
+                <p style={{ marginTop: "5px" }}>
+                <Icon id="comment" type="message" />&nbsp;  
+                <span id="count">{bant.commentCount}</span>
+                `&nbsp;&nbsp;  
+                 <LikeButton banterId={bant._id}/>
+                <span id="count">
+                {bant.likeCount}
+                </span> 
+                </p>
+              </div>
+              </div>
                <Divider />
               </div>)      
           }): <div id="spin"><Spin size="large" /></div>}

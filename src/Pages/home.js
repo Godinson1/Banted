@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { 
-   Layout, Card, Button,
-   Modal, Row, Col
+   Layout, Card, Button, Avatar,
+   Modal, Row, Col, Divider
   } from 'antd';
 import { useDispatch } from 'react-redux';
 import Banter from '../Components/Banters';
 import Sidenav from '../Components/Sidenav';
 import RightSidenav from '../Components/RightSidenav';
 import CreateBanter from '../util/CreateBanter';
+import {PictureOutlined,  SmileOutlined} from '@ant-design/icons';
 
 
 
@@ -36,21 +37,42 @@ const Home = () => {
         <Sidenav/>
      </Col>
      <Col span={12}>
-      <Layout>
         <Content>
-          <div >
-            <Card title="Banted" style={{ width: '100%' }} extra={
-            <Button type="primary" onClick={() => dispatch(showModal)}>
-               Bant
-             </Button>
-            }>
-            <Content>
-             <Banter/> <br/>
-            </Content>
-            </Card>
+          <div className="bo">
+          <div className="create">
+          <div className="grid-home">
+          <div>
+          <span id="home">Home</span>
+          </div>
+          <div>
+          <span id="home">Home</span>
+          </div>
+          </div>
+          <Divider />
+          <div id="dove">
+           <div>
+            <Avatar size={70} src='/images/no-img.png'/>
             </div>
+           <div id="nn">
+           <input className="input-searchs" placeholder="Whats happening?"/>
+           </div>
+           <div>
+           </div>
+           <div className="grid-homes">
+          <div id="pic">
+          <PictureOutlined />   < SmileOutlined />
+          </div>
+          <div>
+          <span id="homes">
+            <btn className="followings">Create Banter</btn>
+          </span>
+          </div>
+          </div>
+           </div>
+          </div>
+          <Banter/> <br/>
+          </div>
         </Content>
-        </Layout>
         </Col>
       <Col span={6}>
        <div className="side">
