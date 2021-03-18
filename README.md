@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## BANTED
 
-## Available Scripts
+Banted is a social app geared towards having individuals share banters from all sphere
+but particularly football lovers.
 
-In the project directory, you can run:
+Just say a football twitter!
 
-### `npm start`
+## FEATURES
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Register Banter (User)
+- Login Banter (User)
+- Share a Banter (Along with multiple bant images)
+- Like a Banter
+- Comment on a Banter
+- Follow/Unfollow a Banter (User)
+- Banter Timeline
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## NOTE
 
-### `npm test`
+Banted is still under development and more features are been added.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## TECHNOLOGY TOOLS (PRESENT)
 
-### `npm run build`
+Banted App is built using the mern stack and more additional packages to support it's development
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node Js - express (Backend (API's))
+- MongoDB Atlas - mongoose (Database)
+- React Js (Frontend Library)
+- Ant Design (Design Component)
+- More packages to aid some of it's implementations
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## APP INFLUENCE
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This App is influenced by the drive to implement basic features encompassing development with Javascript programming language (Full-Stack).
 
-### `npm run eject`
+As with this, One can implement basic crud functionality, authentication and more that concerns web development.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## POTENTIAL UPDATE
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Because of the availability of standalone api endpoints to consume, The banted app might have a mobile version developed with *flutter* for both mobile and iOS.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## CONTRIBUTIONS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+So I'm open to contributions for this application. Suggestions, Feature implementations and contributions in general.
 
-## Learn More
+## CONTACT ME
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Hit me up!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Twitter](https://twitter.com/iamgodinson/)
