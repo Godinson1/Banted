@@ -1,0 +1,32 @@
+.logins-container {
+  height: 100vh;
+  background-color: rgba(4, 4, 56, 0.986);
+  padding: 20px;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  background-color: lightblue;
+}
+
+.two {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+}
+
+.large-text {
+  font-family: Roboto;
+  font-size: 3rem;
+  color: white;
+}

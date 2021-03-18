@@ -1,0 +1,12 @@
+@import "../../../config/config";
+
+.flex-container {
+  @include flex;
+  background-color: white;
+  height: 5vh;
+}
+
+#footer-text {
+  @include FONT;
+  font-size: 1rem;
+}

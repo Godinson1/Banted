@@ -1,11 +1,35 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(./Fonts/Roboto-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(./Fonts/Roboto-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url(./Fonts/Roboto-Black.ttf) format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #15202b;
+}
 
 .avatar {
   float: left;
   left: 20;
   margin-top: 100;
 }
-
 
 .bant {
   margin-top: 40px;
@@ -28,60 +52,53 @@
   overflow-y: scroll;
   height: 800px;
   width: 800px;
-  padding: 1rem
+  padding: 1rem;
 }
 
-.imageContainer {
-  width: 500px;
-  margin-left: 2px;
-  justify-content: center;
-  align-content: center;
-  padding-top: 10px;
-  object-fit: cover;
-}
-
-.img {
-  object-fit: cover;
-}
-
-.register {
-  display: grid;
-  place-content: center;
-  margin: 150px 0 150px 0;
-}
-
-.login {
-  display: grid;
-  place-content: center;
-  margin: 150px 0 150px 0;
-}
-
-#reg-image {
-  margin: 50px 0 0 100px;
-}
-
-.side {
-  background-color: rgb(2, 14, 44);
-  position: fixed;
+.imagesss {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
-.s-side {
-  background-color: rgba(0, 0, 0, 0.384);
-  position: fixed;
+.column {
+  flex: 25%;
+  max-width: 100%;
+  padding: 0 2px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  flex-grow: 1;
+  object-fit: fill;
   width: 100%;
+  height: 330px;
+}
+
+.fside {
+  width: 25vw;
   height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  position: absolute;
 }
 
-.first-side {
-  margin: 50px 0 0 30px;
+.main {
+  width: 45vw;
+  height: 100vh;
 }
 
-.second-side {
-  margin: 10px 0 0 15px;
+.sside {
+  top: 0;
+  right: 0;
+  width: 30vw;
+  height: 100%;
+  position: fixed;
 }
-
 
 li {
   list-style-type: none;
@@ -90,7 +107,7 @@ li {
 }
 
 li:hover {
-  color: rgb(53, 53, 243)
+  color: rgb(53, 53, 243);
 }
 
 .menu {
@@ -100,34 +117,6 @@ li:hover {
   color: white;
 }
 
-.banner {
-  max-width: 100%;
-  height: 250px;
-  background-color: rgb(177, 171, 248);
-}
-
-.top {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 500px;
-}
-
-#top-prof {
-  margin-top: 3px;
-}
-
-#avatar-profile {
-  margin: 180px 0 0 10px;
-  position: absolute;
-  z-index: 1;
-}
-
-#avatar-profiles {
-  margin: 255px 0 0 600px;
-  position: absolute;
-  z-index: 1;
-}
-
 .people {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -135,50 +124,41 @@ li:hover {
   align-items: center;
 }
 
-#oo{
+#oo {
   color: white;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
 }
 
-
-#op{
+#op {
   color: black;
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
 }
 
+#on {
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-#os{
+#os {
   color: grey;
   font-size: 14px;
   cursor: pointer;
+  white-space: pre-wrap;
 }
 
-#name-prof {
-  font-size: 15px;
+#bant {
+  color: whitesmoke;
+  white-space: pre-wrap;
+  font-size: 1.2em;
 }
 
-#handle-prof {
-  font-size: 12px;
-  color: grey;
-}
-
-#handle-profs {
-  font-size: 12px;
-  color: grey;
-  margin-left: 70px;
-}
-
-
-.back {
-  font-size: 20px;
-  margin-left: 10px;
-}
-
-#isFol{
+#isFol {
   font-size: 1.4em;
   margin-top: 170px;
   text-align: center;
@@ -197,20 +177,14 @@ li:hover {
   list-style-type: none;
 }
 
-.info {
-  margin: 80px 0 0 25px;
-}
-
 .pymn {
   margin-top: 10px;
 }
 
 .trends {
-  width: 350px;
-  height: 300px;
+  width: 100%;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.384);
-  margin-top: 40px;
+  margin-right: 10px;
 }
 
 .trendss {
@@ -218,7 +192,7 @@ li:hover {
   height: 300px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.384);
-  margin: 10px 0 0 15px;
+  margin: 50px 0 0 15px;
 }
 
 .menus {
@@ -248,11 +222,6 @@ li:hover {
   margin-top: 300px;
 }
 
-.form {
-  background-color: rgb(255, 255, 255);
-  height: 100vh;
-}
-
 .search {
   width: 300px;
   height: 40px;
@@ -279,34 +248,6 @@ li:hover {
   outline: none;
 }
 
-#home {
-  font-size: 25px;
-  font-weight: bold;
-  margin: 60px 0 0 10px;
-  color: white;
-  padding-top: 50px;
-}
-
-#homes {
-  font-size: 25px;
-  font-weight: bold;
-  margin: 90px 0 0 10px;
-  color: white;
-  padding-top: 90px;
-}
-
-.grid-home {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 550px;
-}
-
-.grid-homes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 390px;
-}
-
 #dove {
   display: flex;
   flex-wrap: wrap;
@@ -314,84 +255,33 @@ li:hover {
   padding-left: 10px;
 }
 
-.create {
-  height: 210px;
-  background-color: indigo;
+#pp {
+  width: 100%;
+  height: 50%;
+  display: inline-block;
+  justify-content: center;
+  object-fit: cover;
 }
 
-.bo {
-  border: 2px solid gray;
-}
-
-#pic {
-  font-size: 40px;
-  margin-left: 80px;
-  color: gray;
-  cursor: pointer;
+#pps {
+  width: 700px;
 }
 
 #doves {
   display: flex;
-  flex-wrap: wrap;
-  margin: 30px 0 0 50px;
-  padding-left: 10px;
+  margin: 40px;
+}
+
+#nn {
+  margin-left: 10px;
 }
 
 #ss {
   margin-left: 350px;
 }
 
-#nn {
-  margin:0 50px 0 10px;
-}
-
-
-#log-reg {
-  font-style: italic;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.follow {
-  width: 130px;
-  height: 35px;
-  border-radius: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: transparent;
-  border: rgb(73, 73, 255) 2px solid;
-  color: blue;
-  cursor: pointer;
-}
-
-.following {
-  width: 130px;
-  height: 35px;
-  border-radius: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: blue;
-  border: rgb(73, 73, 255) 2px solid;
-  color: white;
-  cursor: pointer;
-}
-
-.followings {
-  width: 130px;
-  height: 35px;
-  border-radius: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: blue;
-  border: rgb(73, 73, 255) 2px solid;
-  color: white;
-  cursor: pointer;
-  margin-top: 20px;
-  padding: 5px 10px 5px 10px;
-}
-
-
 .edit {
-  width: 170px ;
+  width: 170px;
   height: 15px;
   border-radius: 50px;
   font-size: 20px;
@@ -404,7 +294,7 @@ li:hover {
 }
 
 .banter {
-  width: 170px ;
+  width: 170px;
   height: 35px;
   border-radius: 50px;
   font-size: 20px;
@@ -422,25 +312,13 @@ li:hover {
   color: white;
 }
 
-.banter:focus{
+.banter:focus {
   outline: none;
 }
 
-.following:focus{
-  outline: none;
-}
-
-.follow:focus{
-  outline: none;
-}
-
-.input-search:focus{
+.input-search:focus {
   outline: none;
   color: white;
-}
-
-.like-button:focus {
-  outline: none;
 }
 
 #comment {
@@ -452,16 +330,5 @@ li:hover {
 #count {
   font-size: 20px;
   color: gray;
-}
-
-.like-button {
-  font-size: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: gray;
-}
-
-.like-icon {
-  color: rgb(83, 83, 230);
+  padding-left: 3pxs;
 }

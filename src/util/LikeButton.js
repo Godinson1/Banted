@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { likeBanter, unlikeBanter } from '../actions/banterActions';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import './css/like.css';
 
 
 const LikeButton = (props) => {

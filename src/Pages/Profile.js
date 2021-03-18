@@ -16,6 +16,7 @@ import RightSidenav from '../Components/RightSidenav';
 import UserBanter from '../Components/UserBanter';
 import FollowButton from '../util/FollowButton';
 import ProfileFollowerButton from '../util/ProfileFollowerButton';
+import './css/profile.css';
 
 
 
@@ -113,14 +114,14 @@ const Profile = (props) => {
                 </TabPane>
                 <TabPane tab="Following" key="5">
                 {user.profile.following.length == 0 ? 
-                    <span id="isFol">You are not following anyone..</span>
+                    <span id="isFol">Not following anyone..</span>
                     : <div>
                   {user.profile.following.map((follow) => {
                     return  <div key={follow._id} id="dove">
                     <div>
                       {!follow.userImage ?
                       <Avatar size={50} src='/images/no-img.png'/>
-                      : <Avatar size={150} src={'/BantedImages/profileImages/' + follow.userImage} />}
+                      : <Avatar size={50} src={'/BantedImages/profileImages/' + follow.userImage} />}
                     </div>
                    <div id="nn">
                    <Link to={`/profile?handle=${follow.handle}`}>
@@ -145,7 +146,7 @@ const Profile = (props) => {
                   <div>
                     {!follow.followerImage ?
                     <Avatar size={50} src='/images/no-img.png'/>
-                    : <Avatar size={150} src={'/BantedImages/profileImages/' + follow.followerImage} />}
+                    : <Avatar size={50} src={'/BantedImages/profileImages/' + follow.followerImage} />}
                   </div>
                  <div id="nn">
                  <Link to={`/profile?handle=${follow.followerHandle}`}>

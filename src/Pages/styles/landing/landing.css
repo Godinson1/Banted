@@ -1,0 +1,190 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.landing-container {
+  height: 95vh;
+  background-color: rgba(4, 4, 56, 0.986);
+  padding: 0 10px 0 10px;
+  overflow-y: hidden;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.one {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 50vw;
+  height: 95vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.two {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50vw;
+  height: 95vh;
+  padding: 60px;
+}
+
+.large-text {
+  font-family: Roboto;
+  font-size: 5rem;
+  color: white;
+  line-height: 1rem;
+}
+
+.medium-text {
+  font-family: Roboto;
+  font-size: 1.7rem;
+  color: #d6d0d0;
+}
+
+.medium-text-secondary {
+  font-family: Roboto;
+  font-size: 1.7rem;
+  color: rgba(4, 4, 56, 0.986);
+}
+
+.auth-container {
+  -webkit-box-shadow: rgba(79, 79, 79, 0.07) 0px 4px 10px;
+          box-shadow: rgba(79, 79, 79, 0.07) 0px 4px 10px;
+  background-color: white;
+  -webkit-transition: width 100ms ease-in-out;
+  transition: width 100ms ease-in-out;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 60px;
+  height: 450px;
+  z-index: 5;
+  border-radius: 5px;
+  border-top: 5px solid rgba(4, 4, 56, 0.986);
+}
+
+.register-auth-container {
+  -webkit-box-shadow: rgba(79, 79, 79, 0.07) 0px 4px 10px;
+          box-shadow: rgba(79, 79, 79, 0.07) 0px 4px 10px;
+  background-color: white;
+  -webkit-transition: width 100ms ease-in-out;
+  transition: width 100ms ease-in-out;
+  padding: 10px 30px 0 30px;
+  z-index: 5;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: auto;
+}
+
+#icon {
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: Roboto;
+  cursor: pointer;
+  color: #15202b;
+}
+
+.flex-between {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.register {
+  margin-top: 80px;
+  overflow-x: hidden;
+}
+
+.overlay-container {
+  position: relative;
+  height: 95vh;
+}
+
+.overlay-container .after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 100px 0 100px;
+}
+
+.overlay-container #show-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 100px 0 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  z-index: 7;
+  padding: 70px 0 20px 0;
+  overflow-y: hidden;
+}
+
+#link {
+  color: #15202b;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+/*# sourceMappingURL=landing.css.map */

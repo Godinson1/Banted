@@ -1,0 +1,27 @@
+.register {
+    display: grid;
+    place-content: center;
+    margin: 150px 0 150px 0;
+  }
+  
+  .login {
+    display: grid;
+    place-content: center;
+  }
+  
+  #reg-image {
+    margin: 50px 0 0 100px;
+  }
+
+  .form {
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #log-reg {
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  

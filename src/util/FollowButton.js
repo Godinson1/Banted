@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { followUser, unFollowUser } from '../actions/userActions';
-import {Spin} from 'antd';
+import './css/follow.css';
+
 
 const FollowButton = (props) => {
 
@@ -26,16 +27,13 @@ const FollowButton = (props) => {
                 <button className="following" onClick={() => dispatch(unFollowUser(props.handle))}
                 disabled={state && state.users && state.users.loading_fol}
                 >
-                    {state && state.users && state.users.loading_fol ? 
-                     <span id="log-reg">Unfollowing..<Spin size="small" /></span> : '   Following'}  
+                 Following
                 </button>
             ): (
                 <button className="follow" 
                  onClick={() => dispatch(followUser(props.handle))}
-                 disabled={state && state.users && state.users.loading_fol}
                  >
-                     {state && state.users && state.users.loading_fol ? 
-                     <span id="log-reg">Following..<Spin size="small" /></span> : '  Follow'} 
+                  Follow
                 </button>
             ))
 

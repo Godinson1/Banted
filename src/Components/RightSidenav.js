@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Layout, Avatar } from 'antd';
+import { Avatar } from 'antd';
  import { UserOutlined, SearchOutlined } from '@ant-design/icons';
 import PeopleButton from '../util/PeopleButton';
 import { Link } from 'react-router-dom';
@@ -11,27 +11,53 @@ const RightSidenav = () => {
 
     const user = useSelector(state => state.users);
 
-    let result; 
-    if(user && user.following && user.users) {
-      result = user.users.filter(us => user.following.some(follow => us.handle !== follow.handle));
-      console.log(result);
+    useEffect(() => {
+      document.addEventListener('mousedown', clickOutside);
+      return () => {
+        document.removeEventListener('mousedown', clickOutside);
+      }
+    }, [])
+
+    const clickOutside = (e) => {
+      const {current: wrap} = myRef;
+      if(wrap && !wrap.contains(e.target)){
+        setDisplay(false);
+      }
+    }
+
+    const [display, setDisplay] = useState(false);
+    const [search, setSearch] = useState('');
+    const myRef = useRef();
+
+    const setUser = (user) => {
+      setSearch(search);
+      setDisplay(true);
     }
 
 
     return (
-        <div>
-            <Layout>
+      <div ref={myRef}>
       <div className="s-side">
       <div className="second-side">
         <div className="search">
-        <SearchOutlined /><input className="input-search" placeholder="Search banters"/>
+          <SearchOutlined />
+          <input onClick={() => setDisplay(!display)} 
+          className="input-search" 
+          placeholder="Search banters"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         </div>
         <div className="trends">
-        <div className="pymn">
-        <span className="menus"><UserOutlined /> OTHER BANTERS</span>
-        </div>
-        {result && result.map(user => (
-          <div id="dove" key={user._id}>
+        <div className="pymn"></div>
+        {display && (
+          <div>
+          {user && 
+          user.users.filter(({name, handle}) => handle.indexOf(search.toLowerCase()) > -1
+          || name.toLowerCase().indexOf(search.toLowerCase()) > -1
+          )
+          .map(user => (
+          <div id="dove" key={user._id} onClick={() => setUser(user.name)}>
             {}
            <div>
             <Avatar size={50} src='/images/no-img.png'/>
@@ -47,6 +73,8 @@ const RightSidenav = () => {
            </div>
            </div>
         ))}
+          </div>
+        )}
         </div>
       </div>
       <div className="trendss">
@@ -55,7 +83,6 @@ const RightSidenav = () => {
         </div>
       </div>
       </div>
-      </Layout>
     </div>
     );
 }

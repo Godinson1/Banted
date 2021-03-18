@@ -17,7 +17,7 @@ router.post('/banter', uploadMultiple.array('banterImage', 4), auth, (req, res) 
 
     //Map through each file and push customize path to Array - reqFiles
     for (var i = 0; i < req.files.length; i++) {
-        reqFiles.push({source: '/BantedImages/BanterImages/' + req.files[i].filename});
+        reqFiles.push('/BantedImages/BanterImages/' + req.files[i].filename);
     }
 
     console.log(req.user.name);

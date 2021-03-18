@@ -1,0 +1,47 @@
+.follow {
+    width: 130px;
+    height: 35px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: transparent;
+    border: rgb(73, 73, 255) 2px solid;
+    color: blue;
+    cursor: pointer;
+    padding: 0 10px 5px 10px;
+  }
+  
+  .following {
+    width: 130px;
+    height: 35px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: blue;
+    border: rgb(73, 73, 255) 2px solid;
+    color: white;
+    cursor: pointer;
+    padding: 0 10px 5px 10px;
+  }
+  
+  .followings {
+    width: 130px;
+    height: 35px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: blue;
+    border: rgb(73, 73, 255) 2px solid;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 5px 10px 5px 10px;
+  }
+
+  .following:focus{
+    outline: none;
+  }
+  
+  .follow:focus{
+    outline: none;
+  }

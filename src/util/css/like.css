@@ -1,0 +1,16 @@
+.like-button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: gray;
+  }
+  
+  .like-icon {
+    color: rgb(83, 83, 230);
+  }
+
+  .like-button:focus {
+    outline: none;
+  }
+  

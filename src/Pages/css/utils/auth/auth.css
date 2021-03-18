@@ -1,0 +1,101 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.inputed {
+  margin-bottom: 10px;
+}
+
+.buttoned {
+  margin: 10px 0 0 -6px;
+  position: relative;
+}
+
+.inputed-password {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 10px;
+}
+
+.icon-container {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  margin-left: 300px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+#input-container {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-left: 3px;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+#input-container:focus {
+  outline: none;
+  border: 1.5px solid #1da1f2;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#button-container {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  cursor: pointer;
+  background-color: rgba(4, 4, 56, 0.986);
+  color: #fff;
+}
+
+#button-container:focus {
+  outline: none;
+}
+
+#button-container-disabled {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  cursor: pointer;
+  background-color: #d8d5d5;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 600;
+}
+/*# sourceMappingURL=auth.css.map */

@@ -1,0 +1,100 @@
+$primary-color: #fff;
+$background-color: #15202b;
+$secondary-color: #1da1f2;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin banter-flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+@mixin avatar {
+  border-radius: 50px;
+  background-color: $secondary-color;
+  margin-top: 5px;
+}
+
+@mixin media-container {
+  height: 300px;
+  background-color: #162d40;
+  border-radius: 10px;
+  margin: -5px 0 15px 0;
+  display: grid;
+  grid-gap: 3px;
+  overflow: hidden;
+}
+
+@mixin button {
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 100px 0 100px;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin FONT {
+  font-family: Roboto;
+}
+
+@mixin media-xsm {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media screen and (min-width: 718px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}

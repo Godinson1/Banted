@@ -35,7 +35,7 @@ const UserBanter = (props) => {
         <div>
           {props.banters ? props.banters.map(bant => {
             return (<div key={bant._id}>
-       <div id="doves">
+           <div id="doves">
               <div>
               {
                 !bant.userImage ?
@@ -51,7 +51,7 @@ const UserBanter = (props) => {
                 <span id="os">{bant.banter}</span>
                 {bant.banterImage.length !== 0 ? (
                  <div className="imageContainer" onClick={() => toggleModal(bant.banterImage)}>
-                 <Carousel views={bant.banterImage} />
+                 
                   </div>
                 ):('')}
                 <p style={{ marginTop: "5px" }}>
