@@ -11,7 +11,7 @@ import {
   BorderOuterOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
-import "../Pages/styles/dashboard/dash.scss";
+import "../Pages/styles/main/main.scss";
 
 const LeftSideBar = () => {
   const user = useSelector((state) => state.users.credentials);

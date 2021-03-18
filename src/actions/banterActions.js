@@ -4,7 +4,6 @@ import {
   SET_ERROR,
   LIKE_BANTER,
   UNLIKE_BANTER,
-  LOADING_UI,
 } from "./types";
 import axios from "axios";
 

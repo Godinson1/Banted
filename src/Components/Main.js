@@ -1,20 +1,13 @@
 import React from "react";
 import {
   StarOutlined,
-  HeartOutlined,
-  MessageOutlined,
-  RetweetOutlined,
-  UploadOutlined,
-  HeartFilled,
   PictureOutlined,
-  SmileFilled,
   SmileOutlined,
   GifOutlined,
   PicCenterOutlined,
 } from "@ant-design/icons";
-import { getClassMediaNames, imageStrings } from "../util";
 import NewBanter from "./NewBanter";
-import "../Pages/styles/dashboard/dash.scss";
+import "../Pages/styles/main/main.scss";
 
 const Main = () => {
   return (

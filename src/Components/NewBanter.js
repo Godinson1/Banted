@@ -7,11 +7,10 @@ import {
   UploadOutlined,
   HeartFilled,
 } from "@ant-design/icons";
-import { Avatar } from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { getClassMediaNames, imageStrings } from "../util";
-import "../Pages/styles/dashboard/dash.scss";
+import { getClassMediaNames } from "../util";
+import "../Pages/styles/main/main.scss";
 
 const NewBanter = () => {
   const banters = useSelector((state) => state.banters);
@@ -33,7 +32,7 @@ const NewBanter = () => {
               <div className="flex-start-banter">
                 <div className="avatar-banter">
                   {!bant.userImage ? (
-                    <img src="/images/no-img.png" alt="profile" />
+                    <img src="/images/no-img.png" alt="profiles" />
                   ) : (
                     <img
                       src={"/BantedImages/profileImages/" + bant.userImage}
@@ -63,7 +62,7 @@ const NewBanter = () => {
                     {bant.banterImage.map((image, index) => {
                       return (
                         <div className="media-container">
-                          {<img src={image} alt="image" />}
+                          {<img src={image} alt="banter" />}
                         </div>
                       );
                     })}

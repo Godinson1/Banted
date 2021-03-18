@@ -5,8 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import AuthRoute from "./util/AuthRoute";
 //Pages
-import { Profile, LoginScreen, NewHome, HomePage, NotFound } from "./Pages";
-import AlternativeMedia from "./Media/AlternativeMedia";
+import { LoginScreen, HomePage, NotFound } from "./Pages";
 
 //Config
 import JwtDecode from "jwt-decode";
@@ -39,10 +38,7 @@ const App = () => {
         <div className="container">
           <Switch>
             <Route exact path="/login" component={LoginScreen} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/media" component={AlternativeMedia} />
-            <Route path="/new" component={NewHome} />
-            <Route path="/home" component={HomePage} />
+            <AuthRoute path="/home" component={HomePage} />
             <Route component={NotFound} />
           </Switch>
         </div>

@@ -4,7 +4,7 @@ import {
   CloseOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import "../Pages/styles/dashboard/dash.scss";
+import "../Pages/styles/main/main.scss";
 
 const RightSideBar = () => {
   return (
