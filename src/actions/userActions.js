@@ -131,7 +131,7 @@ export const logoutUser = () => (dispatch) => {
   localStorage.removeItem("BToken");
   //delete axios.defaults.common.headers['banted-token']
   dispatch({ type: SET_UNAUTHENTICATED });
-  window.location.href = "/login";
+  window.location.href = "/";
 };
 
 const setAuthorization = (token) => {

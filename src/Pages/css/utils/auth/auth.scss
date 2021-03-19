@@ -48,6 +48,7 @@
   @include button;
   background-color: rgba(4, 4, 56, 0.986);
   color: $primary-color;
+  border: none;
   &:focus {
     outline: none;
   }

@@ -106,7 +106,7 @@ const LeftSideBar = () => {
         </div>
         <div className="account-bottom">
           {user && user.credentials ? (
-            <div className="flex-start">
+            <div className="flex-start-account">
               <div className="avatar">
                 {user && user.credentials && user.credentials[0].userImage ? (
                   <img

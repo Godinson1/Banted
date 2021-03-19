@@ -75,6 +75,7 @@
   cursor: pointer;
   background-color: rgba(4, 4, 56, 0.986);
   color: #fff;
+  border: none;
 }
 
 #button-container:focus {
