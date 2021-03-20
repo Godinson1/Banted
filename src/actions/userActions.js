@@ -49,14 +49,16 @@ export const RegisterUser = (newData, history, setErrorMessage) => (
       setAuthorization(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERROR });
-      history.push("/");
+      history.push("/home");
     })
     .catch((err) => {
-      setErrorMessage(err.response.data.error);
-      dispatch({
-        type: SET_ERROR,
-        payload: err.response.data,
-      });
+      if (err.response && err.response.data) {
+        setErrorMessage(err.response.data.error);
+        dispatch({
+          type: SET_ERROR,
+          payload: err.response.data,
+        });
+      }
     });
 };
 

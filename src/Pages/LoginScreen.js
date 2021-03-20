@@ -117,7 +117,7 @@ const LoginScreen = ({ history }) => {
                   <div className="flex" onClick={() => setShowModal(true)}>
                     <p className="small-text">
                       Don't have an Account?{" "}
-                      <Link id="link" to="/logins">
+                      <Link id="link" to="/">
                         REGISTER
                       </Link>
                     </p>
