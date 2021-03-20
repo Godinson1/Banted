@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 const app = express();
 const config = require("config");
 require("dotenv").config();
@@ -41,11 +42,11 @@ connection.once("open", () => {
   changeStream.on("change", (change) => {
     console.log(change);
 
-    if (change.operationType == "insert") {
+    if (change.operationType === "insert") {
       pusher.trigger(channel, "inserted", change.fullDocument);
-    } else if (change.operationType == "update") {
+    } else if (change.operationType === "update") {
       pusher.trigger(channel, "updated", change.fullDocument);
-    } else if (change.operationType == "delete") {
+    } else if (change.operationType === "delete") {
       pusher.trigger(channel, "deleted", change.documentKey._id);
     }
   });
@@ -53,6 +54,11 @@ connection.once("open", () => {
 
 app.use("/users", userRoutes);
 app.use("/banters", banterRoutes);
+
+app.use(express.static(path.join(__dirname, "../build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build"));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
