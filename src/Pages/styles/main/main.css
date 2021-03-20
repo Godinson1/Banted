@@ -65,7 +65,7 @@
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  padding: 0 50px 0 20px;
+  padding: 0 20px 0 20px;
   font-family: Roboto;
   font-size: 1.2rem;
   height: 50px;
@@ -73,7 +73,6 @@
   background-color: #15202b;
   border-bottom: 0.1px solid #5a5959;
   position: fixed;
-  right: 20;
   left: 25vw;
   cursor: pointer;
   z-index: 4;
@@ -94,6 +93,7 @@
   height: 100%;
   background-color: transparent;
   border: none;
+  font-size: 1.2rem;
   color: whitesmoke;
 }
 
@@ -132,6 +132,7 @@
   background-color: #1da1f2;
   color: #fff;
   border-radius: 50px;
+  border: none;
   font-family: Roboto;
   font-size: 0.9rem;
   cursor: not-allowed;
@@ -228,7 +229,15 @@
   overflow: hidden;
 }
 
-.trend-container .trend-header {
+.relevant-container {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+  background-color: #192734;
+  overflow: hidden;
+}
+
+.trend-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -293,6 +302,22 @@
   padding: 10px;
 }
 
+.flex-start-account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .flex-start-banter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -306,6 +331,17 @@
   gap: 20px;
   font-size: 1.3rem;
   font-weight: 700;
+}
+
+.primary-color {
+  color: #fff;
+}
+
+.font-white {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
 }
 
 .flex-start:hover {
@@ -337,6 +373,7 @@
   background-color: #1da1f2;
   color: #fff;
   border-radius: 50px;
+  border: none;
   cursor: pointer;
   font-family: Roboto;
   font-size: 1rem;
@@ -645,5 +682,282 @@
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-top: 30%;
+  left: 44%;
+}
+
+.lds-ring div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border: 4px solid #1da1f2;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #1da1f2 transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+#show-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 100px 0 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  position: fixed;
+  z-index: 7;
+  padding: 70px 0 20px 0;
+  overflow-y: hidden;
+}
+
+.modal-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.banter-view-container {
+  margin-top: 30px;
+  position: absolute;
+}
+
+.banter-view-container #account-bottom-banter {
+  padding: 30px 40px 0 10px;
+}
+
+.banter-view-container #account-bottom-banter .media-full {
+  height: 300px;
+  background-color: #162d40;
+  border-radius: 10px;
+  margin: -5px 0 15px 0;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 3px;
+  overflow: hidden;
+  -ms-grid-columns: (1fr)[1];
+      grid-template-columns: repeat(1, 1fr);
+}
+
+.banter-view-container #account-bottom-banter .media-full .media-container:nth-child(1) {
+  background-color: darkolivegreen;
+}
+
+.banter-view-container #account-bottom-banter .media-two {
+  height: 300px;
+  background-color: #162d40;
+  border-radius: 10px;
+  margin: -5px 0 15px 0;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 3px;
+  overflow: hidden;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.banter-view-container #account-bottom-banter .media-two .media-container:nth-child(1) {
+  background-color: green;
+}
+
+.banter-view-container #account-bottom-banter .media-two .media-container:nth-child(2) {
+  background-color: brown;
+}
+
+.banter-view-container #account-bottom-banter .media-two .media-container:nth-child(3) {
+  background-color: yellowgreen;
+}
+
+.banter-view-container #account-bottom-banter .media-two .media-container:nth-child(4) {
+  background-color: white;
+}
+
+.banter-view-container #account-bottom-banter .media-three {
+  height: 300px;
+  background-color: #162d40;
+  border-radius: 10px;
+  margin: -5px 0 15px 0;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 3px;
+  overflow: hidden;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.banter-view-container #account-bottom-banter .media-three .media-container:nth-child(1) {
+  grid-row: span 2;
+  background-color: green;
+}
+
+.banter-view-container #account-bottom-banter .media-three .media-container:nth-child(2) {
+  background-color: brown;
+}
+
+.banter-view-container #account-bottom-banter .media-three .media-container:nth-child(3) {
+  background-color: yellowgreen;
+}
+
+.banter-view-container #account-bottom-banter .media-container {
+  max-width: 100%;
+  height: 100%;
+  background-color: #1da1f2;
+}
+
+.banter-view-container #account-bottom-banter .media-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banter-view-container #account-bottom-banter .action-top-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  color: gray;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  font-weight: 500;
+}
+
+.banter-view-container #account-bottom-banter .actions-container-base {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  border-bottom: 0.1px solid #5a5959;
+  gap: 140px;
+  width: 45vw;
+  margin: 25px 0 5px -20px;
+  padding: 0 0 5px 50px;
+}
+
+.banter-view-container #account-bottom-banter .actions-container-base .action-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  color: gray;
+}
+
+.banter-view-container #account-bottom-banter .actions-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  border-top: 0.1px solid #5a5959;
+  border-bottom: 0.1px solid #5a5959;
+  gap: 80px;
+  width: 100%;
+  margin: 7px 0 5px 0;
+}
+
+.banter-view-container #account-bottom-banter .actions-container .action-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  color: gray;
 }
 /*# sourceMappingURL=main.css.map */

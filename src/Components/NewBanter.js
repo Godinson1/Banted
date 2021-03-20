@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   HeartOutlined,
   MessageOutlined,
@@ -7,6 +8,7 @@ import {
   UploadOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import LikeButton from "./likeButton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getClassMediaNames } from "../util";
@@ -17,8 +19,12 @@ const NewBanter = () => {
   dayjs.extend(relativeTime);
   return (
     <div>
-      {banters && banters.banters
-        ? banters.banters.map((bant) => (
+      {banters && banters.banters ? (
+        banters.banters.map((bant) => (
+          <Link
+            to={`/${bant.banterHandle}/status/${bant._id}`}
+            className="link"
+          >
             <div className="account-bottom-banter">
               <div className="action-top-flex">
                 <div>
@@ -61,9 +67,19 @@ const NewBanter = () => {
                   <div className={getClassMediaNames(bant.banterImage)}>
                     {bant.banterImage.map((image, index) => {
                       return (
-                        <div className="media-container">
-                          {<img src={image} alt="banter" />}
-                        </div>
+                        <Link
+                          to={{
+                            pathname: `/${bant.banterHandle}/status/${
+                              bant._id
+                            }/photo/${bant.banterImage.indexOf(image) + 1}`,
+                            state: { modal: true },
+                          }}
+                          className="link"
+                        >
+                          <div className="media-container">
+                            {<img src={image} alt="banter" />}
+                          </div>
+                        </Link>
                       );
                     })}
                   </div>
@@ -90,12 +106,14 @@ const NewBanter = () => {
                     </div>
                   </div>
                   <div className="action-flex">
-                    <div className="icon-action-like tooltip">
-                      <HeartOutlined />
-                      <span class="tooltiptext">like</span>
-                    </div>
+                    <LikeButton banterId={bant._id} />
                     <div>
-                      <span className="count">{bant.likeCount}</span>
+                      <span
+                        style={{ color: bant.likeCount !== 0 ? "#E0245E" : "" }}
+                        className="count"
+                      >
+                        {bant.likeCount}
+                      </span>
                     </div>
                   </div>
                   <div className="action-flex">
@@ -110,8 +128,18 @@ const NewBanter = () => {
                 </div>
               </div>
             </div>
-          ))
-        : "Loading..."}
+          </Link>
+        ))
+      ) : (
+        <div>
+          <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

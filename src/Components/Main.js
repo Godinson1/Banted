@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   StarOutlined,
   PictureOutlined,
@@ -10,6 +11,7 @@ import NewBanter from "./NewBanter";
 import "../Pages/styles/main/main.scss";
 
 const Main = () => {
+  const user = useSelector((state) => state.users.credentials);
   return (
     <div>
       <div className="s">
@@ -22,7 +24,19 @@ const Main = () => {
         <div className="banter-container">
           <div className="create-banter-container">
             <div className="flex-start-banter">
-              <div className="avatar-banter"></div>
+              <div className="avatar-banter">
+                {user && user.credentials && user.credentials[0].userImage ? (
+                  <img
+                    src={
+                      "/BantedImages/profileImages/" +
+                      user.credentials[0].userImage
+                    }
+                    alt="user"
+                  />
+                ) : (
+                  <img src="/images/no-img.png" alt="user" />
+                )}
+              </div>
               <div className="flex-between">
                 <div className="nameHandle-container-banter">
                   <div className="banter-input-container">
@@ -66,7 +80,6 @@ const Main = () => {
             </div>
           </div>
           <div className="banter-spacer"></div>
-          <NewBanter />
           <NewBanter />
         </div>
       </div>

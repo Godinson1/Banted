@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store";
 import AuthRoute from "./util/AuthRoute";
 //Pages
-import { LoginScreen, HomePage, NotFound } from "./Pages";
-
+import { LoginScreen, HomePage, NotFound, Banter } from "./Pages";
+import Modal from "./Components/Modal";
 //Config
 import JwtDecode from "jwt-decode";
 import axios from "axios";
@@ -21,7 +21,7 @@ if (token) {
   const decoded = JwtDecode(token);
   if (decoded.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
-    window.location.href = "/login";
+    window.location.href = "/";
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common["banted-token"] = token;
@@ -37,8 +37,11 @@ const App = () => {
       <Router>
         <div className="container">
           <Switch>
-            <Route exact path="/login" component={LoginScreen} />
+            <Route exact path="/" component={LoginScreen} />
             <AuthRoute path="/home" component={HomePage} />
+            <Route exact path="/modal/:id" component={Modal} />
+            <Route exact path="/:id/status/:id" component={Banter} />
+            <Route exact path="/:id/status/:id/photo/:id" component={Modal} />
             <Route component={NotFound} />
           </Switch>
         </div>

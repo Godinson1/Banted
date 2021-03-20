@@ -43,7 +43,7 @@
         justify-content: space-between;
         align-items: center;
         color: $primary-color;
-        padding: 0 50px 0 20px;
+        padding: 0 20px 0 20px;
         @include FONT;
         font-size: 1.2rem;
         height: 50px;
@@ -51,7 +51,7 @@
         background-color: $background-color;
         border-bottom: 0.1px solid rgb(90, 89, 89);
         position: fixed;
-        right: 20;
+
         left: 25vw;
         cursor: pointer;
         z-index: 4;
@@ -70,6 +70,7 @@
             height: 100%;
             background-color: transparent;
             border: none;
+            font-size: 1.2rem;
             color: whitesmoke;
 
             &:focus {
@@ -101,6 +102,7 @@
           background-color: $secondary-color;
           color: $primary-color;
           border-radius: 50px;
+          border: none;
           @include FONT;
           font-size: 0.9rem;
           cursor: not-allowed;
@@ -193,16 +195,24 @@
   margin-top: 15px;
   background-color: #192734;
   overflow: hidden;
+}
 
-  .trend-header {
-    @include flex-between;
-    padding: 15px;
-    @include FONT;
-    font-size: 1.3rem;
-    color: $primary-color;
-    border-bottom: 0.1px solid rgb(90, 89, 89);
-    cursor: pointer;
-  }
+.relevant-container {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+  background-color: #192734;
+  overflow: hidden;
+}
+
+.trend-header {
+  @include flex-between;
+  padding: 15px;
+  @include FONT;
+  font-size: 1.3rem;
+  color: $primary-color;
+  border-bottom: 0.1px solid rgb(90, 89, 89);
+  cursor: pointer;
 }
 
 .banted-footer {
@@ -224,8 +234,24 @@
   padding: 10px;
 }
 
+.flex-start-account {
+  @include banter-flex-start;
+  cursor: pointer;
+}
+
 .flex-start-banter {
   @include banter-flex-start;
+}
+
+.primary-color {
+  color: $primary-color;
+}
+
+.font-white {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $primary-color;
 }
 
 .flex-start:hover {
@@ -257,6 +283,7 @@
   background-color: $secondary-color;
   color: $primary-color;
   border-radius: 50px;
+  border: none;
   cursor: pointer;
   @include FONT;
   font-size: 1rem;
@@ -498,4 +525,174 @@
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-top: 30%;
+  left: 44%;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border: 4px solid $secondary-color;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $secondary-color transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#show-modal {
+  @include overlay;
+  @include flex;
+  height: 100vh;
+  position: fixed;
+  z-index: 7;
+  padding: 70px 0 20px 0;
+  overflow-y: hidden;
+}
+
+.modal-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.banter-view-container {
+  margin-top: 30px;
+  position: absolute;
+
+  #account-bottom-banter {
+    padding: 30px 40px 0 10px;
+
+    .media-full {
+      @include media-container;
+      grid-template-columns: repeat(1, 1fr);
+      .media-container:nth-child(1) {
+        background-color: darkolivegreen;
+      }
+    }
+
+    .media-two {
+      @include media-container;
+      grid-template-columns: repeat(2, 1fr);
+      .media-container:nth-child(1) {
+        background-color: green;
+      }
+      .media-container:nth-child(2) {
+        background-color: brown;
+      }
+      .media-container:nth-child(3) {
+        background-color: yellowgreen;
+      }
+      .media-container:nth-child(4) {
+        background-color: white;
+      }
+    }
+
+    .media-three {
+      @include media-container;
+      grid-template-columns: repeat(2, 1fr);
+
+      .media-container:nth-child(1) {
+        grid-row: span 2;
+        background-color: green;
+      }
+      .media-container:nth-child(2) {
+        background-color: brown;
+      }
+      .media-container:nth-child(3) {
+        background-color: yellowgreen;
+      }
+    }
+
+    .media-container {
+      max-width: 100%;
+      height: 100%;
+      background-color: $secondary-color;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .action-top-flex {
+      @include flex;
+      gap: 5px;
+      color: gray;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      font-weight: 500;
+    }
+
+    .actions-container-base {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      border-bottom: 0.1px solid rgb(90, 89, 89);
+      gap: 140px;
+      width: 45vw;
+      margin: 25px 0 5px -20px;
+      padding: 0 0 5px 50px;
+
+      .action-flex {
+        @include flex;
+        gap: 15px;
+        font-size: 1.1rem;
+        color: gray;
+      }
+    }
+
+    .actions-container {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: flex-start;
+      border-top: 0.1px solid rgb(90, 89, 89);
+      border-bottom: 0.1px solid rgb(90, 89, 89);
+      gap: 80px;
+      width: 100%;
+      margin: 7px 0 5px 0;
+
+      .action-flex {
+        @include flex;
+        gap: 15px;
+        font-size: 1.1rem;
+        color: gray;
+      }
+    }
+  }
 }
