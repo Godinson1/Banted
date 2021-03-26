@@ -7,7 +7,6 @@ import {
   UploadOutlined,
   HeartFilled,
   ArrowLeftOutlined,
-  CloseOutlined,
 } from "@ant-design/icons";
 import LikeButton from "../Components/likeButton";
 import "../Pages/styles/main/main.scss";
