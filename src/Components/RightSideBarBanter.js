@@ -46,7 +46,7 @@ const RightSideBarBanter = () => {
                       alt="user"
                     />
                   ) : (
-                    <img src="/images/no-img.png" alt="user" />
+                    <img src="/images/noimg.png" alt="user" />
                   )}
                 </div>
                 <div className="nameHandle-container">
@@ -68,7 +68,7 @@ const RightSideBarBanter = () => {
             <div>Bantrends</div>
             <div style={{ marginTop: "5px" }} className="tooltip">
               <SettingOutlined className="secondary-color" />
-              <span style={{ fontSize: 14 }} class="tooltiptext">
+              <span style={{ fontSize: 14 }} className="tooltiptext">
                 settings
               </span>
             </div>

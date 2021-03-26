@@ -28,12 +28,12 @@ const LikeButton = (props) => {
         style={{ color: "#E0245E" }}
         onClick={() => dispatch(unlikeBanter(props.banterId))}
       />
-      <span class="tooltiptext">unlike</span>
+      <span className="tooltiptext">unlike</span>
     </div>
   ) : (
     <div className="icon-action-like tooltip">
       <HeartOutlined onClick={() => dispatch(likeBanter(props.banterId))} />
-      <span class="tooltiptext">like</span>
+      <span className="tooltiptext">like</span>
     </div>
   );
   return Like;

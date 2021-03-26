@@ -9,14 +9,8 @@ const storage1 = multer.diskStorage({
     cb(null, DIR);
   },
   filename: (req, file, cb) => {
-    const imageExtension = file.originalname.toLowerCase().split(".")[
-      file.originalname.split(".").length - 1
-    ];
-    // Append extension to random numbers
-    imageFileName = `${Math.round(
-      Math.random() * 1000000000000
-    ).toString()}.${imageExtension}`;
-    cb(imageFileName);
+    const filename = file.originalname.toLowerCase().split(" ").join("-");
+    cb(null, uuidv4() + "-" + filename);
   },
 });
 
@@ -34,10 +28,10 @@ const upload = multer({
   storage: storage1,
   fileFilter: (req, file, cb) => {
     if (
-      file.mimetype == "image/jpg" ||
-      file.mimetype == "image/png" ||
-      file.mimetype == "image/jpeg" ||
-      file.mimetype == "image/gif"
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/gif"
     ) {
       return cb(null, true);
     } else {
@@ -50,16 +44,17 @@ const uploadMultiple = multer({
   storage: storage2,
   fileFilter: (req, file, cb) => {
     if (
-      file.mimetype == "image/jpg" ||
-      file.mimetype == "image/png" ||
-      file.mimetype == "image/jpeg" ||
-      file.mimetype == "image/gif"
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/gif"
     ) {
       return cb(null, true);
     } else {
       cb("Error: Images Only!");
     }
   },
+  limits: { fieldSize: 25 * 1024 * 1024 },
 });
 
 module.exports = {

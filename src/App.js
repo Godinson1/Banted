@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./index.css";
-import { Provider } from "react-redux";
+import React from "react";
+import { Route, Switch, useLocation } from "react-router-dom";
 import store from "./store";
 import AuthRoute from "./util/AuthRoute";
 //Pages
 import { LoginScreen, HomePage, NotFound, Banter } from "./Pages";
-import Modal from "./Components/Modal";
+import Modals from "./Components/Utils/Modal";
 //Config
 import JwtDecode from "jwt-decode";
 import axios from "axios";
@@ -32,21 +30,29 @@ if (token) {
 }
 
 const App = () => {
+  const location = useLocation();
+  const background = location && location.state && location.state.background;
+  
   return (
-    <Provider store={store}>
-      <Router>
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={LoginScreen} />
-            <AuthRoute path="/home" component={HomePage} />
-            <Route exact path="/modal/:id" component={Modal} />
-            <Route exact path="/:id/status/:id" component={Banter} />
-            <Route exact path="/:id/status/:id/photo/:id" component={Modal} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
+    <div className="container">
+      <Switch location={background || location}>
+        <Route exact path="/" component={LoginScreen} />
+        <AuthRoute path="/home" component={HomePage} />
+        <AuthRoute path="/explore" component={HomePage} />
+        <AuthRoute path="/notifications" component={HomePage} />
+        <AuthRoute path="/profile" component={HomePage} />
+        <AuthRoute path="/messages" component={HomePage} />
+        <AuthRoute path="/bookmarks" component={HomePage} />
+        <AuthRoute path="/lists" component={HomePage} />
+        <Route exact path="/modal/:id" component={Modals} />
+        <Route exact path="/:id/status/:id" component={Banter} />
+
+        <Route component={NotFound} />
+      </Switch>
+      {background && (
+        <Route path="/:id/status/:id/photo/:id" children={<Modals />} />
+      )}
+    </div>
   );
 };
 

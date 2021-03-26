@@ -1,13 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation, Route, useHistory } from "react-router-dom";
 import {
-  HeartOutlined,
   MessageOutlined,
   RetweetOutlined,
   UploadOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import { Modal } from "antd";
+import { usePrepareLink } from "../hooks";
 import LikeButton from "./likeButton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -17,15 +18,45 @@ import "../Pages/styles/main/main.scss";
 const NewBanter = () => {
   const banters = useSelector((state) => state.banters);
   dayjs.extend(relativeTime);
+
+  const location = useLocation();
+  const history = useHistory();
+
+  const likesLink = usePrepareLink({
+    to: "/likes",
+    isRelativePath: true,
+  });
+
   return (
     <div>
-      {banters && banters.banters ? (
+      {banters && banters.loading_banters ? (
+        <div>
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      ) : banters && banters.banters && banters.banters.length === 0 ? (
+        <div className="no-banter">
+          Create or follow other users to see banters.
+          <div className="menued">
+            <div className="banter-button-container">
+              <button id="banter-button">See Suggestions</button>
+            </div>
+          </div>
+        </div>
+      ) : banters && banters.banters ? (
         banters.banters.map((bant) => (
           <Link
-            to={`/${bant.banterHandle}/status/${bant._id}`}
+            to={{
+              pathname: `/${bant.banterHandle}/status/${bant._id}`,
+              state: { banter: bant },
+            }}
             className="link"
           >
-            <div className="account-bottom-banter">
+            <div key={bant._id} className="account-bottom-banter">
               <div className="action-top-flex">
                 <div>
                   <HeartFilled />
@@ -38,7 +69,7 @@ const NewBanter = () => {
               <div className="flex-start-banter">
                 <div className="avatar-banter">
                   {!bant.userImage ? (
-                    <img src="/images/no-img.png" alt="profiles" />
+                    <img src="/images/noimg.png" alt="no-profile" />
                   ) : (
                     <img
                       src={"/BantedImages/profileImages/" + bant.userImage}
@@ -63,34 +94,39 @@ const NewBanter = () => {
               </div>
               <div className="banter-text">
                 <p className="bantext">{bant.banter}</p>
-                {bant.banterImage.length !== 0 ? (
-                  <div className={getClassMediaNames(bant.banterImage)}>
-                    {bant.banterImage.map((image, index) => {
-                      return (
-                        <Link
-                          to={{
-                            pathname: `/${bant.banterHandle}/status/${
-                              bant._id
-                            }/photo/${bant.banterImage.indexOf(image) + 1}`,
-                            state: { modal: true },
-                          }}
-                          className="link"
-                        >
-                          <div className="media-container">
-                            {<img src={image} alt="banter" />}
+                <div className="display">
+                  {bant.banterImage.length !== 0 ? (
+                    <div className={getClassMediaNames(bant.banterImage)}>
+                      {bant.banterImage.map((image, index) => {
+                        return (
+                          <div key={index} className="media-container">
+                            <Link
+                              to={{
+                                pathname: `/${bant.banterHandle}/status/${
+                                  bant._id
+                                }/photo/${bant.banterImage.indexOf(image) + 1}`,
+                                state: {
+                                  background: location,
+                                  banter: bant,
+                                },
+                              }}
+                              className="link"
+                            >
+                              {<img src={image} alt="banter" />}
+                            </Link>
                           </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  ""
-                )}
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <div className="actions-container">
                   <div className="action-flex">
                     <div className="icon-action tooltip">
                       <MessageOutlined />
-                      <span class="tooltiptext">comment</span>
+                      <span className="tooltiptext">comment</span>
                     </div>
                     <div>
                       <span className="count">{bant.commentCount}</span>
@@ -131,15 +167,18 @@ const NewBanter = () => {
           </Link>
         ))
       ) : (
-        <div>
-          <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
+        ""
       )}
+      <Route
+        path={likesLink.pathname}
+        children={({ match }) => {
+          return (
+            <Modal onClose={history.goBack} open={Boolean(match)}>
+              <div>Hello</div>
+            </Modal>
+          );
+        }}
+      />
     </div>
   );
 };

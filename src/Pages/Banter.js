@@ -1,5 +1,5 @@
 import React from "react";
-import { LeftSideBar, RightSideBarBanter, Main } from "../Components";
+import { LeftSideBar, RightSideBarBanter } from "../Components";
 import Bant from "./Bant";
 import "./styles/main/main.scss";
 

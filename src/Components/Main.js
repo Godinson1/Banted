@@ -1,17 +1,57 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState, createRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   StarOutlined,
   PictureOutlined,
   SmileOutlined,
+  CloseOutlined,
   GifOutlined,
   PicCenterOutlined,
 } from "@ant-design/icons";
+import { message } from "antd";
 import NewBanter from "./NewBanter";
+import { getClassMediaNames, readURI } from "../util";
+import { postBanter } from "../actions/banterActions";
 import "../Pages/styles/main/main.scss";
 
 const Main = () => {
   const user = useSelector((state) => state.users.credentials);
+  const [images, setImages] = useState([]);
+  const [banter, setBanter] = useState("");
+  const [imageFiles, setImageFiles] = useState([]);
+
+  const dispatch = useDispatch();
+  const textRef = createRef();
+
+  const handleImage = (e) => {
+    setImageFiles(e.target.files);
+    if (e.target.files.length > 4) {
+      message.error({
+        content: "You can only upload one Gif or maximum of 4 Images",
+      });
+    } else {
+      readURI(e, setImages);
+    }
+  };
+
+  const submitBanter = () => {
+    const data = new FormData();
+    for (const key of Object.keys(imageFiles)) {
+      data.append("banterImage", imageFiles[key]);
+    }
+    data.append("banter", banter);
+    dispatch(postBanter(data));
+    setTimeout(() => {
+      setImages([]);
+    }, 2000);
+  };
+
+  const removeImage = (value, index) => {
+    setImages(images.filter((image) => image !== value));
+    const newArray = Array.from(imageFiles);
+    setImageFiles(newArray.filter((image) => image !== newArray[index]));
+  };
+
   return (
     <div>
       <div className="s">
@@ -34,47 +74,106 @@ const Main = () => {
                     alt="user"
                   />
                 ) : (
-                  <img src="/images/no-img.png" alt="user" />
+                  <img src="/images/noimg.png" alt="user" />
                 )}
               </div>
               <div className="flex-between">
                 <div className="nameHandle-container-banter">
-                  <div className="banter-input-container">
-                    <textarea placeholder="What's happening?" />
-                  </div>
+                  <div
+                    placeholder="What's happening?"
+                    className="banter-input-container"
+                    contentEditable
+                    ref={textRef}
+                    onInput={(e) => setBanter(e.currentTarget.textContent)}
+                  ></div>
                 </div>
               </div>
             </div>
+
+            {images.length !== 0 ? (
+              <div
+                style={{
+                  height: "290px",
+                  width: "500px",
+                  backgroundColor: "red",
+                  marginLeft: "60px",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                }}
+              >
+                <div className={getClassMediaNames(images)}>
+                  {images.map((image, index) => {
+                    return (
+                      <div className="media-container">
+                        <div
+                          className="close-image"
+                          onClick={() =>
+                            removeImage(image, images.indexOf(image))
+                          }
+                        >
+                          <CloseOutlined />
+                        </div>
+                        {<img src={image} alt="banter" />}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             <div className="create-banter-base">
               <div className="flex-between">
                 <div className="flex">
                   <div className="icon-action tooltip">
-                    <PictureOutlined />
-                    <span id="desc" class="tooltiptext">
+                    <form method="post" action="" encType="multipart/form-data">
+                      <label htmlFor="file">
+                        <PictureOutlined />
+                        <input
+                          type="file"
+                          id="file"
+                          style={{ display: "none" }}
+                          name="image"
+                          accept="image/gif,image/jpeg,image/jpg,image/png"
+                          multiple
+                          data-original-title="upload photos"
+                          onChange={handleImage}
+                        />
+                      </label>
+                    </form>
+                    <span id="desc" className="tooltiptext">
                       image
                     </span>
                   </div>
                   <div className="icon-action tooltip">
                     <GifOutlined />
-                    <span id="desc" class="tooltiptext">
+                    <span id="desc" className="tooltiptext">
                       gif
                     </span>
                   </div>
                   <div className="icon-action tooltip">
                     <PicCenterOutlined />
-                    <span id="desc" class="tooltiptext">
+                    <span id="desc" className="tooltiptext">
                       poll
                     </span>
                   </div>
                   <div className="icon-action tooltip">
                     <SmileOutlined />
-                    <span id="desc" class="tooltiptext">
+                    <span id="desc" className="tooltiptext">
                       emoji
                     </span>
                   </div>
                 </div>
                 <div>
-                  <button disabled>Banter</button>
+                  <button
+                    style={{
+                      cursor: banter === "" ? "not-allowed" : "pointer",
+                    }}
+                    disabled={banter === "" ? true : false}
+                    onClick={submitBanter}
+                  >
+                    Banter
+                  </button>
                 </div>
               </div>
             </div>

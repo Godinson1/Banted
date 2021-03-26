@@ -22,8 +22,6 @@ router.post(
       reqFiles.push("/BantedImages/BanterImages/" + req.files[i].filename);
     }
 
-    console.log(req.user.name);
-
     //Create new banter
     const newBanter = {
       banter: req.body.banter,

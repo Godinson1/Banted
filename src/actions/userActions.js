@@ -20,7 +20,6 @@ export const LoginUser = (user, history, setErrorMessage) => (dispatch) => {
   axios
     .post(`${LOCAL_AUTH_ENDPOINT}/login`, user)
     .then((res) => {
-      console.log(res.data);
       setAuthorization(res.data.token);
       dispatch(getUserData());
       dispatch(getBanters());
@@ -45,9 +44,9 @@ export const RegisterUser = (newData, history, setErrorMessage) => (
   axios
     .post("/users/register", newData)
     .then((res) => {
-      console.log(res.data);
       setAuthorization(res.data.token);
       dispatch(getUserData());
+      dispatch(getBanters());
       dispatch({ type: CLEAR_ERROR });
       history.push("/home");
     })
@@ -66,7 +65,6 @@ export const getUserData = () => (dispatch) => {
   axios
     .get("/users/")
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: SET_USER,
         payload: res.data,
@@ -91,7 +89,6 @@ export const getUsers = () => (dispatch) => {
   axios
     .get("/users/users")
     .then((res) => {
-      console.log(res.data.map((user) => user.name));
       dispatch({
         type: SET_USERS,
         payload: res.data,
@@ -131,7 +128,7 @@ export const unFollowUser = (handle) => async (dispatch) => {
 export const logoutUser = () => (dispatch) => {
   dispatch({ type: LOADING_LOG });
   localStorage.removeItem("BToken");
-  //delete axios.defaults.common.headers['banted-token']
+  //delete axios.defaults.common.headers["banted-token"];
   dispatch({ type: SET_UNAUTHENTICATED });
   window.location.href = "/";
 };

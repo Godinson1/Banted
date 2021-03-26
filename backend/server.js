@@ -40,8 +40,6 @@ connection.once("open", () => {
   const changeStream = banterCollection.watch();
 
   changeStream.on("change", (change) => {
-    console.log(change);
-
     if (change.operationType === "insert") {
       pusher.trigger(channel, "inserted", change.fullDocument);
     } else if (change.operationType === "update") {

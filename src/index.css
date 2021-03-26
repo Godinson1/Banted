@@ -25,6 +25,25 @@ body {
   background-color: #15202b;
 }
 
+label {
+  cursor: pointer;
+}
+
+[contenteditable]:focus {
+  outline: 0px solid transparent;
+  color: white;
+}
+
+[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block; /* For Firefox */
+}
+
+textarea {
+  resize: none;
+}
+
 .avatar {
   float: left;
   left: 20;

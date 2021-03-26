@@ -32,7 +32,7 @@ const RightSideBar = () => {
             <div>Bantrends</div>
             <div style={{ marginTop: "5px" }} className="tooltip">
               <SettingOutlined className="secondary-color" />
-              <span style={{ fontSize: 14 }} class="tooltiptext">
+              <span style={{ fontSize: 14 }} className="tooltiptext">
                 settings
               </span>
             </div>

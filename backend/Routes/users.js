@@ -240,7 +240,7 @@ router.get("/:handle", auth, async (req, res) => {
     );
 
     //Check if user exists - If true return error otherwise get user
-    if (user == "") {
+    if (user === "") {
       return res
         .status(400)
         .json({ message: `User with @${req.params.handle} not found` });
@@ -290,7 +290,7 @@ router.route("/unfollow/:handle").get(auth, async (req, res) => {
         { followerId: { $eq: req.user.id } },
       ],
     });
-    if (isFollowed == "") {
+    if (isFollowed === "") {
       return res.status(400).json({ message: "User not followed.." });
     } else {
       userData.followers--;
@@ -326,6 +326,7 @@ router.post(
   async (req, res) => {
     //Store file in variable profileImage
     const profileImage = req.file;
+    console.log("helo");
 
     //Check if param id equals logged in user id - If not return error
     if (req.params.id !== req.user.id)
@@ -364,7 +365,7 @@ router.route("/user/timeline").get(auth, async (req, res) => {
         { banterHandle: { $in: followerHandle } },
       ],
     }).sort({ createdAt: -1 });
-    if (associatedBanters == "")
+    if (associatedBanters === "")
       return res.status(400).json({
         message:
           "No banters Yet!.. Create one or follow other banted users to see banters..",

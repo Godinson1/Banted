@@ -30,7 +30,7 @@ const LeftSideBar = () => {
           </NavLink>
         </div>
         <div className="menued">
-          <NavLink className="link" to="/profile" activeClassName="selected">
+          <NavLink className="link" to="/explore" activeClassName="selected">
             <div className="flex-start">
               <div>
                 <NumberOutlined />
@@ -40,7 +40,11 @@ const LeftSideBar = () => {
           </NavLink>
         </div>
         <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
+          <NavLink
+            className="link"
+            to="/notifications"
+            activeClassName="selected"
+          >
             <div className="flex-start">
               <div>
                 <BellOutlined />
@@ -50,7 +54,7 @@ const LeftSideBar = () => {
           </NavLink>
         </div>
         <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
+          <NavLink className="link" to="/messages" activeClassName="selected">
             <div className="flex-start">
               <div>
                 <MailOutlined />
@@ -60,7 +64,7 @@ const LeftSideBar = () => {
           </NavLink>
         </div>
         <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
+          <NavLink className="link" to="/bookmarks" activeClassName="selected">
             <div className="flex-start">
               <div>
                 <BorderOuterOutlined />
@@ -70,7 +74,7 @@ const LeftSideBar = () => {
           </NavLink>
         </div>
         <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
+          <NavLink className="link" to="/lists" activeClassName="selected">
             <div className="flex-start">
               <div>
                 <UnorderedListOutlined />
@@ -80,7 +84,7 @@ const LeftSideBar = () => {
           </NavLink>
         </div>
         <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
+          <NavLink className="link" to="/profile" activeClassName="selected">
             <div className="flex-start">
               <div>
                 <UserOutlined />
@@ -117,7 +121,7 @@ const LeftSideBar = () => {
                     alt="user"
                   />
                 ) : (
-                  <img src="/images/no-img.png" alt="user" />
+                  <img src="/images/noimg.png" alt="user" />
                 )}
               </div>
               <div className="nameHandle-container">

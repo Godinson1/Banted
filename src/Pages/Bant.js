@@ -1,20 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
-
+import dayjs from "dayjs";
+import { Link, useLocation } from "react-router-dom";
 import {
-  HeartOutlined,
   MessageOutlined,
   RetweetOutlined,
   UploadOutlined,
   HeartFilled,
   ArrowLeftOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 import LikeButton from "../Components/likeButton";
 import "../Pages/styles/main/main.scss";
-import NewBanter from "../Components/NewBanter";
+import { getClassMediaNames } from "../util";
 
 const Bant = ({ historyObject }) => {
-  const user = useSelector((state) => state.users.credentials);
+  const location = useLocation();
+
+  const bant = location.state.banter;
 
   return (
     <div>
@@ -38,19 +40,61 @@ const Bant = ({ historyObject }) => {
                 <span className="count">Somebody and 4 others liked</span>
               </div>
             </div>
-            <div className="flex-start-account">
-              <div className="avatar"></div>
+            <div className="flex-start-banter">
+              <div className="avatar-banter">
+                {!bant.userImage ? (
+                  <img src="/images/noimg.png" alt="no-profile" />
+                ) : (
+                  <img
+                    src={"/BantedImages/profileImages/" + bant.userImage}
+                    alt="profile"
+                  />
+                )}
+              </div>
               <div className="nameHandle-container">
                 <div>
-                  <span id="name">Goddy</span>
+                  <span id="name">{bant.name}</span>
                 </div>
                 <div className="handle-container">
-                  <span id="handle">@godinson</span>
+                  <span id="handle">@{bant.banterHandle}</span>
                 </div>
               </div>
             </div>
-            <div className="font-white">Thank you Barca</div>
-            <div className="primary-color">10:55 PM · Mar 18, 2021 - WEB</div>
+            <div className="font-white">{bant.banter}</div>
+            <div>
+              {bant.banterImage.length !== 0 ? (
+                <div className="image-banter">
+                  <div className={getClassMediaNames(bant.banterImage)}>
+                    {bant.banterImage.map((image, index) => {
+                      return (
+                        <div key={index} className="media-container">
+                          <Link
+                            to={{
+                              pathname: `/${bant.banterHandle}/status/${
+                                bant._id
+                              }/photo/${bant.banterImage.indexOf(image) + 1}`,
+                              state: {
+                                background: location,
+                                banter: bant,
+                              },
+                            }}
+                            className="link"
+                          >
+                            {<img src={image} alt="banter" />}
+                          </Link>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="base-info">
+              {dayjs(bant.createdAt).format("h:mm A")} ·{" "}
+              {dayjs(bant.createdAt).format("MMMM D, YYYY")} - Banted Web App
+            </div>
             <div>
               <div className="actions-container">
                 <div className="action-flex">
@@ -76,7 +120,7 @@ const Bant = ({ historyObject }) => {
                 <div className="action-flex">
                   <div className="icon-action tooltip">
                     <MessageOutlined />
-                    <span class="tooltiptext">comment</span>
+                    <span className="tooltiptext">comment</span>
                   </div>
                   <div>
                     <span className="count"></span>
@@ -85,7 +129,7 @@ const Bant = ({ historyObject }) => {
                 <div className="action-flex">
                   <div className="icon-action-rebant tooltip">
                     <RetweetOutlined />
-                    <span class="tooltiptext">rebanter</span>
+                    <span className="tooltiptext">rebanter</span>
                   </div>
                   <div>
                     <span className="count"></span>
@@ -100,7 +144,7 @@ const Bant = ({ historyObject }) => {
                 <div className="action-flex">
                   <div className="icon-action tooltip">
                     <UploadOutlined />
-                    <span class="tooltiptext">share</span>
+                    <span className="tooltiptext">share</span>
                   </div>
                   <div>
                     <span className="count"></span>
