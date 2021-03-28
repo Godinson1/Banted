@@ -39,14 +39,9 @@ router.post(
       .save()
       .then((data) =>
         res.json({
-          banterId: data._id,
-          banter: data.banter,
-          name: data.name,
-          banterHandle: data.banterHandle,
-          banterImage: data.banterImage,
-          likeCount: data.likeCount,
-          commentCount: data.commentCount,
-          userImage: data.userImage,
+          data,
+          message: "Banter uploaded successfully",
+          status: "success",
         })
       )
       .catch((err) => {
