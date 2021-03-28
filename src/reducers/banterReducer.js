@@ -22,17 +22,20 @@ export default function (state = initialState, action) {
       };
     case LOADING_BANTER:
       return {
+        ...state,
         loading_banter: true,
       };
     case GET_ALL_BANTER:
       return {
         loading_banters: false,
+        loading_banter: false,
         banters: action.payload,
       };
     case GET_BANTER:
       return {
+        ...state,
         loading_banter: false,
-        banter: action.payload,
+        //banter: action.payload,
         banters: [...state, action.payload],
       };
     case LIKE_BANTER:

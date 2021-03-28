@@ -15,4 +15,5 @@ export const LOADING_BANTER = "LOADING_BANTER";
 export const SET_PROFILE = "SET_PROFILE";
 export const SET_USERS = "SET_USERS";
 export const FOLLOW_USER = "FOLLOW_USER";
+export const STOP_LOADING_BANTER = "STOP_LOADING_BANTER";
 export const UNFOLLOW_USER = "UNFOLLOW_USER";

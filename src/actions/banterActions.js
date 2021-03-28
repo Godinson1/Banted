@@ -29,15 +29,12 @@ export const postBanter = (data) => async (dispatch) => {
   dispatch({ type: LOADING_BANTER });
   try {
     const banters = await axios.post("/banters/banter", data);
-    console.log(banters.data);
-    dispatch({
-      type: GET_BANTER,
-      payload: banters.data,
-    });
-    //window.location.reload();
+    console.log(banters.data.data);
+    if (banters) {
+      dispatch({ type: GET_BANTER, payload: banters.data.data });
+    }
   } catch (err) {
     if (err && err.response && err.response.data) {
-      console.log(err.response.data);
       dispatch({
         type: SET_ERROR,
         payload: err.response,

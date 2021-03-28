@@ -135,7 +135,7 @@ const NewBanter = () => {
                   <div className="action-flex">
                     <div className="icon-action-rebant tooltip">
                       <RetweetOutlined />
-                      <span class="tooltiptext">rebanter</span>
+                      <span className="tooltiptext">rebanter</span>
                     </div>
                     <div>
                       <span className="count">123</span>
