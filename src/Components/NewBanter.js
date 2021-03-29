@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, Route, useHistory } from "react-router-dom";
+import { Markup } from "interweave";
 import {
   MessageOutlined,
   RetweetOutlined,
@@ -12,7 +13,7 @@ import { usePrepareLink } from "../hooks";
 import LikeButton from "./likeButton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { getClassMediaNames } from "../util";
+import { getClassMediaNames, checkHashtag } from "../util";
 import "../Pages/styles/main/main.scss";
 
 const NewBanter = () => {
@@ -93,7 +94,9 @@ const NewBanter = () => {
                 </div>
               </div>
               <div className="banter-text">
-                <p className="bantext">{bant.banter}</p>
+                <p className="bantext">
+                  {<Markup content={checkHashtag(bant.banter)} />}
+                </p>
                 <div className="display">
                   {bant.banterImage.length !== 0 ? (
                     <div className={getClassMediaNames(bant.banterImage)}>

@@ -1,5 +1,10 @@
 import { LOCAL_AUTH_ENDPOINT } from "./constants";
-import { getClassMediaNames, readURI, getDataUrl } from "./helpers";
+import {
+  getClassMediaNames,
+  readURI,
+  getDataUrl,
+  checkHashtag,
+} from "./helpers";
 import { imageStrings } from "./data";
 
 export {
@@ -8,4 +13,5 @@ export {
   imageStrings,
   readURI,
   getDataUrl,
+  checkHashtag,
 };

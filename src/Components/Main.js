@@ -16,6 +16,7 @@ import "../Pages/styles/main/main.scss";
 
 const Main = () => {
   const user = useSelector((state) => state.users.credentials);
+  const banters = useSelector((state) => state.banters);
   const [images, setImages] = useState([]);
   const [banter, setBanter] = useState("");
   const [imageFiles, setImageFiles] = useState([]);
@@ -127,14 +128,14 @@ const Main = () => {
                 <div className="flex">
                   <div className="icon-action tooltip">
                     <form method="post" action="" encType="multipart/form-data">
-                      <label htmlFor="file">
+                      <label style={{ fontSize: "1.5rem" }} htmlFor="file">
                         <PictureOutlined />
                         <input
                           type="file"
                           id="file"
                           style={{ display: "none" }}
                           name="image"
-                          accept="image/gif,image/jpeg,image/jpg,image/png"
+                          accept="image/jpeg,image/jpg,image/png"
                           multiple
                           data-original-title="upload photos"
                           onChange={handleImage}
@@ -145,12 +146,25 @@ const Main = () => {
                       image
                     </span>
                   </div>
-                  <div className="icon-action tooltip">
-                    <GifOutlined />
-                    <span id="desc" className="tooltiptext">
-                      gif
-                    </span>
-                  </div>
+                  <form method="post" action="" encType="multipart/form-data">
+                    <div className="icon-action tooltip">
+                      <label style={{ fontSize: "1.5rem" }} htmlFor="gif-file">
+                        <GifOutlined />
+                        <input
+                          type="file"
+                          id="gif-file"
+                          style={{ display: "none" }}
+                          name="gif-image"
+                          accept="image/gif"
+                          data-original-title="upload Gif"
+                          onChange={handleImage}
+                        />
+                      </label>
+                      <span id="desc" className="tooltiptext">
+                        gif
+                      </span>
+                    </div>
+                  </form>
                   <div className="icon-action tooltip">
                     <PicCenterOutlined />
                     <span id="desc" className="tooltiptext">
@@ -169,10 +183,14 @@ const Main = () => {
                     style={{
                       cursor: banter === "" ? "not-allowed" : "pointer",
                     }}
-                    disabled={banter === "" ? true : false}
+                    disabled={
+                      banter === "" || (banters && banters.loading_banter)
+                        ? true
+                        : false
+                    }
                     onClick={submitBanter}
                   >
-                    Banter
+                    {banters && banters.loading_banter ? "Loading.." : "Banter"}
                   </button>
                 </div>
               </div>

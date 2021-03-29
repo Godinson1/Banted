@@ -51,4 +51,12 @@ const getDataUrl = (file, setImages) => {
   );
 };
 
-export { getClassMediaNames, readURI, getDataUrl };
+const checkHashtag = (text) => {
+  let repl = text.replace(
+    /#(\w+)/g,
+    "<span style='color: #1da1f2'><b>#$1</b></span>"
+  );
+  return repl;
+};
+
+export { getClassMediaNames, readURI, getDataUrl, checkHashtag };
