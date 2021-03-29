@@ -39,11 +39,11 @@ const Main = () => {
     for (const key of Object.keys(imageFiles)) {
       data.append("banterImage", imageFiles[key]);
     }
+    const emptyText = () =>
+      (document.getElementsByClassName("banter-input-container")[0].innerHTML =
+        "");
     data.append("banter", banter);
-    dispatch(postBanter(data));
-    setTimeout(() => {
-      setImages([]);
-    }, 2000);
+    dispatch(postBanter(data, setImages, emptyText));
   };
 
   const removeImage = (value, index) => {

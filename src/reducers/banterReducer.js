@@ -35,8 +35,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading_banter: false,
-        //banter: action.payload,
-        banters: [...state, action.payload],
+        banter: action.payload,
+        banters: state.banters.concat(action.payload).reverse(),
       };
     case LIKE_BANTER:
     case UNLIKE_BANTER:

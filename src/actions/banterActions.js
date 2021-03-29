@@ -25,13 +25,15 @@ export const getBanters = () => async (dispatch) => {
   }
 };
 
-export const postBanter = (data) => async (dispatch) => {
+export const postBanter = (data, setImages, emptyText) => async (dispatch) => {
   dispatch({ type: LOADING_BANTER });
   try {
     const banters = await axios.post("/banters/banter", data);
     console.log(banters.data.data);
     if (banters) {
       dispatch({ type: GET_BANTER, payload: banters.data.data });
+      setImages([]);
+      emptyText();
     }
   } catch (err) {
     if (err && err.response && err.response.data) {
