@@ -14,6 +14,16 @@ $secondary-color: #1da1f2;
   align-items: center;
 }
 
+@mixin dropdown {
+  right: 0;
+  background-color: $background-color;
+  //padding: 10px;
+  position: absolute;
+  z-index: 200;
+  border-radius: 10px;
+  box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+}
+
 @mixin banter-flex-start {
   display: flex;
   justify-content: flex-start;

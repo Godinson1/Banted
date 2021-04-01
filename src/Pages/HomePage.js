@@ -7,9 +7,10 @@ const HomePage = () => {
   const banters = useSelector((state) => state.banters);
   return (
     <div>
-      {banters && (banters.loading_banters || banters.loading_banter) && (
-        <div className="animated yt-loader"></div>
-      )}
+      {banters &&
+        (banters.loading_banters ||
+          banters.loading_banter ||
+          banters.loading) && <div className="animated yt-loader"></div>}
       <div className="home-container">
         <div className="leftsidebar">
           <LeftSideBar />

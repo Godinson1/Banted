@@ -472,6 +472,7 @@
 
 .bantext {
   white-space: pre-wrap;
+  font-weight: 600;
 }
 
 .account-bottom-banter:hover {
@@ -588,22 +589,84 @@
   overflow-y: hidden;
 }
 
-#show-modal-picture {
+#show-modal-compose {
   @include overlay;
   @include flex;
   height: 100vh;
   position: fixed;
   z-index: 7;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  scrollbar-width: 0;
 
   .picture-view {
     height: 100vh;
+    width: 100vw;
     background-color: transparent;
     position: fixed;
     color: white;
     left: 0;
     top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+
+    .compose {
+      width: 600px;
+      height: 400px;
+      background-color: #15202b;
+      border-radius: 15px;
+
+      .main-compose {
+        padding: 10px 20px 10px 20px;
+
+        .flex-start-banter {
+          .avatar-banter {
+            width: 65px;
+            height: 55px;
+          }
+        }
+      }
+
+      .banter-text {
+        margin: -23px 0 0 67px;
+        .bantext {
+          overflow: hidden;
+          word-break: break-all;
+        }
+
+        .reply-to {
+          color: #748491;
+          font-size: 1.1rem;
+
+          #reply-handle {
+            color: $secondary-color;
+          }
+        }
+      }
+
+      #compose-edit {
+        font-size: 1rem;
+      }
+
+      .close {
+        padding: 10px 10px 10px 20px;
+        font-size: 1.3rem;
+        color: $secondary-color;
+        font-weight: 700;
+        cursor: pointer;
+        border-bottom: 0.1px solid rgb(90, 89, 89);
+      }
+    }
+  }
+
+  #show-modal-picture {
+    @include overlay;
+    @include flex;
+    height: 100vh;
+    position: fixed;
+    z-index: 7;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     .picture-container {
       width: 100%;
@@ -745,7 +808,7 @@
       }
 
       .dots {
-        margin: -35px 0 0 120px;
+        margin: -45px 0 0 120px;
         cursor: pointer;
       }
     }
@@ -1037,6 +1100,67 @@
   }
 }
 
+.dropdown-banter {
+  @include dropdown;
+  margin: -15px 38px 0 -10px;
+
+  .option-container {
+    width: 100%;
+    padding: 10px;
+    &:hover {
+      background-color: #1c2732;
+    }
+  }
+}
+
+.dropdown-profile {
+  @include dropdown;
+  width: 270px;
+  margin: -200px 50px 0 100px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-top: solid 10px $background-color;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+  }
+}
+
+.dropdown-retweet {
+  @include dropdown;
+  margin: 0 320px 0 0;
+
+  .option-container {
+    width: 100%;
+    padding: 10px;
+    &:hover {
+      background-color: #1c2732;
+    }
+  }
+}
+
 .blue {
   color: $secondary-color;
+}
+
+#base-bottom {
+  margin-top: -25px;
+  padding: 0 10px 10px 10px;
+
+  &:hover {
+    background-color: #1c2732;
+  }
+}
+.prof {
+  margin-left: 10px;
+}
+#dots {
+  margin-top: -60px;
 }

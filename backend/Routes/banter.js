@@ -30,6 +30,7 @@ router.post(
       banterImage: reqFiles,
       likeCount: 0,
       commentCount: 0,
+      rebantCount: 0,
       userImage: req.user.userImage,
     };
     const newBant = new Banter(newBanter);
@@ -105,6 +106,7 @@ router.route("/:id/like").get(auth, async (req, res) => {
   try {
     //Check for banter
     const banter = await Banter.findById(req.params.id);
+
     if (banter) {
       banterData = banter;
       banterData.banterId = banter._id;
@@ -113,21 +115,29 @@ router.route("/:id/like").get(auth, async (req, res) => {
     }
 
     //Check if liked
-    const likeDocument = await Like.find({
+    const likeDocument = await Like.findOne({
       $and: [
         { userHandle: { $eq: req.user.handle } },
         { banterId: { $eq: req.params.id } },
       ],
     });
-    if (likeDocument === "") {
+
+    if (likeDocument === null) {
       const likes = new Like({
         banterId: req.params.id,
         userHandle: req.user.handle,
       });
-      const like = await likes.save();
+      const likeData = await likes.save();
       banterData.likeCount++;
       await banterData.save();
-      return res.status(200).json({ banterData, like });
+      return res.status(200).json({
+        status: "success",
+        message: "Banter liked successfully",
+        data: {
+          data: banterData,
+          like: likeData,
+        },
+      });
     } else {
       return res.status(400).json({ error: "Banter already liked" });
     }
@@ -163,7 +173,13 @@ router.route("/:id/unlike").get(auth, async (req, res) => {
       await Like.deleteOne({ userHandle: { $eq: req.user.handle } });
       banterData.likeCount--;
       await banterData.save();
-      return res.status(200).json({ banterData });
+      return res.status(200).json({
+        status: "success",
+        message: "Banter unliked successfully",
+        data: {
+          data: banterData,
+        },
+      });
     }
   } catch (err) {
     console.error(err);
@@ -207,7 +223,11 @@ router.route("/:id").delete(auth, async (req, res) => {
       res.status(403).json({ error: "Unauthorised" });
     } else {
       await Banter.deleteOne({ _id: { $eq: req.params.id } });
-      return res.status(200).json({ message: "Banter deleted successfully!" });
+      return res.status(200).json({
+        status: "success",
+        data: bant,
+        message: "Banter deleted successfully!",
+      });
     }
   } catch (err) {
     console.error(err);

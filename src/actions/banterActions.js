@@ -2,10 +2,12 @@ import {
   GET_ALL_BANTER,
   LOADING_BANTERS,
   SET_ERROR,
-  LIKE_BANTER,
-  UNLIKE_BANTER,
+  UNLIKE,
   GET_BANTER,
   LOADING_BANTER,
+  LOADING,
+  LIKE,
+  DELETE_BANTER,
 } from "./types";
 import axios from "axios";
 
@@ -46,19 +48,35 @@ export const postBanter = (data, setImages, emptyText) => async (dispatch) => {
 };
 
 export const likeBanter = (id) => async (dispatch) => {
+  dispatch({ type: LOADING });
   try {
     const res = await axios.get(`/banters/${id}/like`);
-    dispatch({ type: LIKE_BANTER, payload: res.data });
+    console.log(res.data.data);
+    dispatch({ type: LIKE, payload: res.data.data });
   } catch (err) {
-    console.log(err.response);
+    if (err) console.log(err.response);
   }
 };
 
 export const unlikeBanter = (id) => async (dispatch) => {
+  console.log("clicked unlike");
+  dispatch({ type: LOADING });
   try {
     const res = await axios.get(`/banters/${id}/unlike`);
-    dispatch({ type: UNLIKE_BANTER, payload: res.data });
+    console.log(res.data.data);
+    dispatch({ type: UNLIKE, payload: res.data.data });
   } catch (err) {
-    console.log(err);
+    if (err) console.log(err);
+  }
+};
+
+export const deleteBanter = (id, setShow) => async (dispatch) => {
+  dispatch({ type: LOADING });
+  try {
+    const res = await axios.delete(`/banters/${id}`);
+    dispatch({ type: DELETE_BANTER, payload: res.data.data });
+    setShow(false);
+  } catch (err) {
+    if (err) console.log(err);
   }
 };

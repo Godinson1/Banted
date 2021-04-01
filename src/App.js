@@ -4,7 +4,7 @@ import store from "./store";
 import AuthRoute from "./util/AuthRoute";
 //Pages
 import { LoginScreen, HomePage, NotFound, Banter } from "./Pages";
-import Modals from "./Components/Utils/Modal";
+import { Modals, Compose } from "./Components/Utils";
 //Config
 import JwtDecode from "jwt-decode";
 import axios from "axios";
@@ -32,7 +32,7 @@ if (token) {
 const App = () => {
   const location = useLocation();
   const background = location && location.state && location.state.background;
-  
+
   return (
     <div className="container">
       <Switch location={background || location}>
@@ -50,7 +50,10 @@ const App = () => {
         <Route component={NotFound} />
       </Switch>
       {background && (
-        <Route path="/:id/status/:id/photo/:id" children={<Modals />} />
+        <div>
+          <Route path="/:id/status/:id/photo/:id" children={<Modals />} />
+          <Route path="/compose/banter" children={<Compose />} />
+        </div>
       )}
     </div>
   );

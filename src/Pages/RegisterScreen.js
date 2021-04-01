@@ -105,11 +105,11 @@ export default function RegisterScreen({ setShowModal, history }) {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button
-            label={state && state.loading_reg_log ? "Loading..." : "Register"}
+            label={state && state.loading_reg ? "Loading..." : "Register"}
             disabled={
               name === "" || password === "" || email === "" || handle === ""
                 ? true
-                : state && state.loading_reg_log
+                : state && state.loading_reg
                 ? true
                 : false
             }

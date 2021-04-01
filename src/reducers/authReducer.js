@@ -33,6 +33,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
+        loading_reg: false,
         errors: null,
       };
     default:

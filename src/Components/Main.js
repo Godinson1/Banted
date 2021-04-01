@@ -1,18 +1,13 @@
 import React, { useState, createRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  StarOutlined,
-  PictureOutlined,
-  SmileOutlined,
-  CloseOutlined,
-  GifOutlined,
-  PicCenterOutlined,
-} from "@ant-design/icons";
+import { StarOutlined, CloseOutlined } from "@ant-design/icons";
 import { message } from "antd";
+//import Picker from "emoji-picker-react";
 import NewBanter from "./NewBanter";
 import { getClassMediaNames, readURI } from "../util";
 import { postBanter } from "../actions/banterActions";
 import "../Pages/styles/main/main.scss";
+import BanterBase from "./BanterBase";
 
 const Main = () => {
   const user = useSelector((state) => state.users.credentials);
@@ -45,6 +40,7 @@ const Main = () => {
         "");
     data.append("banter", banter);
     dispatch(postBanter(data, setImages, emptyText));
+    setImageFiles([]);
   };
 
   const removeImage = (value, index) => {
@@ -105,7 +101,7 @@ const Main = () => {
                 <div className={getClassMediaNames(images)}>
                   {images.map((image, index) => {
                     return (
-                      <div className="media-container">
+                      <div className="media-container" key={index}>
                         <div
                           className="close-image"
                           onClick={() =>
@@ -123,78 +119,12 @@ const Main = () => {
             ) : (
               ""
             )}
-            <div className="create-banter-base">
-              <div className="flex-between">
-                <div className="flex">
-                  <div className="icon-action tooltip">
-                    <form method="post" action="" encType="multipart/form-data">
-                      <label style={{ fontSize: "1.5rem" }} htmlFor="file">
-                        <PictureOutlined />
-                        <input
-                          type="file"
-                          id="file"
-                          style={{ display: "none" }}
-                          name="image"
-                          accept="image/jpeg,image/jpg,image/png"
-                          multiple
-                          data-original-title="upload photos"
-                          onChange={handleImage}
-                        />
-                      </label>
-                    </form>
-                    <span id="desc" className="tooltiptext">
-                      image
-                    </span>
-                  </div>
-                  <form method="post" action="" encType="multipart/form-data">
-                    <div className="icon-action tooltip">
-                      <label style={{ fontSize: "1.5rem" }} htmlFor="gif-file">
-                        <GifOutlined />
-                        <input
-                          type="file"
-                          id="gif-file"
-                          style={{ display: "none" }}
-                          name="gif-image"
-                          accept="image/gif"
-                          data-original-title="upload Gif"
-                          onChange={handleImage}
-                        />
-                      </label>
-                      <span id="desc" className="tooltiptext">
-                        gif
-                      </span>
-                    </div>
-                  </form>
-                  <div className="icon-action tooltip">
-                    <PicCenterOutlined />
-                    <span id="desc" className="tooltiptext">
-                      poll
-                    </span>
-                  </div>
-                  <div className="icon-action tooltip">
-                    <SmileOutlined />
-                    <span id="desc" className="tooltiptext">
-                      emoji
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <button
-                    style={{
-                      cursor: banter === "" ? "not-allowed" : "pointer",
-                    }}
-                    disabled={
-                      banter === "" || (banters && banters.loading_banter)
-                        ? true
-                        : false
-                    }
-                    onClick={submitBanter}
-                  >
-                    {banters && banters.loading_banter ? "Loading.." : "Banter"}
-                  </button>
-                </div>
-              </div>
-            </div>
+            <BanterBase
+              handleImage={handleImage}
+              banter={banter}
+              banters={banters}
+              submitBanter={submitBanter}
+            />
           </div>
           <div className="banter-spacer"></div>
           <NewBanter />

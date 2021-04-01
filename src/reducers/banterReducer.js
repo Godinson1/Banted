@@ -1,13 +1,16 @@
 import {
   LOADING_BANTERS,
   GET_ALL_BANTER,
-  LIKE_BANTER,
-  UNLIKE_BANTER,
+  UNLIKE,
   LOADING_BANTER,
+  LOADING,
+  DELETE_BANTER,
+  LIKE,
   GET_BANTER,
 } from "../actions/types";
 
 const initialState = {
+  loading: false,
   loading_banters: false,
   loading_banter: false,
   banters: [],
@@ -25,6 +28,28 @@ export default function (state = initialState, action) {
         ...state,
         loading_banter: true,
       };
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_BANTER:
+      return {
+        ...state,
+        loading: false,
+        banters: state.banters.filter(
+          (banter) => banter._id !== action.payload._id
+        ),
+      };
+    case UNLIKE:
+    case LIKE:
+      return {
+        ...state,
+        loading: false,
+        banters: state.banters.map((banter) =>
+          banter._id === action.payload.data._id ? action.payload.data : banter
+        ),
+      };
     case GET_ALL_BANTER:
       return {
         loading_banters: false,
@@ -37,15 +62,6 @@ export default function (state = initialState, action) {
         loading_banter: false,
         banter: action.payload,
         banters: state.banters.concat(action.payload).reverse(),
-      };
-    case LIKE_BANTER:
-    case UNLIKE_BANTER:
-      let index = state.banters.findIndex(
-        (banter) => banter._id === action.payload.banterData._id
-      );
-      state.banters[index] = action.payload.banterData;
-      return {
-        ...state,
       };
 
     default:
