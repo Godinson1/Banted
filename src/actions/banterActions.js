@@ -6,8 +6,11 @@ import {
   GET_BANTER,
   LOADING_BANTER,
   LOADING,
+  GET_COMMENTS,
+  LOADING_COMMENTS,
   LIKE,
   DELETE_BANTER,
+  COMMENT_BANTER,
 } from "./types";
 import axios from "axios";
 
@@ -33,7 +36,6 @@ export const postBanter = (data, setImages, emptyText, history) => async (
   dispatch({ type: LOADING_BANTER });
   try {
     const banters = await axios.post("/banters/banter", data);
-    console.log(banters.data.data);
     if (banters) {
       dispatch({ type: GET_BANTER, payload: banters.data.data });
       setImages([]);
@@ -56,7 +58,6 @@ export const likeBanter = (id) => async (dispatch) => {
   dispatch({ type: LOADING });
   try {
     const res = await axios.get(`/banters/${id}/like`);
-    console.log(res.data.data);
     dispatch({ type: LIKE, payload: res.data.data });
   } catch (err) {
     if (err) console.log(err.response);
@@ -68,7 +69,6 @@ export const unlikeBanter = (id) => async (dispatch) => {
   dispatch({ type: LOADING });
   try {
     const res = await axios.get(`/banters/${id}/unlike`);
-    console.log(res.data.data);
     dispatch({ type: UNLIKE, payload: res.data.data });
   } catch (err) {
     if (err) console.log(err);
@@ -83,5 +83,36 @@ export const deleteBanter = (id, setShow) => async (dispatch) => {
     setShow(false);
   } catch (err) {
     if (err) console.log(err);
+  }
+};
+
+export const commentOnBanter = (
+  id,
+  data,
+  setImages,
+  emptyText,
+  history
+) => async (dispatch) => {
+  dispatch({ type: LOADING });
+  try {
+    const res = await axios.post(`/banters/${id}/comment`, data);
+    dispatch({ type: COMMENT_BANTER, payload: res.data.data });
+    setImages([]);
+    emptyText();
+    if (history) {
+      history.goBack();
+    }
+  } catch (err) {
+    if (err) console.log(err.response);
+  }
+};
+
+export const getCommentsOnBanter = (id) => async (dispatch) => {
+  dispatch({ type: LOADING_COMMENTS });
+  try {
+    const res = await axios.get(`/banters/${id}`);
+    dispatch({ type: GET_COMMENTS, payload: res.data.comments });
+  } catch (err) {
+    if (err) console.log(err.response);
   }
 };

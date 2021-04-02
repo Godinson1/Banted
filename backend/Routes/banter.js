@@ -70,34 +70,54 @@ router.route("/").get(async (req, res) => {
 });
 
 //For Comments on Banter
-router.route("/:id/comment").post(auth, async (req, res) => {
-  try {
-    //Check if banter exist
-    const bant = await Banter.findById(req.params.id);
-    if (!bant) {
-      return res.status(404).json({ error: "Banter not found" });
+router
+  .route("/:id/comment")
+  .post(uploadMultiple.array("banterImage", 4), auth, async (req, res) => {
+    const reqFiles = [];
+
+    //If empty field - return eror
+    if (req.body.banter === "")
+      return res.status(400).json({ msg: "Banter cannot be empty" });
+
+    //Map through each file and push customize path to Array - reqFiles
+    for (var i = 0; i < req.files.length; i++) {
+      reqFiles.push("/BantedImages/BanterImages/" + req.files[i].filename);
     }
 
-    //Create new comment on banter
-    const newComment = new Comment({
-      body: req.body.body,
-      banterHandle: req.user.handle,
-      banterImage: req.user.userImage,
-      banterId: req.params.id,
-    });
+    try {
+      //Check if banter exist
+      const bant = await Banter.findById(req.params.id);
+      if (!bant) {
+        return res.status(404).json({ error: "Banter not found" });
+      }
 
-    //Save comment to database
-    await newComment.save();
-    bant.commentCount++;
-    await bant.save();
-    return res.json({
-      message: `You commented on ${bant.banterHandle}'s banter..`,
-    });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "Something went wrong" });
-  }
-});
+      //Create new comment on banter
+      const newComment = new Comment({
+        banter: req.body.banter,
+        banterHandle: req.user.handle,
+        name: req.user.name,
+        banterImage: reqFiles,
+        likeCount: 0,
+        commentCount: 0,
+        rebantCount: 0,
+        banterId: req.params.id,
+        userImage: req.user.userImage,
+      });
+
+      //Save comment to database
+      await newComment.save();
+      bant.commentCount++;
+      const data = await bant.save();
+      return res.json({
+        status: "success",
+        data,
+        message: `You commented on ${bant.banterHandle}'s banter..`,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ error: "Something went wrong" });
+    }
+  });
 
 ///For Liking a banter
 router.route("/:id/like").get(auth, async (req, res) => {

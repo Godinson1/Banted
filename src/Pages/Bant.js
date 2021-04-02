@@ -11,6 +11,7 @@ import {
 import LikeButton from "../Components/likeButton";
 import "../Pages/styles/main/main.scss";
 import { getClassMediaNames } from "../util";
+import Reply from "../Components/Reply";
 
 const Bant = ({ historyObject }) => {
   const location = useLocation();
@@ -97,19 +98,23 @@ const Bant = ({ historyObject }) => {
             <div>
               <div className="actions-container">
                 <div className="action-flex">
-                  <div className="icon-action-rebant tooltip">353</div>
+                  <div className="icon-action-rebant tooltip">
+                    {bant.commentCount}
+                  </div>
                   <div>
                     <span className="count">Comments</span>
                   </div>
                 </div>
                 <div className="action-flex">
-                  <div className="icon-action-rebant tooltip">3535</div>
+                  <div className="icon-action-rebant tooltip">
+                    {bant.rebantCount}
+                  </div>
                   <div>
                     <span className="count">Rebanters</span>
                   </div>
                 </div>
                 <div className="action-flex">
-                  454
+                  {bant.likeCount}
                   <div>
                     <span className="count">Likes</span>
                   </div>
@@ -151,6 +156,7 @@ const Bant = ({ historyObject }) => {
                 </div>
               </div>
             </div>
+            <Reply bant={bant} location={location} />
           </div>
         </div>
       </div>

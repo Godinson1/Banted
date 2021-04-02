@@ -6,7 +6,14 @@ import {
   PicCenterOutlined,
 } from "@ant-design/icons";
 
-const BanterBase = ({ handleImage, banters, banter, submitBanter }) => {
+const BanterBase = ({
+  handleImage,
+  banters,
+  banter,
+  submitBanter,
+  gifId,
+  file,
+}) => {
   return (
     <div>
       <div className="create-banter-base">
@@ -14,11 +21,11 @@ const BanterBase = ({ handleImage, banters, banter, submitBanter }) => {
           <div className="flex">
             <div className="icon-action tooltip">
               <form method="post" action="" encType="multipart/form-data">
-                <label style={{ fontSize: "1.5rem" }} htmlFor="file">
+                <label style={{ fontSize: "1.5rem" }} htmlFor={file}>
                   <PictureOutlined />
                   <input
                     type="file"
-                    id="file"
+                    id={file}
                     style={{ display: "none" }}
                     name="image"
                     accept="image/jpeg,image/jpg,image/png"
@@ -34,11 +41,11 @@ const BanterBase = ({ handleImage, banters, banter, submitBanter }) => {
             </div>
             <form method="post" action="" encType="multipart/form-data">
               <div className="icon-action tooltip">
-                <label style={{ fontSize: "1.5rem" }} htmlFor="gif-file">
+                <label style={{ fontSize: "1.5rem" }} htmlFor={gifId}>
                   <GifOutlined />
                   <input
                     type="file"
-                    id="gif-file"
+                    id={gifId}
                     style={{ display: "none" }}
                     name="gif-image"
                     accept="image/gif"
@@ -71,13 +78,16 @@ const BanterBase = ({ handleImage, banters, banter, submitBanter }) => {
                 cursor: banter === "" ? "not-allowed" : "pointer",
               }}
               disabled={
-                banter === "" || (banters && banters.loading_banter)
+                banter === "" ||
+                (banters && (banters.loading_banter || banters.loading))
                   ? true
                   : false
               }
               onClick={submitBanter}
             >
-              {banters && banters.loading_banter ? "Loading.." : "Banter"}
+              {banters && (banters.loading_banter || banters.loading)
+                ? "Loading.."
+                : "Banter"}
             </button>
           </div>
         </div>

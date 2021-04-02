@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Markup } from "interweave";
 import { getClassMediaNames, readURI } from "../../util";
-import { postBanter } from "../../actions/banterActions";
+import { postBanter, commentOnBanter } from "../../actions/banterActions";
 import { checkHashtag } from "../../util";
 import { message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
@@ -22,6 +22,7 @@ const Compose = () => {
   const location = useLocation();
   const textRef = createRef();
   const dispatch = useDispatch();
+  const bant = location.state.banter;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -56,7 +57,13 @@ const Compose = () => {
       (document.getElementsByClassName("banter-input-container")[0].innerHTML =
         "");
     data.append("banter", banterCompose);
-    dispatch(postBanter(data, setImagesCompose, emptyText, history));
+    if (bant !== null) {
+      dispatch(
+        commentOnBanter(bant._id, data, setImagesCompose, emptyText, history)
+      );
+    } else {
+      dispatch(postBanter(data, setImagesCompose, emptyText, history));
+    }
     setImageFilesCompose([]);
   };
 
@@ -68,8 +75,6 @@ const Compose = () => {
       document.getElementsByClassName("banter-input-container").focus;
     setFocus();
   }, []);
-
-  const bant = location.state.banter;
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -148,6 +153,11 @@ const Compose = () => {
                       onInput={(e) =>
                         setBanterCompose(e.currentTarget.textContent)
                       }
+                      style={{
+                        maxHeight: "150px",
+                        width: "500px",
+                        overflow: "auto",
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -190,6 +200,8 @@ const Compose = () => {
                   banter={banterCompose}
                   banters={banters}
                   submitBanter={submitBanterCompose}
+                  gifId={"gif-file-compose"}
+                  file={"file-compose"}
                 />
               </div>
             </div>

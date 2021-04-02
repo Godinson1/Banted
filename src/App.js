@@ -47,9 +47,6 @@ const App = () => {
     }
   }, [location]);
 
-  console.log(location);
-  console.log(background);
-
   return (
     <div className="container">
       <Suspense fallback={<Preloader />}>

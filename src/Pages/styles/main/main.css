@@ -812,6 +812,7 @@
 }
 
 #show-modal-compose .picture-view .compose .banter-text .reply-to {
+  margin-top: 20px;
   color: #748491;
   font-size: 1.1rem;
 }

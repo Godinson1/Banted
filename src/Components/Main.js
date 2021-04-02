@@ -49,6 +49,9 @@ const Main = () => {
     setImageFiles(newArray.filter((image) => image !== newArray[index]));
   };
 
+  console.log(images);
+  console.log(imageFiles);
+
   return (
     <div>
       <div className="s">
@@ -124,6 +127,8 @@ const Main = () => {
               banter={banter}
               banters={banters}
               submitBanter={submitBanter}
+              gifId={"gif-file"}
+              file={"file"}
             />
           </div>
           <div className="banter-spacer"></div>

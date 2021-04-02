@@ -47,7 +47,7 @@ const Banter = ({ bant, i, location }) => {
     <div>
       <Link
         to={{
-          //pathname: `/${bant.banterHandle}/status/${bant._id}`,
+          pathname: `/${bant.banterHandle}/status/${bant._id}`,
           state: { banter: bant },
         }}
         className="link"

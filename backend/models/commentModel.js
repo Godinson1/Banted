@@ -1,25 +1,43 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
-
-    body: {
-        type: String,
-        required: true,
-    },
+const commentSchema = new Schema(
+  {
     banterId: {
-        type: String,
+      type: String,
+      required: true,
+    },
+    banter: {
+      type: String,
+      required: true,
     },
     banterHandle: {
-        type: String,
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
     },
     banterImage: {
-        type: String
+      type: Array,
     },
-    }, {
-        timestamps: true,
+    likeCount: {
+      type: Number,
+    },
+    commentCount: {
+      type: Number,
+    },
+    rebantCount: {
+      type: Number,
+    },
+    userImage: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-});
-
-const Comment = mongoose.model('Comment', commentSchema);
+const Comment = mongoose.model("Comment", commentSchema);
 module.exports = Comment;
