@@ -27,7 +27,9 @@ export const getBanters = () => async (dispatch) => {
   }
 };
 
-export const postBanter = (data, setImages, emptyText) => async (dispatch) => {
+export const postBanter = (data, setImages, emptyText, history) => async (
+  dispatch
+) => {
   dispatch({ type: LOADING_BANTER });
   try {
     const banters = await axios.post("/banters/banter", data);
@@ -36,6 +38,9 @@ export const postBanter = (data, setImages, emptyText) => async (dispatch) => {
       dispatch({ type: GET_BANTER, payload: banters.data.data });
       setImages([]);
       emptyText();
+      if (history) {
+        history.goBack();
+      }
     }
   } catch (err) {
     if (err && err.response && err.response.data) {

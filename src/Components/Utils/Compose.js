@@ -56,7 +56,7 @@ const Compose = () => {
       (document.getElementsByClassName("banter-input-container")[0].innerHTML =
         "");
     data.append("banter", banterCompose);
-    dispatch(postBanter(data, setImagesCompose, emptyText));
+    dispatch(postBanter(data, setImagesCompose, emptyText, history));
     setImageFilesCompose([]);
   };
 
