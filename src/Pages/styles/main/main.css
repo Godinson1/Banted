@@ -88,6 +88,7 @@
   width: 500px;
   border: none;
   color: #8394a1;
+  white-space: pre-line;
   max-height: 400px;
   overflow: auto;
   font-size: 1.1rem;
@@ -1602,5 +1603,13 @@
 
 .create-banter-base button:focus {
   outline: none;
+}
+
+.line {
+  width: 3px;
+  height: 60px;
+  position: absolute;
+  background-color: #5a5959;
+  margin: 130px 0 0 25px;
 }
 /*# sourceMappingURL=main.css.map */

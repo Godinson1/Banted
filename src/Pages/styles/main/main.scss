@@ -66,6 +66,7 @@
           width: 500px;
           border: none;
           color: #8394a1;
+          white-space: pre-line;
           max-height: 400px;
           overflow: auto;
           font-size: 1.1rem;
@@ -1173,4 +1174,12 @@
       outline: none;
     }
   }
+}
+
+.line {
+  width: 3px;
+  height: 60px;
+  position: absolute;
+  background-color: rgb(90, 89, 89);
+  margin: 130px 0 0 25px;
 }

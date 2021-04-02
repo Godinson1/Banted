@@ -102,6 +102,7 @@ const Compose = () => {
                   <div className="avatar-banter">
                     <img src="/images/noimg.png" alt="no-profile" />
                   </div>
+                  <div className="line"></div>
                   <div className="flex-between">
                     <div className="nameHandle-container-banter">
                       <div>
@@ -118,9 +119,9 @@ const Compose = () => {
                   </div>
                 </div>
                 <div className="banter-text">
-                  <p className="bantext">
+                  <div className="bantext">
                     {<Markup content={checkHashtag(bant.banter)} />}
-                  </p>
+                  </div>
                   <div className="reply-to">
                     <span id="reply-to">Replying to </span>
                     {""}

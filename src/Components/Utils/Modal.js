@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory, useLocation, useRouteMatch, Link } from "react-router-dom";
 import {
   DoubleRightOutlined,
   UploadOutlined,
@@ -25,8 +25,6 @@ const Modals = () => {
   dayjs.extend(relativeTime);
   const match = useRouteMatch();
 
-  console.log(history);
-
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -42,8 +40,6 @@ const Modals = () => {
   const viewPreviousImage = () => {
     setImageIndex(imageIndex - 1);
   };
-
-  console.log(setShowModal);
 
   const bant = location.state.banter;
 
@@ -64,7 +60,7 @@ const Modals = () => {
               >
                 <div className="picture-container">
                   <div className="flex-between">
-                    <div className="cancel" onClick={(e) => closeModal(e)}>
+                    <div className="cancel " onClick={(e) => closeModal(e)}>
                       <h1 style={{ color: "white" }}>X</h1>
                     </div>
                     <div
@@ -106,19 +102,29 @@ const Modals = () => {
                   <img src={bant.banterImage[imageIndex]} alt="shows" />
                   <div className="flex">
                     <div>
-                      <div className="action-flex">
-                        <div className="icon-action-rebant tooltip">
-                          <MessageOutlined /> &nbsp; &nbsp;{" "}
-                          <span className="count">123</span>
-                          <span class="tooltiptext">rebanter</span>
+                      <Link
+                        to={{
+                          pathname: `/compose/banter`,
+                          state: {
+                            background: location,
+                            banter: bant,
+                          },
+                        }}
+                        className="link"
+                      >
+                        <div className="action-flex">
+                          <div className="icon-action ">
+                            <MessageOutlined /> &nbsp; &nbsp;{" "}
+                            <span className="count">{bant.commentCount}</span>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                     <div>
                       <div className="action-flex">
                         <div className="icon-action-rebant tooltip">
                           <RetweetOutlined /> &nbsp; &nbsp;{" "}
-                          <span className="count">123</span>
+                          <span className="count">{bant.rebantCount}</span>
                           <span class="tooltiptext">rebanter</span>
                         </div>
                       </div>
@@ -127,7 +133,8 @@ const Modals = () => {
                       <div className="action-flex">
                         <div className="icon-action-rebant tooltip">
                           <LikeButton banterId={bant._id} />
-                          &nbsp; &nbsp; <span className="count">123</span>
+                          &nbsp; &nbsp;{" "}
+                          <span className="count">{bant.likeCount}</span>
                           <span class="tooltiptext">rebanter</span>
                         </div>
                       </div>

@@ -54,7 +54,7 @@ const getDataUrl = (file, setImages) => {
 const checkHashtag = (text) => {
   let repl = text.replace(
     /#(\w+)/g,
-    "<span style='color: #1da1f2'><b>#$1</b></span>"
+    "<span className='bantext' style='color: #1da1f2;  white-space: pre-line;'><b>#$1</b></span>"
   );
   return repl;
 };
