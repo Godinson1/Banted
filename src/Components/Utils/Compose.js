@@ -15,9 +15,9 @@ import "../../Pages/styles/main/main.scss";
 
 const Compose = () => {
   const banters = useSelector((state) => state.banters);
-  const [images, setImages] = useState([]);
-  const [banter, setBanter] = useState("");
-  const [imageFiles, setImageFiles] = useState([]);
+  const [imagesCompose, setImagesCompose] = useState([]);
+  const [banterCompose, setBanterCompose] = useState("");
+  const [imageFilesCompose, setImageFilesCompose] = useState([]);
 
   const location = useLocation();
   const textRef = createRef();
@@ -31,33 +31,33 @@ const Compose = () => {
   }, []);
 
   const handleImage = (e) => {
-    setImageFiles(e.target.files);
+    setImageFilesCompose(e.target.files);
     if (e.target.files.length > 4) {
       message.error({
         content: "You can only upload one Gif or maximum of 4 Images",
       });
     } else {
-      readURI(e, setImages);
+      readURI(e, setImagesCompose);
     }
   };
 
   const removeImage = (value, index) => {
-    setImages(images.filter((image) => image !== value));
-    const newArray = Array.from(imageFiles);
-    setImageFiles(newArray.filter((image) => image !== newArray[index]));
+    setImagesCompose(imagesCompose.filter((image) => image !== value));
+    const newArray = Array.from(imageFilesCompose);
+    setImageFilesCompose(newArray.filter((image) => image !== newArray[index]));
   };
 
-  const submitBanter = () => {
+  const submitBanterCompose = () => {
     const data = new FormData();
-    for (const key of Object.keys(imageFiles)) {
-      data.append("banterImage", imageFiles[key]);
+    for (const key of Object.keys(imageFilesCompose)) {
+      data.append("banterImage", imageFilesCompose[key]);
     }
     const emptyText = () =>
       (document.getElementsByClassName("banter-input-container")[0].innerHTML =
         "");
-    data.append("banter", banter);
-    dispatch(postBanter(data, setImages, emptyText));
-    setImageFiles([]);
+    data.append("banter", banterCompose);
+    dispatch(postBanter(data, setImagesCompose, emptyText));
+    setImageFilesCompose([]);
   };
 
   const history = useHistory();
@@ -144,12 +144,14 @@ const Compose = () => {
                       className="banter-input-container"
                       contentEditable
                       ref={textRef}
-                      onInput={(e) => setBanter(e.currentTarget.textContent)}
+                      onInput={(e) =>
+                        setBanterCompose(e.currentTarget.textContent)
+                      }
                     ></div>
                   </div>
                 </div>
               </div>
-              {images.length !== 0 ? (
+              {imagesCompose.length !== 0 ? (
                 <div
                   style={{
                     height: "290px",
@@ -160,14 +162,14 @@ const Compose = () => {
                     overflow: "hidden",
                   }}
                 >
-                  <div className={getClassMediaNames(images)}>
-                    {images.map((image, index) => {
+                  <div className={getClassMediaNames(imagesCompose)}>
+                    {imagesCompose.map((image, index) => {
                       return (
                         <div className="media-container" key={index}>
                           <div
                             className="close-image"
                             onClick={() =>
-                              removeImage(image, images.indexOf(image))
+                              removeImage(image, imagesCompose.indexOf(image))
                             }
                           >
                             <CloseOutlined />
@@ -181,12 +183,12 @@ const Compose = () => {
               ) : (
                 ""
               )}
-              <div className="banter-text">
+              <div style={{ marginTop: "50px" }}>
                 <BanterBase
                   handleImage={handleImage}
-                  banter={banter}
+                  banter={banterCompose}
                   banters={banters}
-                  submitBanter={submitBanter}
+                  submitBanter={submitBanterCompose}
                 />
               </div>
             </div>

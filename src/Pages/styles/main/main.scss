@@ -84,109 +84,76 @@
           }
         }
       }
-
-      .create-banter-base {
-        margin: 10px 10px 0 61px;
-
-        .flex {
-          @include flex;
-          gap: 20px;
-          @include FONT;
-          font-size: 1.3rem;
-          color: $secondary-color;
-          cursor: pointer;
-
-          #desc {
-            font-size: 0.9rem;
-          }
-        }
-
-        button {
-          width: 80px;
-          height: 30px;
-          background-color: $secondary-color;
-          color: $primary-color;
-          border-radius: 50px;
-          border: none;
-          @include FONT;
-          font-size: 0.9rem;
-          cursor: pointer;
-
-          &:focus {
-            outline: none;
-          }
-        }
-      }
     }
   }
+}
 
-  .rightsidebar {
-    position: relative;
-    position: fixed;
-    overflow: hidden;
+.rightsidebar {
+  position: relative;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  width: 30vw;
+  height: 100vh;
+  background-color: black;
+
+  .t {
+    position: absolute;
     top: 0;
-    right: 0;
-    width: 30vw;
+    bottom: 0;
+    left: 0;
+    right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
+    overflow-y: scroll;
+
     height: 100vh;
-    background-color: black;
+    background-color: $background-color;
+    border-left: 0.1px solid rgb(90, 89, 89);
+    padding: 5px 60px 10px 30px;
 
-    .t {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: -17px; /* Increase/Decrease this value for cross-browser compatibility */
-      overflow-y: scroll;
+    .search-container {
+      width: 100%;
+      height: 50px;
+      border-radius: 50px;
+      background-color: #253341;
+      padding: 0 10px 0 10px;
+      justify-content: flex-start;
+      align-items: center;
+      display: flex;
+      overflow: hidden;
 
-      height: 100vh;
-      background-color: $background-color;
-      border-left: 0.1px solid rgb(90, 89, 89);
-      padding: 5px 60px 10px 30px;
-
-      .search-container {
-        width: 100%;
-        height: 50px;
-        border-radius: 50px;
-        background-color: #253341;
-        padding: 0 10px 0 10px;
-        justify-content: flex-start;
-        align-items: center;
-        display: flex;
+      .search-input-container {
+        margin-right: 5px;
         overflow: hidden;
+        width: 100%;
+      }
 
-        .search-input-container {
-          margin-right: 5px;
-          overflow: hidden;
-          width: 100%;
+      input {
+        color: #a1aca6;
+        font-size: 1rem;
+        width: 240px;
+        border: none;
+        background: transparent;
+        &:focus {
+          outline: none;
         }
+      }
 
-        input {
-          color: #a1aca6;
-          font-size: 1rem;
-          width: 240px;
-          border: none;
-          background: transparent;
-          &:focus {
-            outline: none;
-          }
-        }
+      .search-icon {
+        font-size: 1rem;
+        color: #a1aca6;
+      }
 
-        .search-icon {
-          font-size: 1rem;
-          color: #a1aca6;
-        }
+      .search-close-container {
+        background-color: $secondary-color;
+        border-radius: 50px;
+        padding: 1px 5px 1px 5px;
+        cursor: pointer;
 
-        .search-close-container {
-          background-color: $secondary-color;
-          border-radius: 50px;
-          padding: 1px 5px 1px 5px;
-          cursor: pointer;
+        .search-close-icon {
+          font-size: 0.8rem;
 
-          .search-close-icon {
-            font-size: 0.8rem;
-
-            font-weight: bold;
-          }
+          font-weight: bold;
         }
       }
     }
@@ -612,7 +579,7 @@
 
     .compose {
       width: 600px;
-      height: 400px;
+
       background-color: #15202b;
       border-radius: 15px;
 
@@ -658,168 +625,178 @@
       }
     }
   }
+}
 
-  #show-modal-picture {
-    @include overlay;
-    @include flex;
+#show-modal-picture {
+  @include overlay;
+  @include flex;
+  height: 100vh;
+  position: fixed;
+  z-index: 7;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  .picture-view {
     height: 100vh;
+    width: 100vw;
+    background-color: transparent;
     position: fixed;
-    z-index: 7;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    color: white;
+    left: 0;
+    top: 0;
+  }
 
-    .picture-container {
-      width: 100%;
-      color: white;
+  .picture-container {
+    width: 100%;
+    color: white;
 
-      .cancel {
-        width: 50px;
-        height: 50px;
-        z-index: 9;
-      }
-
-      .flex-between {
-        @include flex-between;
-        padding: 20px 30px 0 30px;
-        color: white;
-        cursor: pointer;
-
-        .right-icon {
-          font-size: 1.2rem;
-          z-index: 9;
-          background-color: rgb(75, 72, 75);
-          width: 50px;
-          height: 50px;
-          border-radius: 50px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
+    .cancel {
+      width: 50px;
+      height: 50px;
+      z-index: 9;
     }
 
-    .image-cnt {
-      width: 100%;
-      height: 100vh;
-      background-color: rgb(92, 92, 128);
-      opacity: 0.92;
-      overflow: hidden;
-      position: absolute;
-      top: 0;
+    .flex-between {
+      @include flex-between;
+      padding: 20px 30px 0 30px;
+      color: white;
+      cursor: pointer;
 
-      img {
-        width: 100%;
-        height: 90%;
-        object-fit: contain;
-        z-index: 1000;
-      }
-
-      .flex {
-        @include flex;
-        gap: 100px;
+      .right-icon {
         font-size: 1.2rem;
-        margin-top: 20px;
+        z-index: 9;
+        background-color: rgb(75, 72, 75);
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
 
-  .banter-view {
-    width: 25vw;
+  .image-cnt {
+    width: 100%;
     height: 100vh;
+    background-color: rgb(92, 92, 128);
+    opacity: 0.92;
+    overflow: hidden;
+    position: absolute;
     top: 0;
-    right: 0;
-    position: fixed;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background-color: $background-color;
 
-    .flex-start-account {
-      margin-left: 10px;
-      .avatar {
-        width: 50px;
-        height: 50px;
-      }
-
-      .dots {
-        margin-left: 100px;
-      }
-    }
-
-    .banter-text {
-      font-weight: 500;
-      color: $primary-color;
-      font-size: 1rem;
-      margin-left: 10px;
-    }
-
-    .base-info {
-      margin: 10px 20px 20px 10px;
-      padding-bottom: 15px;
-      color: #8394a1;
-      font-size: 1rem;
-      border-bottom: 0.1px solid rgb(90, 89, 89);
+    img {
+      width: 100%;
+      height: 90%;
+      object-fit: contain;
+      z-index: 1000;
     }
 
     .flex {
       @include flex;
-      gap: 70px;
+      gap: 100px;
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+  }
+}
+
+.banter-view {
+  width: 25vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  position: fixed;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: $background-color;
+
+  .flex-start-account {
+    margin-left: 10px;
+    .avatar {
+      width: 50px;
+      height: 50px;
+    }
+
+    .dots {
+      margin-left: 100px;
+    }
+  }
+
+  .banter-text {
+    font-weight: 500;
+    color: $primary-color;
+    font-size: 1rem;
+    margin-left: 10px;
+  }
+
+  .base-info {
+    margin: 10px 20px 20px 10px;
+    padding-bottom: 15px;
+    color: #8394a1;
+    font-size: 1rem;
+    border-bottom: 0.1px solid rgb(90, 89, 89);
+  }
+
+  .flex {
+    @include flex;
+    gap: 70px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #8394a1;
+    padding-bottom: 20px;
+    border-bottom: 0.1px solid rgb(90, 89, 89);
+  }
+
+  .replies {
+    padding: 10px;
+    border-bottom: 0.1px solid rgb(90, 89, 89);
+
+    .actions-container {
+      @include flex;
+      gap: 50px;
+
+      .actions-flex-actions {
+        @include flex;
+        gap: 10px;
+      }
+    }
+
+    .reply-to {
+      color: grey;
+      margin: -10px 0 0 55px;
+      font-size: 1rem;
+
+      #reply-handle {
+        color: $secondary-color;
+      }
+    }
+
+    .flex-start-banter {
+      .avatar-banter {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .flex-between-replies {
+      @include flex;
+      margin: 20px 5px 0 -5px;
+      gap: 20px;
+    }
+
+    .dots {
+      margin: -45px 0 0 120px;
       cursor: pointer;
-      font-size: 1.3rem;
-      color: #8394a1;
-      padding-bottom: 20px;
-      border-bottom: 0.1px solid rgb(90, 89, 89);
     }
+  }
 
-    .replies {
-      padding: 10px;
-      border-bottom: 0.1px solid rgb(90, 89, 89);
-
-      .actions-container {
-        @include flex;
-        gap: 50px;
-
-        .actions-flex-actions {
-          @include flex;
-          gap: 10px;
-        }
-      }
-
-      .reply-to {
-        color: grey;
-        margin: -10px 0 0 55px;
-        font-size: 1rem;
-
-        #reply-handle {
-          color: $secondary-color;
-        }
-      }
-
-      .flex-start-banter {
-        .avatar-banter {
-          width: 50px;
-          height: 50px;
-        }
-      }
-
-      .flex-between-replies {
-        @include flex;
-        margin: 20px 5px 0 -5px;
-        gap: 20px;
-      }
-
-      .dots {
-        margin: -45px 0 0 120px;
-        cursor: pointer;
-      }
-    }
-
-    .text-handle {
-      width: 100px;
-      white-space: nowrap;
-      color: white;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .text-handle {
+    width: 100px;
+    white-space: nowrap;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -1163,4 +1140,37 @@
 }
 #dots {
   margin-top: -60px;
+}
+
+.create-banter-base {
+  margin: 10px 10px 0 61px;
+
+  .flex {
+    @include flex;
+    gap: 20px;
+    @include FONT;
+    font-size: 1.3rem;
+    color: $secondary-color;
+    cursor: pointer;
+
+    #desc {
+      font-size: 0.9rem;
+    }
+  }
+
+  button {
+    width: 80px;
+    height: 30px;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 50px;
+    border: none;
+    @include FONT;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }

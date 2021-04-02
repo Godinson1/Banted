@@ -47,10 +47,6 @@ const Modals = () => {
 
   const bant = location.state.banter;
 
-  console.log(
-    `${location.pathname.substr(0, location.pathname.length - 1)}${imageIndex}`
-  );
-
   const closeModal = (e) => {
     e.stopPropagation();
     history.goBack();
