@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Markup } from "interweave";
 import {
   UploadOutlined,
   RetweetOutlined,
@@ -10,7 +11,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { getCommentsOnBanter } from "../actions/banterActions";
 import LikeButton from "./likeButton";
-import { getClassMediaNames } from "../util";
+import { getClassMediaNames, checkHashtag } from "../util";
 
 const Reply = ({ bant, location }) => {
   const banters = useSelector((state) => state.banters);
@@ -78,7 +79,9 @@ const Reply = ({ bant, location }) => {
                   </span>
                 </div>
                 <div className="banter-text">
-                  <p className="bantext">{banter.banter}</p>
+                  <p className="bantext">
+                    {<Markup content={checkHashtag(banter.banter)} />}
+                  </p>
                   <div className="display">
                     {banter.banterImage.length !== 0 ? (
                       <div className={getClassMediaNames(banter.banterImage)}>

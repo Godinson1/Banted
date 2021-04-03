@@ -48,8 +48,9 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         banters: state.banters.map((banter) =>
-          banter._id === action.payload._id ? action.payload : banter
+          banter._id === action.payload.data._id ? action.payload.data : banter
         ),
+        comments: state.comments.concat(action.payload.comment).reverse(),
       };
     case DELETE_BANTER:
       return {

@@ -105,12 +105,15 @@ router
       });
 
       //Save comment to database
-      await newComment.save();
+      const comment = await newComment.save();
       bant.commentCount++;
       const data = await bant.save();
       return res.json({
         status: "success",
-        data,
+        data: {
+          data,
+          comment,
+        },
         message: `You commented on ${bant.banterHandle}'s banter..`,
       });
     } catch (err) {

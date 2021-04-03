@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import dayjs from "dayjs";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -9,9 +9,14 @@ import {
   EditOutlined,
   ArrowLeftOutlined,
 } from "@ant-design/icons";
+import { Markup } from "interweave";
 import LikeButton from "../Components/likeButton";
 import "../Pages/styles/main/main.scss";
-import { getClassMediaNames, useCloseOnClickOutside } from "../util";
+import {
+  getClassMediaNames,
+  useCloseOnClickOutside,
+  checkHashtag,
+} from "../util";
 import ReplyBanter from "../Components/ReplyBanter";
 
 const Bant = ({ historyObject }) => {
@@ -65,7 +70,12 @@ const Bant = ({ historyObject }) => {
                 </div>
               </div>
             </div>
-            <div className="font-white">{bant.banter}</div>
+            <div className="font-white">
+              {" "}
+              <p className="bantext">
+                {<Markup content={checkHashtag(bant.banter)} />}
+              </p>
+            </div>
             <div>
               {bant.banterImage.length !== 0 ? (
                 <div className="image-banter">
