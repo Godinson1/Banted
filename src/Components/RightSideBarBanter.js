@@ -37,17 +37,11 @@ const RightSideBarBanter = () => {
             {user && user.credentials ? (
               <div className="flex-start-account">
                 <div className="avatar">
-                  {user && user.credentials && user.credentials[0].userImage ? (
-                    <img
-                      src={
-                        "/BantedImages/profileImages/" +
-                        user.credentials[0].userImage
-                      }
-                      alt="user"
-                    />
-                  ) : (
-                    <img src="/images/noimg.png" alt="user" />
-                  )}
+                  {user &&
+                    user.credentials &&
+                    user.credentials[0].userImage && (
+                      <img src={user.credentials[0].userImage} alt="user" />
+                    )}
                 </div>
                 <div className="nameHandle-container">
                   <div>
