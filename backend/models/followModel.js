@@ -1,32 +1,34 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const followSchema = new Schema({
+const followSchema = new Schema(
+  {
     handle: {
-        type: String
+      type: String,
     },
     name: {
-        type: String
+      type: String,
     },
     userId: {
-        type: String
+      type: String,
     },
     followerId: {
-        type: String
+      type: String,
     },
     followerHandle: {
-        type: String
+      type: String,
     },
     followerName: {
-        type: String
+      type: String,
     },
     followerImage: {
-        type: String
-    }
-},
-{
-    timestamps: true
-});
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Follow = mongoose.model('Follow', followSchema);
+const Follow = mongoose.model("Follow", followSchema);
 module.exports = Follow;

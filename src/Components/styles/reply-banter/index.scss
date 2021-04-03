@@ -1,0 +1,15 @@
+@import "../../../config/config.scss";
+
+.avatar-banter-reply {
+  @include avatar-image;
+}
+
+.reply-to-bant {
+  margin: -20px 0 30px 63px;
+  color: #748491;
+  font-size: 1rem;
+
+  #reply-handle {
+    color: $secondary-color;
+  }
+}

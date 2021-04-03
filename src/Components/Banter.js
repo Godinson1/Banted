@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Markup } from "interweave";
@@ -15,39 +15,29 @@ import {
 import LikeButton from "./likeButton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { getClassMediaNames, checkHashtag } from "../util";
+import {
+  getClassMediaNames,
+  checkHashtag,
+  useCloseOnClickOutside,
+} from "../util";
 import "../Pages/styles/main/main.scss";
 import { deleteBanter } from "../actions/banterActions";
 
 const Banter = ({ bant, i, location }) => {
   const [show, setShow] = useState(false);
   const [showRetweet, setShowRetweet] = useState(false);
+  const [allowLink, setAllowLink] = useState(true);
   const user = useSelector((state) => state.users.credentials);
   const dispatch = useDispatch();
   dayjs.extend(relativeTime);
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setShow(false);
-          setShowRetweet(false);
-        }
-      }
-
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useCloseOnClickOutside(wrapperRef, setShowRetweet, setAllowLink, setShow);
 
   return (
     <div>
       <Link
         to={{
-          pathname: `/${bant.banterHandle}/status/${bant._id}`,
+          pathname: allowLink ? `/${bant.banterHandle}/status/${bant._id}` : "",
           state: { banter: bant },
         }}
         className="link"
@@ -87,6 +77,7 @@ const Banter = ({ bant, i, location }) => {
               <div className="action-flex">
                 <div
                   id="dots"
+                  onMouseOver={() => setAllowLink(false)}
                   className="dots tooltip"
                   onClick={() => setShow(!show)}
                 >

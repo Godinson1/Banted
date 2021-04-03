@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -14,6 +14,7 @@ import {
 import { Divider } from "antd";
 import "../Pages/styles/main/main.scss";
 import { logoutUser } from "../actions/userActions";
+import { useCloseOnClickOutside } from "../util";
 
 const LeftSideBar = () => {
   const user = useSelector((state) => state.users.credentials);
@@ -21,22 +22,9 @@ const LeftSideBar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          setShow(false);
-        }
-      }
-
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref]);
-  }
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useCloseOnClickOutside(wrapperRef, setShow);
+
   return (
     <div>
       <div className="f">

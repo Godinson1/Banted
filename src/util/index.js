@@ -6,6 +6,7 @@ import {
   checkHashtag,
 } from "./helpers";
 import { imageStrings } from "./data";
+import useCloseOnClickOutside from "./useCloseOnClickOutside";
 
 export {
   LOCAL_AUTH_ENDPOINT,
@@ -14,4 +15,5 @@ export {
   readURI,
   getDataUrl,
   checkHashtag,
+  useCloseOnClickOutside,
 };

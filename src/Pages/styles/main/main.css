@@ -350,11 +350,14 @@
 }
 
 .avatar {
-  width: 35px;
-  height: 35px;
+  width: 35px !important;
+  height: 35px !important;
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
   background-color: #1da1f2;
   margin-top: 5px;
+  cursor: pointer;
   overflow: hidden;
 }
 
@@ -366,7 +369,8 @@
 }
 
 .avatar-banter {
-  width: 60px;
+  width: 60px !important;
+  width: 50px;
   height: 50px;
   border-radius: 50px;
   background-color: #1da1f2;
@@ -376,6 +380,23 @@
 }
 
 .avatar-banter img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.avatar-banter-bant {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #1da1f2;
+  margin-top: 5px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.avatar-banter-bant img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -535,6 +556,7 @@
           align-items: flex-start;
   gap: 80px;
   margin: -7px 0 5px 0;
+  cursor: pointer;
 }
 
 .account-bottom-banter .actions-container .action-flex {
@@ -967,6 +989,7 @@
 
 .banter-view .flex-start-account .dots {
   margin-left: 100px;
+  color: #8394a1;
 }
 
 .banter-view .banter-text {
@@ -977,7 +1000,7 @@
 }
 
 .banter-view .base-info {
-  margin: 10px 20px 20px 10px;
+  margin: 0 20px 10px 10px;
   padding-bottom: 15px;
   color: #8394a1;
   font-size: 1rem;
@@ -1034,7 +1057,7 @@
 }
 
 .banter-view .replies .reply-to {
-  color: grey;
+  color: #8394a1;
   margin: -10px 0 0 55px;
   font-size: 1rem;
 }
@@ -1065,6 +1088,7 @@
 .banter-view .replies .dots {
   margin: -45px 0 0 120px;
   cursor: pointer;
+  color: #8394a1;
 }
 
 .banter-view .text-handle {
@@ -1144,7 +1168,7 @@
       -ms-flex-align: center;
           align-items: center;
   gap: 5px;
-  color: gray;
+  color: #8394a1;
   display: flex;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -1169,8 +1193,8 @@
   border-bottom: 0.1px solid #5a5959;
   gap: 140px;
   width: 45vw;
-  margin: 25px 0 5px -20px;
-  padding: 0 0 5px 50px;
+  margin: 10px 0 5px -10px;
+  padding: 0 0 5px 30px;
 }
 
 .banter-view-container #account-bottom-banter .actions-container-base .action-flex {
@@ -1185,7 +1209,7 @@
           align-items: center;
   gap: 15px;
   font-size: 1.1rem;
-  color: gray;
+  color: #8394a1;
 }
 
 .banter-view-container #account-bottom-banter .actions-container {
@@ -1199,11 +1223,8 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  border-top: 0.1px solid #5a5959;
-  border-bottom: 0.1px solid #5a5959;
   gap: 80px;
   width: 100%;
-  margin: 7px 0 5px 0;
 }
 
 .banter-view-container #account-bottom-banter .actions-container .action-flex {
@@ -1216,9 +1237,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 15px;
+  gap: 5px;
   font-size: 1.1rem;
-  color: gray;
+  color: #8394a1;
 }
 
 .media-three {
@@ -1563,6 +1584,11 @@
 
 #dots {
   margin-top: -60px;
+  color: #8394a1;
+}
+
+#dots:hover {
+  color: #1da1f2;
 }
 
 .create-banter-base {

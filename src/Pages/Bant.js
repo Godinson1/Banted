@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -6,15 +6,20 @@ import {
   RetweetOutlined,
   UploadOutlined,
   HeartFilled,
+  EditOutlined,
   ArrowLeftOutlined,
 } from "@ant-design/icons";
 import LikeButton from "../Components/likeButton";
 import "../Pages/styles/main/main.scss";
-import { getClassMediaNames } from "../util";
-import Reply from "../Components/Reply";
+import { getClassMediaNames, useCloseOnClickOutside } from "../util";
+import ReplyBanter from "../Components/ReplyBanter";
 
 const Bant = ({ historyObject }) => {
   const location = useLocation();
+  const [showRetweet, setShowRetweet] = useState(false);
+
+  const wrapperRef = useRef(null);
+  useCloseOnClickOutside(wrapperRef, setShowRetweet);
 
   const bant = location.state.banter;
 
@@ -41,7 +46,7 @@ const Bant = ({ historyObject }) => {
               </div>
             </div>
             <div className="flex-start-banter">
-              <div className="avatar-banter">
+              <div className="avatar-banter-bant">
                 {!bant.userImage ? (
                   <img src="/images/noimg.png" alt="no-profile" />
                 ) : (
@@ -96,42 +101,66 @@ const Bant = ({ historyObject }) => {
               {dayjs(bant.createdAt).format("MMMM D, YYYY")} - Banted Web App
             </div>
             <div>
-              <div className="actions-container">
-                <div className="action-flex">
-                  <div className="icon-action-rebant tooltip">
-                    {bant.commentCount}
+              <div className="base-info">
+                <div className="actions-container">
+                  <div className="action-flex">
+                    <div
+                      style={{ color: "white", fontWeight: 500 }}
+                      className="icon-action-rebant tooltip"
+                    >
+                      {bant.commentCount}
+                    </div>
+                    <div>
+                      <span className="count">Comments</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="count">Comments</span>
+                  <div className="action-flex">
+                    <div
+                      style={{ color: "white", fontWeight: 500 }}
+                      className="icon-action-rebant tooltip"
+                    >
+                      {bant.rebantCount}
+                    </div>
+                    <div>
+                      <span className="count">Rebanters</span>
+                    </div>
                   </div>
-                </div>
-                <div className="action-flex">
-                  <div className="icon-action-rebant tooltip">
-                    {bant.rebantCount}
-                  </div>
-                  <div>
-                    <span className="count">Rebanters</span>
-                  </div>
-                </div>
-                <div className="action-flex">
-                  {bant.likeCount}
-                  <div>
-                    <span className="count">Likes</span>
+                  <div className="action-flex">
+                    <span style={{ color: "white", fontWeight: 500 }}>
+                      {bant.likeCount}
+                    </span>
+                    <div>
+                      <span className="count">Likes</span>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="actions-container-base">
-                <div className="action-flex">
-                  <div className="icon-action tooltip">
-                    <MessageOutlined />
-                    <span className="tooltiptext">comment</span>
+                <Link
+                  to={{
+                    pathname: `/compose/banter`,
+                    state: {
+                      background: location,
+                      banter: bant,
+                    },
+                  }}
+                  className="link"
+                >
+                  <div className="action-flex">
+                    <div className="icon-action tooltip">
+                      <MessageOutlined />
+                      <span className="tooltiptext">comment</span>
+                    </div>
+                    <div>
+                      <span className="count"></span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="count"></span>
-                  </div>
-                </div>
+                </Link>
                 <div className="action-flex">
-                  <div className="icon-action-rebant tooltip">
+                  <div
+                    onClick={() => setShowRetweet(!showRetweet)}
+                    className="icon-action-rebant tooltip"
+                  >
                     <RetweetOutlined />
                     <span className="tooltiptext">rebanter</span>
                   </div>
@@ -139,6 +168,26 @@ const Bant = ({ historyObject }) => {
                     <span className="count"></span>
                   </div>
                 </div>
+                {showRetweet && (
+                  <div
+                    ref={wrapperRef}
+                    className="dropdown-retweet"
+                    key={bant._id}
+                  >
+                    <div className="option-container">
+                      <span id="name">
+                        {" "}
+                        <RetweetOutlined /> &nbsp;&nbsp; Rebant
+                      </span>
+                    </div>
+                    <div className="option-container">
+                      <span id="name">
+                        {" "}
+                        <EditOutlined /> &nbsp;&nbsp; Quote Banter
+                      </span>
+                    </div>
+                  </div>
+                )}
                 <div className="action-flex">
                   <LikeButton banterId={"ehfedkkedkf"} />
                   <div>
@@ -156,7 +205,7 @@ const Bant = ({ historyObject }) => {
                 </div>
               </div>
             </div>
-            <Reply bant={bant} location={location} />
+            <ReplyBanter bant={bant} location={location} />
           </div>
         </div>
       </div>
