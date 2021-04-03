@@ -811,6 +811,7 @@
 
 #show-modal-compose .picture-view .compose {
   width: 600px;
+  max-height: 600px;
   background-color: #15202b;
   border-radius: 15px;
 }
@@ -830,7 +831,6 @@
 
 #show-modal-compose .picture-view .compose .banter-text .bantext {
   overflow: hidden;
-  word-break: break-all;
 }
 
 #show-modal-compose .picture-view .compose .banter-text .reply-to {

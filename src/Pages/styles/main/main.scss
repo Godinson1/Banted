@@ -569,7 +569,7 @@
 
     .compose {
       width: 600px;
-
+      max-height: 600px;
       background-color: #15202b;
       border-radius: 15px;
 
@@ -588,7 +588,6 @@
         margin: -23px 0 0 67px;
         .bantext {
           overflow: hidden;
-          word-break: break-all;
         }
 
         .reply-to {
