@@ -25,6 +25,8 @@ const Modals = () => {
   dayjs.extend(relativeTime);
   const match = useRouteMatch();
 
+  console.log(setShowModal);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
