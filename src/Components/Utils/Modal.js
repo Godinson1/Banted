@@ -173,12 +173,10 @@ const Modals = () => {
                   </div>
                   <div className="base-info">
                     <span style={{ color: "white", fontWeight: 500 }}>
-                      1223{" "}
+                      {bant.rebantCount}{" "}
                     </span>
                     Rebanters &nbsp; &nbsp;
-                    <span style={{ color: "white", fontWeight: 500 }}>
-                      134{" "}
-                    </span>
+                    <span style={{ color: "white", fontWeight: 500 }}>0 </span>
                     Quote Rebanters
                   </div>
                   <div className="base-info">

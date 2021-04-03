@@ -153,18 +153,13 @@ const LeftSideBar = () => {
                       <div className="flex-start-account prof">
                         <div className="avatar">
                           {user &&
-                          user.credentials &&
-                          user.credentials[0].userImage ? (
-                            <img
-                              src={
-                                "/BantedImages/profileImages/" +
-                                user.credentials[0].userImage
-                              }
-                              alt="user"
-                            />
-                          ) : (
-                            <img src="/images/noimg.png" alt="user" />
-                          )}
+                            user.credentials &&
+                            user.credentials[0].userImage && (
+                              <img
+                                src={user.credentials[0].userImage}
+                                alt="user"
+                              />
+                            )}
                         </div>
                         <div className="nameHandle-container">
                           <div>
@@ -190,7 +185,14 @@ const LeftSideBar = () => {
                       id="base-bottom"
                       onClick={() => dispatch(logoutUser())}
                     >
-                      <span id="name">Add an existing account</span>
+                      <span
+                        style={{
+                          fontSize: "0.9rem",
+                        }}
+                        id="name"
+                      >
+                        Add an existing account
+                      </span>
                     </div>
                     <Divider
                       style={{
@@ -202,7 +204,12 @@ const LeftSideBar = () => {
                       id="base-bottom"
                       onClick={() => dispatch(logoutUser())}
                     >
-                      <span id="name">
+                      <span
+                        style={{
+                          fontSize: "0.9rem",
+                        }}
+                        id="name"
+                      >
                         Log Out @{user.credentials[0].handle}
                       </span>
                     </div>

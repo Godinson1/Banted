@@ -55,7 +55,10 @@ const LoginScreen = ({ history }) => {
             <div className="flex">
               {showModal && (
                 <div id="show-modal">
-                  <RegisterScreen setShowModal={setShowModal} />
+                  <RegisterScreen
+                    setShowModal={setShowModal}
+                    history={history}
+                  />
                 </div>
               )}
 

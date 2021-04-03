@@ -119,7 +119,7 @@ export default function RegisterScreen({ setShowModal, history }) {
           <div className="flex">
             <p className="small-text">
               Already have an Account?{" "}
-              <Link id="link" to="/logins">
+              <Link id="link" to="/">
                 <span onClick={() => setShowModal(false)}>LOGIN</span>
               </Link>
             </p>

@@ -4,9 +4,12 @@ import "../Pages/styles/main/main.scss";
 const Preloader = () => {
   return (
     <div>
-      <div>
-        <div>
-          <h1>BANTED.</h1>
+      <div className="preloader">
+        <div className="preloader-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
       </div>
     </div>

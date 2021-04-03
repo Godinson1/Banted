@@ -58,7 +58,7 @@ const App = () => {
           <AuthRoute path="/notifications" component={HomePage} />
           <AuthRoute path="/profile" component={HomePage} />
           <AuthRoute path="/messages" component={HomePage} />
-          <AuthRoute path="/bookmarks" component={HomePage} />
+          <AuthRoute path="/bookmarks" component={Preloader} />
           <AuthRoute path="/lists" component={HomePage} />
           <Route exact path="/modal/:id" component={Modals} />
           <Route exact path="/:id/status/:id" component={Banter} />
