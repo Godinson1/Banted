@@ -13,12 +13,11 @@ import {
 } from "../actions/types";
 import axios from "axios";
 import { getBanters } from "./banterActions";
-import { LOCAL_AUTH_ENDPOINT } from "../util";
 
 export const LoginUser = (user, history, setErrorMessage) => (dispatch) => {
   dispatch({ type: LOADING_LOG });
   axios
-    .post(`${LOCAL_AUTH_ENDPOINT}/login`, user)
+    .post(`users/login`, user)
     .then((res) => {
       setAuthorization(res.data.token);
       dispatch(getUserData());

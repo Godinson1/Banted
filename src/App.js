@@ -16,6 +16,7 @@ import { getBanters } from "./actions/banterActions";
 const HomePage = lazy(() => import("./Pages/HomePage"));
 
 axios.defaults.baseURL = "http://localhost:5000";
+//axios.defaults.baseURL = "https://banted.herokuapp.com";
 
 const token = localStorage.BToken;
 if (token) {

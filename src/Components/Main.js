@@ -65,16 +65,8 @@ const Main = () => {
           <div className="create-banter-container">
             <div className="flex-start-banter">
               <div className="avatar-banter">
-                {user && user.credentials && user.credentials[0].userImage ? (
-                  <img
-                    src={
-                      "/BantedImages/profileImages/" +
-                      user.credentials[0].userImage
-                    }
-                    alt="user"
-                  />
-                ) : (
-                  <img src="/images/noimg.png" alt="user" />
+                {user && user.credentials && user.credentials[0].userImage && (
+                  <img src={user.credentials[0].userImage} alt="user" />
                 )}
               </div>
               <div className="flex-between">

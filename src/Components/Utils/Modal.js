@@ -151,14 +151,7 @@ const Modals = () => {
                 <div className="banter-view">
                   <div className="flex-start-account">
                     <div className="avatar">
-                      {bant.userImage ? (
-                        <img
-                          src={"/BantedImages/profileImages/" + bant.userImage}
-                          alt="user"
-                        />
-                      ) : (
-                        <img src="/images/noimg.png" alt="user" />
-                      )}
+                      <img src={bant.userImage} alt="user" />
                     </div>
                     <div className="nameHandle-container">
                       <div>

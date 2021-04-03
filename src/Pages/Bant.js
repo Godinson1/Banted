@@ -52,14 +52,7 @@ const Bant = ({ historyObject }) => {
             </div>
             <div className="flex-start-banter">
               <div className="avatar-banter-bant">
-                {!bant.userImage ? (
-                  <img src="/images/noimg.png" alt="no-profile" />
-                ) : (
-                  <img
-                    src={"/BantedImages/profileImages/" + bant.userImage}
-                    alt="profile"
-                  />
-                )}
+                <img src={bant.userImage} alt="profile" />
               </div>
               <div className="nameHandle-container">
                 <div>

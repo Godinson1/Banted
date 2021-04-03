@@ -44,14 +44,7 @@ const Reply = ({ bant, location }) => {
               <div key={index}>
                 <div className="flex-start-banter">
                   <div className="avatar-banter">
-                    {!bant.userImage ? (
-                      <img src="/images/noimg.png" alt="no-profile" />
-                    ) : (
-                      <img
-                        src={"/BantedImages/profileImages/" + banter.userImage}
-                        alt="profile"
-                      />
-                    )}
+                    <img src={banter.userImage} alt="profile" />
                   </div>
                   <div className="flex-between-replies">
                     <div className="nameHandle-container-banter">

@@ -15,6 +15,7 @@ import "../../Pages/styles/main/main.scss";
 
 const Compose = () => {
   const banters = useSelector((state) => state.banters);
+  const user = useSelector((state) => state.users.credentials);
   const [imagesCompose, setImagesCompose] = useState([]);
   const [banterCompose, setBanterCompose] = useState("");
   const [imageFilesCompose, setImageFilesCompose] = useState([]);
@@ -105,7 +106,7 @@ const Compose = () => {
               <div className="main-compose">
                 <div className="flex-start-banter">
                   <div className="avatar-banter">
-                    <img src="/images/noimg.png" alt="no-profile" />
+                    <img src={bant.userImage} alt="no-profile" />
                   </div>
                   <div className="line"></div>
                   <div className="flex-between">
@@ -138,7 +139,9 @@ const Compose = () => {
             <div className="main-compose">
               <div className="flex-start-banter">
                 <div className="avatar-banter">
-                  <img src="/images/noimg.png" alt="no-profile" />
+                  {user && user.credentials && (
+                    <img src={user.credentials[0].userImage} alt="no-profile" />
+                  )}
                 </div>
                 <div className="flex-between">
                   <div className="nameHandle-container-banter">

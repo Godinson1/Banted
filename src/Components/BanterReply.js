@@ -49,14 +49,7 @@ const BanterReply = ({ banter, index, location }) => {
           <div key={index} className="account-bottom-banter">
             <div className="flex-start-banter">
               <div className="avatar-banter">
-                {!banter.userImage ? (
-                  <img src="/images/noimg.png" alt="no-profile" />
-                ) : (
-                  <img
-                    src={"/BantedImages/profileImages/" + banter.userImage}
-                    alt="profile"
-                  />
-                )}
+                <img src={banter.userImage} alt="profile" />
               </div>
               <div className="flex-between">
                 <div className="nameHandle-container-banter">
