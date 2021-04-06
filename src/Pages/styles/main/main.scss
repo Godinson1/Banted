@@ -4,6 +4,7 @@
   @include flex;
   background-color: #15202b;
 
+  //make mixin
   .leftsidebar {
     position: fixed;
     top: 0;
@@ -13,10 +14,33 @@
     background-color: red;
   }
 
+  .leftsidebar-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: red;
+  }
+
   .f {
     height: 100vh;
     width: 100%;
     padding: 10px 20px 20px 40px;
+    background-color: #15202b;
+    border-right: 0.1px solid rgb(90, 89, 89);
+
+    .logo {
+      @include FONT;
+      margin-left: 10px;
+      color: $primary-color;
+      font-size: 1.5rem;
+    }
+  }
+
+  .fm {
+    height: 100vh;
+    width: 60px;
+    padding: 10px 10px 20px 10px;
     background-color: #15202b;
     border-right: 0.1px solid rgb(90, 89, 89);
 
@@ -1179,7 +1203,8 @@
   }
 
   .account-bottom-banter {
-    background-color: red;
+    padding: 10px 0 0 20px;
+    width: 100vw;
   }
 
   .leftsidebar {
@@ -1188,5 +1213,13 @@
 
   .rightsidebar {
     display: none;
+  }
+
+  .banter-header {
+    width: 100vw;
+  }
+
+  .s {
+    padding: 0;
   }
 }

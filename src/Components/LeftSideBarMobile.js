@@ -18,103 +18,105 @@ const LeftSideBarMobile = () => {
 
   return (
     <div>
-      <div className="f">
-        <div className="logo">B.</div>
-        <div className="menued">
-          <NavLink className="link" to="/home" activeClassName="selected">
-            <div className="flex-start">
-              <div className="tooltip">
-                <HomeFilled />
-                <span class="tooltiptext">Home</span>
+      <div className="leftsidebar">
+        <div className="fm">
+          <div className="logo">B.</div>
+          <div className="menued">
+            <NavLink className="link" to="/home" activeClassName="selected">
+              <div className="flex-start">
+                <div className="tooltip">
+                  <HomeFilled />
+                  <span class="tooltiptext">Home</span>
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/profile" activeClassName="selected">
-            <div className="flex-start">
-              <div className="tooltip">
-                <NumberOutlined />
-                <span class="tooltiptext">Home</span>
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/profile" activeClassName="selected">
+              <div className="flex-start">
+                <div className="tooltip">
+                  <NumberOutlined />
+                  <span class="tooltiptext">Home</span>
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <BellOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <BellOutlined />
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <MailOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <MailOutlined />
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <BorderOuterOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <BorderOuterOutlined />
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <UnorderedListOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <UnorderedListOutlined />
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <UserOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <UserOutlined />
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <MinusCircleOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <MinusCircleOutlined />
+                </div>
               </div>
-            </div>
-          </NavLink>
-        </div>
+            </NavLink>
+          </div>
 
-        <div className="account-bottom">
-          {user && user.credentials ? (
-            <div className="flex-start-account">
-              <div className="avatar">
-                {user && user.credentials && user.credentials[0].userImage ? (
-                  <img
-                    src={
-                      "/BantedImages/profileImages/" +
-                      user.credentials[0].userImage
-                    }
-                    alt="user"
-                  />
-                ) : (
-                  <img src="/images/noimg.png" alt="user" />
-                )}
+          <div className="account-bottom">
+            {user && user.credentials ? (
+              <div className="flex-start-account">
+                <div className="avatar">
+                  {user && user.credentials && user.credentials[0].userImage ? (
+                    <img
+                      src={
+                        "/BantedImages/profileImages/" +
+                        user.credentials[0].userImage
+                      }
+                      alt="user"
+                    />
+                  ) : (
+                    <img src="/images/noimg.png" alt="user" />
+                  )}
+                </div>
               </div>
-            </div>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -27,204 +27,212 @@ const LeftSideBar = () => {
 
   return (
     <div>
-      <div className="f">
-        <div className="logo">Banted.</div>
-        <div className="menued">
-          <NavLink className="link" to="/home" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <HomeFilled />
+      <div className="leftsidebar">
+        <div className="f">
+          <div className="logo">Banted.</div>
+          <div className="menued">
+            <NavLink className="link" to="/home" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <HomeFilled />
+                </div>
+                <div>Home</div>
               </div>
-              <div>Home</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/explore" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <NumberOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/explore" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <NumberOutlined />
+                </div>
+                <div>Explore</div>
               </div>
-              <div>Explore</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink
-            className="link"
-            to="/notifications"
-            activeClassName="selected"
-          >
-            <div className="flex-start">
-              <div>
-                <BellOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink
+              className="link"
+              to="/notifications"
+              activeClassName="selected"
+            >
+              <div className="flex-start">
+                <div>
+                  <BellOutlined />
+                </div>
+                <div>Notifications</div>
               </div>
-              <div>Notifications</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/messages" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <MailOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/messages" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <MailOutlined />
+                </div>
+                <div>Messages</div>
               </div>
-              <div>Messages</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/bookmarks" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <BorderOuterOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink
+              className="link"
+              to="/bookmarks"
+              activeClassName="selected"
+            >
+              <div className="flex-start">
+                <div>
+                  <BorderOuterOutlined />
+                </div>
+                <div>Bookmarks</div>
               </div>
-              <div>Bookmarks</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/lists" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <UnorderedListOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/lists" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <UnorderedListOutlined />
+                </div>
+                <div>Lists</div>
               </div>
-              <div>Lists</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/profile" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <UserOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/profile" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <UserOutlined />
+                </div>
+                <div>Profile</div>
               </div>
-              <div>Profile</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <NavLink className="link" to="/login" activeClassName="selected">
-            <div className="flex-start">
-              <div>
-                <MinusCircleOutlined />
+            </NavLink>
+          </div>
+          <div className="menued">
+            <NavLink className="link" to="/login" activeClassName="selected">
+              <div className="flex-start">
+                <div>
+                  <MinusCircleOutlined />
+                </div>
+                <div>More</div>
               </div>
-              <div>More</div>
-            </div>
-          </NavLink>
-        </div>
-        <div className="menued">
-          <Link
-            to={{
-              pathname: `/compose/banter`,
-              state: {
-                background: location,
-                banter: null,
-              },
-            }}
-            className="link"
-          >
-            <div className="banter-button-container">
-              <button id="banter-button">Banter</button>
-            </div>
-          </Link>
-        </div>
+            </NavLink>
+          </div>
+          <div className="menued">
+            <Link
+              to={{
+                pathname: `/compose/banter`,
+                state: {
+                  background: location,
+                  banter: null,
+                },
+              }}
+              className="link"
+            >
+              <div className="banter-button-container">
+                <button id="banter-button">Banter</button>
+              </div>
+            </Link>
+          </div>
 
-        <div className="account-bottom" onClick={() => setShow(!show)}>
-          {user && user.credentials ? (
-            <div>
-              <div className="flex-start-account">
-                <div className="avatar">
-                  {user &&
-                    user.credentials &&
-                    user.credentials[0].userImage && (
-                      <img src={user.credentials[0].userImage} alt="user" />
-                    )}
-                </div>
-                <div className="nameHandle-container">
-                  <div>
-                    <span id="name">{user.credentials[0].name}</span>
-                  </div>
-                  <div className="handle-container">
-                    <span id="handle">@{user.credentials[0].handle}</span>
-                  </div>
-                </div>
-                <div className="dots">...</div>
-                {show && (
-                  <div ref={wrapperRef} className="dropdown-profile">
-                    <div>
-                      {user && user.credentials ? (
-                        <div className="flex-start-account prof">
-                          <div className="avatar">
-                            {user &&
-                              user.credentials &&
-                              user.credentials[0].userImage && (
-                                <img
-                                  src={user.credentials[0].userImage}
-                                  alt="user"
-                                />
-                              )}
-                          </div>
-                          <div className="nameHandle-container">
-                            <div>
-                              <span id="name">{user.credentials[0].name}</span>
-                            </div>
-                            <div className="handle-container">
-                              <span id="handle">
-                                @{user.credentials[0].handle}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        ""
+          <div className="account-bottom" onClick={() => setShow(!show)}>
+            {user && user.credentials ? (
+              <div>
+                <div className="flex-start-account">
+                  <div className="avatar">
+                    {user &&
+                      user.credentials &&
+                      user.credentials[0].userImage && (
+                        <img src={user.credentials[0].userImage} alt="user" />
                       )}
-                      <Divider
-                        style={{
-                          marginTop: 10,
-                          backgroundColor: "rgb(90, 89, 89)",
-                        }}
-                      />
-                      <div
-                        id="base-bottom"
-                        onClick={() => dispatch(logoutUser())}
-                      >
-                        <span
-                          style={{
-                            fontSize: "0.9rem",
-                          }}
-                          id="name"
-                        >
-                          Add an existing account
-                        </span>
-                      </div>
-                      <Divider
-                        style={{
-                          marginTop: 0,
-                          backgroundColor: "rgb(90, 89, 89)",
-                        }}
-                      />
-                      <div
-                        id="base-bottom"
-                        onClick={() => dispatch(logoutUser())}
-                      >
-                        <span
-                          style={{
-                            fontSize: "0.9rem",
-                          }}
-                          id="name"
-                        >
-                          Log Out @{user.credentials[0].handle}
-                        </span>
-                      </div>
+                  </div>
+                  <div className="nameHandle-container">
+                    <div>
+                      <span id="name">{user.credentials[0].name}</span>
+                    </div>
+                    <div className="handle-container">
+                      <span id="handle">@{user.credentials[0].handle}</span>
                     </div>
                   </div>
-                )}
+                  <div className="dots">...</div>
+                  {show && (
+                    <div ref={wrapperRef} className="dropdown-profile">
+                      <div>
+                        {user && user.credentials ? (
+                          <div className="flex-start-account prof">
+                            <div className="avatar">
+                              {user &&
+                                user.credentials &&
+                                user.credentials[0].userImage && (
+                                  <img
+                                    src={user.credentials[0].userImage}
+                                    alt="user"
+                                  />
+                                )}
+                            </div>
+                            <div className="nameHandle-container">
+                              <div>
+                                <span id="name">
+                                  {user.credentials[0].name}
+                                </span>
+                              </div>
+                              <div className="handle-container">
+                                <span id="handle">
+                                  @{user.credentials[0].handle}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        <Divider
+                          style={{
+                            marginTop: 10,
+                            backgroundColor: "rgb(90, 89, 89)",
+                          }}
+                        />
+                        <div
+                          id="base-bottom"
+                          onClick={() => dispatch(logoutUser())}
+                        >
+                          <span
+                            style={{
+                              fontSize: "0.9rem",
+                            }}
+                            id="name"
+                          >
+                            Add an existing account
+                          </span>
+                        </div>
+                        <Divider
+                          style={{
+                            marginTop: 0,
+                            backgroundColor: "rgb(90, 89, 89)",
+                          }}
+                        />
+                        <div
+                          id="base-bottom"
+                          onClick={() => dispatch(logoutUser())}
+                        >
+                          <span
+                            style={{
+                              fontSize: "0.9rem",
+                            }}
+                            id="name"
+                          >
+                            Log Out @{user.credentials[0].handle}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>
