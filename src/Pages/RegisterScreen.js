@@ -61,7 +61,7 @@ export default function RegisterScreen({ setShowModal, history }) {
         </div>
         <div className="two">
           <div className="auth-container">
-            <div>
+            <div className="auth">
               {errorMessage && (
                 <Alert
                   message={

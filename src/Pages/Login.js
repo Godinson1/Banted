@@ -51,7 +51,7 @@ const Login = ({ history }) => {
 
         <div className="two">
           <div className="auth-container">
-            <div>
+            <div className="auth">
               {errorMessage && (
                 <Alert
                   style={{ fontFamily: "Roboto" }}
