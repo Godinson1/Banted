@@ -3,7 +3,7 @@ import "../../Pages/css/utils/auth/auth.scss";
 
 const Button = ({ label, disabled, onClick }) => {
   return (
-    <div>
+    <div className="auth">
       <div className="buttoned">
         <form onSubmit={onClick}>
           <button

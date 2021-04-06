@@ -183,6 +183,7 @@ const Banter = ({ bant, i, location }) => {
                   <div
                     className="icon-action-rebant tooltip"
                     onClick={() => setShowRetweet(!showRetweet)}
+                    onMouseOver={() => setAllowLink(false)}
                   >
                     <RetweetOutlined />
                     <span className="tooltiptext">rebanter</span>
@@ -214,7 +215,7 @@ const Banter = ({ bant, i, location }) => {
               </div>
 
               <div className="action-flex">
-                <LikeButton banterId={bant._id} />
+                <LikeButton setAllowLink={setAllowLink} banterId={bant._id} />
                 <div>
                   <span
                     style={{ color: bant.likeCount !== 0 ? "#E0245E" : "" }}

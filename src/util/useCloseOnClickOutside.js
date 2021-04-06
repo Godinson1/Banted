@@ -10,7 +10,7 @@ export default function useCloseOnClickOutside(
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         setShowRetweet(false);
-        if (setAllow && setShow) {
+        if (setAllow || setShow) {
           setAllow(false);
           setShow(false);
         }

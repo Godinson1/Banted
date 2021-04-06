@@ -10,11 +10,11 @@
 }
 
 .buttoned {
-  margin: 10px 0 0 -6px;
+  margin: 10px 0 0 0;
   position: relative;
 }
 
-.inputed-password {
+.inputed-passwords {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -24,14 +24,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 0 10px;
 }
 
 .icon-container {
   height: 50px;
   width: 50px;
-  position: absolute;
-  margin-left: 300px;
   font-size: 1.4rem;
   font-weight: bold;
   display: -webkit-box;
@@ -46,6 +43,30 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
+}
+
+.auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.header-login {
+  margin-top: 50px;
+  font-family: Roboto;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #fff;
 }
 
 #input-container {
@@ -66,13 +87,13 @@
 }
 
 #button-container {
-  width: 350px;
   height: 50px;
   border-radius: 5px;
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
   cursor: pointer;
+  width: 350px;
   background-color: rgba(4, 4, 56, 0.986);
   color: #fff;
   border: none;
@@ -83,13 +104,13 @@
 }
 
 #button-container-disabled {
-  width: 350px;
   height: 50px;
   border-radius: 5px;
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
   cursor: pointer;
+  width: 350px;
   background-color: #d8d5d5;
   color: #fff;
   cursor: not-allowed;
@@ -98,5 +119,28 @@
 label {
   font-size: 16px;
   font-weight: 600;
+}
+
+@media screen and (max-width: 640px) {
+  .auth {
+    padding: 20px;
+  }
+  #input-container {
+    width: 100%;
+  }
+  #button-container {
+    width: 100%;
+  }
+  #button-container-disabled {
+    width: 100%;
+  }
+  .inputed {
+    margin-bottom: -30px;
+    width: 100%;
+  }
+  .buttoned {
+    margin-top: -30px;
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=auth.css.map */

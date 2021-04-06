@@ -7,6 +7,8 @@ import {
 } from "./helpers";
 import { imageStrings } from "./data";
 import useCloseOnClickOutside from "./useCloseOnClickOutside";
+import { useViewport, ViewportProvider } from "./useViewPort";
+import AuthRoute from "./AuthRoute";
 
 export {
   LOCAL_AUTH_ENDPOINT,
@@ -16,4 +18,7 @@ export {
   getDataUrl,
   checkHashtag,
   useCloseOnClickOutside,
+  ViewportProvider,
+  useViewport,
+  AuthRoute,
 };

@@ -1,10 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { LeftSideBar, RightSideBar, Main } from "../Components";
+import {
+  LeftSideBar,
+  LeftSideBarMobile,
+  RightSideBar,
+  Main,
+} from "../Components";
+import { useViewport } from "../util";
 import "./styles/main/main.scss";
 
 const HomePage = () => {
   const banters = useSelector((state) => state.banters);
+  const { width } = useViewport();
+
   return (
     <div>
       {banters &&
@@ -13,14 +21,16 @@ const HomePage = () => {
           banters.loading) && <div className="animated yt-loader"></div>}
       <div className="home-container">
         <div className="leftsidebar">
-          <LeftSideBar />
+          {width < 768 ? <LeftSideBarMobile /> : <LeftSideBar />}
         </div>
         <div className="mainbar">
           <Main />
         </div>
-        <div className="rightsidebar">
-          <RightSideBar />
-        </div>
+        {width > 620 && (
+          <div className="rightsidebar">
+            <RightSideBar />
+          </div>
+        )}
       </div>
     </div>
   );

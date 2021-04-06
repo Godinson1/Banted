@@ -15,6 +15,7 @@ import "../Pages/styles/main/main.scss";
 
 const LeftSideBarMobile = () => {
   const user = useSelector((state) => state.users.credentials);
+
   return (
     <div>
       <div className="f">
@@ -110,15 +111,6 @@ const LeftSideBarMobile = () => {
                   <img src="/images/noimg.png" alt="user" />
                 )}
               </div>
-              <div className="nameHandle-container">
-                <div>
-                  <span id="name">{user.credentials[0].name}</span>
-                </div>
-                <div className="handle-container">
-                  <span id="handle">@{user.credentials[0].handle}</span>
-                </div>
-              </div>
-              <div className="dots">...</div>
             </div>
           ) : (
             ""

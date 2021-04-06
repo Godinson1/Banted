@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Divider, Alert } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 
 import "./styles/landing/landing.scss";
 import Input from "../Components/Utils/Input";
@@ -53,76 +52,82 @@ export default function RegisterScreen({ setShowModal, history }) {
 
   return (
     <div>
-      <div className="register">
-        <div className="register-auth-container">
-          <div className="flex-between">
-            <div></div>
-            <div>
-              <CloseOutlined id="icon" onClick={() => setShowModal(false)} />
-            </div>
-          </div>
-          <p className="medium-text-secondary">Register</p>
+      <div className="auth">
+        <div className="header-login">
+          <h1 className="secondary-color">Banted.</h1>
           <div>
-            {errorMessage && (
-              <Alert
-                message={
-                  errorMessage ||
-                  (state.errors && state.errors.error && state.errors.error)
-                }
-                type="error"
-                style={{ fontFamily: "Roboto" }}
-              />
-            )}
+            <p>Register to Share the Banted Experience...</p>
           </div>
-          <Input
-            type="text"
-            label="Full Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter name."
-          />
-          <Input
-            type="text"
-            label="Handle"
-            value={handle}
-            onChange={(e) => setHandle(e.target.value)}
-            placeholder="Enter handle."
-          />
-          <Input
-            type="text"
-            label="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email address."
-          />
-          <Input
-            type={showPassword ? "text" : "password"}
-            label="Password"
-            placeholder="Enter password."
-            show={showPassword}
-            setShowPassword={setShowPassword}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            label={state && state.loading_reg ? "Loading..." : "Register"}
-            disabled={
-              name === "" || password === "" || email === "" || handle === ""
-                ? true
-                : state && state.loading_reg
-                ? true
-                : false
-            }
-            onClick={onBoardUser}
-          />
-          <Divider />
-          <div className="flex">
-            <p className="small-text">
-              Already have an Account?{" "}
-              <Link id="link" to="/">
-                <span onClick={() => setShowModal(false)}>LOGIN</span>
-              </Link>
-            </p>
+        </div>
+        <div className="two">
+          <div className="auth-container">
+            <div>
+              {errorMessage && (
+                <Alert
+                  message={
+                    errorMessage ||
+                    (state.errors && state.errors.error && state.errors.error)
+                  }
+                  type="error"
+                  style={{ fontFamily: "Roboto" }}
+                />
+              )}
+            </div>
+            <Input
+              type="text"
+              label="Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter name."
+            />
+            <Input
+              type="text"
+              label="Handle"
+              value={handle}
+              onChange={(e) => setHandle(e.target.value)}
+              placeholder="Enter handle."
+            />
+            <Input
+              type="text"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email address."
+            />
+            <Input
+              type={showPassword ? "text" : "password"}
+              label="Password"
+              placeholder="Enter password."
+              show={showPassword}
+              setShowPassword={setShowPassword}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div style={{ marginTop: "40px" }}>
+              <Button
+                label={state && state.loading_reg ? "Loading..." : "Register"}
+                disabled={
+                  name === "" ||
+                  password === "" ||
+                  email === "" ||
+                  handle === ""
+                    ? true
+                    : state && state.loading_reg
+                    ? true
+                    : false
+                }
+                onClick={onBoardUser}
+              />
+            </div>
+            <Divider />
+            <div className="flex">
+              <p className="small-text">
+                Already have an Account?{" "}
+                <Link id="link" to="/login">
+                  <span onClick={() => setShowModal(false)}>LOGIN</span>
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>

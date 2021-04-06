@@ -14,7 +14,7 @@ const Input = ({
 }) => {
   return (
     <div>
-      <div>
+      <div className="auth">
         {(type === "text" && show === undefined) || null ? (
           <div className="inputed">
             <label>{label}</label>
@@ -42,12 +42,12 @@ const Input = ({
                   onKeyDown={onkeyDown}
                 />
               </div>
-              <div
+              {/*<div
                 className="icon-container"
                 onClick={() => setShowPassword(!show)}
               >
                 {show ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-              </div>
+              </div>*/}
             </div>
           </div>
         )}

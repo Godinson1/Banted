@@ -11,20 +11,20 @@
     width: 25vw;
     height: 100vh;
     background-color: red;
+  }
 
-    .f {
-      height: 100vh;
-      width: 100%;
-      padding: 10px 20px 20px 40px;
-      background-color: #15202b;
-      border-right: 0.1px solid rgb(90, 89, 89);
+  .f {
+    height: 100vh;
+    width: 100%;
+    padding: 10px 20px 20px 40px;
+    background-color: #15202b;
+    border-right: 0.1px solid rgb(90, 89, 89);
 
-      .logo {
-        @include FONT;
-        margin-left: 10px;
-        color: $primary-color;
-        font-size: 1.5rem;
-      }
+    .logo {
+      @include FONT;
+      margin-left: 10px;
+      color: $primary-color;
+      font-size: 1.5rem;
     }
   }
 
@@ -1170,4 +1170,23 @@
   @include flex;
   height: 100vh;
   width: 100vw;
+}
+
+@include media-sm {
+  .mainbar {
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .account-bottom-banter {
+    background-color: red;
+  }
+
+  .leftsidebar {
+    width: 70vw;
+  }
+
+  .rightsidebar {
+    display: none;
+  }
 }

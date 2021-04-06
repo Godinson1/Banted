@@ -5,26 +5,38 @@
 }
 
 .buttoned {
-  margin: 10px 0 0 -6px;
+  margin: 10px 0 0 0;
   position: relative;
 }
 
-.inputed-password {
+.inputed-passwords {
   @include flex;
-  margin: 0 0 10px;
 }
 
 .icon-container {
   height: 50px;
   width: 50px;
-  position: absolute;
-  margin-left: 300px;
   font-size: 1.4rem;
   font-weight: bold;
   @include flex;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
+}
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header-login {
+  margin-top: 50px;
+  @include FONT;
+  font-size: 1.3rem;
+  text-align: center;
+  color: $primary-color;
 }
 
 #input-container {
@@ -46,6 +58,7 @@
 
 #button-container {
   @include button;
+  width: 350px;
   background-color: rgba(4, 4, 56, 0.986);
   color: $primary-color;
   border: none;
@@ -56,6 +69,7 @@
 
 #button-container-disabled {
   @include button;
+  width: 350px;
   background-color: rgb(216, 213, 213);
   color: $primary-color;
   cursor: not-allowed;
@@ -64,4 +78,32 @@
 label {
   font-size: 16px;
   font-weight: 600;
+}
+
+@include media-sm {
+  .auth {
+    padding: 20px;
+  }
+
+  #input-container {
+    width: 100%;
+  }
+
+  #button-container {
+    width: 100%;
+  }
+
+  #button-container-disabled {
+    width: 100%;
+  }
+
+  .inputed {
+    margin-bottom: -30px;
+    width: 100%;
+  }
+
+  .buttoned {
+    margin-top: -30px;
+    width: 100%;
+  }
 }

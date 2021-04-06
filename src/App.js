@@ -1,9 +1,9 @@
 import React, { Suspense, lazy, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import store from "./store";
-import AuthRoute from "./util/AuthRoute";
+import { AuthRoute, ViewportProvider } from "./util/";
 //Pages
-import { LoginScreen, NotFound, Banter } from "./Pages";
+import { LoginScreen, NotFound, Banter, Login, RegisterScreen } from "./Pages";
 import { Modals, Compose } from "./Components/Utils";
 import Preloader from "./Components/Preloader";
 //Config
@@ -50,21 +50,25 @@ const App = () => {
 
   return (
     <div className="container">
-      <Suspense fallback={<Preloader />}>
-        <Switch location={background || location}>
-          <Route exact path="/" component={LoginScreen} />
-          <AuthRoute path="/home" component={HomePage} />
-          <AuthRoute path="/explore" component={HomePage} />
-          <AuthRoute path="/notifications" component={HomePage} />
-          <AuthRoute path="/profile" component={HomePage} />
-          <AuthRoute path="/messages" component={HomePage} />
-          <AuthRoute path="/bookmarks" component={Preloader} />
-          <AuthRoute path="/lists" component={HomePage} />
-          <Route exact path="/modal/:id" component={Modals} />
-          <Route exact path="/:id/status/:id" component={Banter} />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
+      <ViewportProvider>
+        <Suspense fallback={<Preloader />}>
+          <Switch location={background || location}>
+            <Route exact path="/" component={LoginScreen} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={RegisterScreen} />
+            <AuthRoute path="/home" component={HomePage} />
+            <AuthRoute path="/explore" component={HomePage} />
+            <AuthRoute path="/notifications" component={HomePage} />
+            <AuthRoute path="/profile" component={HomePage} />
+            <AuthRoute path="/messages" component={HomePage} />
+            <AuthRoute path="/bookmarks" component={Preloader} />
+            <AuthRoute path="/lists" component={HomePage} />
+            <Route exact path="/modal/:id" component={Modals} />
+            <Route exact path="/:id/status/:id" component={Banter} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </ViewportProvider>
       {background && (
         <div>
           <Route path="/:id/status/:id/photo/:id" children={<Modals />} />

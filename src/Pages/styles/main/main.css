@@ -27,7 +27,7 @@
   background-color: red;
 }
 
-.home-container .leftsidebar .f {
+.home-container .f {
   height: 100vh;
   width: 100%;
   padding: 10px 20px 20px 40px;
@@ -35,7 +35,7 @@
   border-right: 0.1px solid #5a5959;
 }
 
-.home-container .leftsidebar .f .logo {
+.home-container .f .logo {
   font-family: Roboto;
   margin-left: 10px;
   color: #fff;
@@ -716,6 +716,43 @@
 }
 
 .lds-ring div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+.preloader-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.preloader-ring div {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border: 4px solid #1da1f2;
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #1da1f2 transparent transparent transparent;
+}
+
+.preloader-ring div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.preloader-ring div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.preloader-ring div:nth-child(3) {
   -webkit-animation-delay: -0.15s;
           animation-delay: -0.15s;
 }
@@ -1638,5 +1675,35 @@
   position: absolute;
   background-color: #5a5959;
   margin: 130px 0 0 25px;
+}
+
+.preloader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+@media screen and (max-width: 640px) {
+  .mainbar {
+    width: 100vw;
+    overflow: hidden;
+  }
+  .account-bottom-banter {
+    background-color: red;
+  }
+  .leftsidebar {
+    width: 70vw;
+  }
+  .rightsidebar {
+    display: none;
+  }
 }
 /*# sourceMappingURL=main.css.map */
