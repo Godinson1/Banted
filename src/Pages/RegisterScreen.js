@@ -124,7 +124,7 @@ export default function RegisterScreen({ setShowModal, history }) {
               <p className="small-text">
                 Already have an Account?{" "}
                 <Link id="link" to="/login">
-                  <span onClick={() => setShowModal(false)}>LOGIN</span>
+                  <span>LOGIN</span>
                 </Link>
               </p>
             </div>
