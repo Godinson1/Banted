@@ -1692,6 +1692,10 @@
   outline: none;
 }
 
+.banter-footer {
+  display: none;
+}
+
 .line {
   width: 3px;
   height: 60px;
@@ -1720,8 +1724,11 @@
     overflow: hidden;
   }
   .account-bottom-banter {
-    padding: 10px 0 0 20px;
+    padding: 10px 20px 0 10px;
     width: 100vw;
+  }
+  .flex-start-banter {
+    margin-top: 10px;
   }
   .leftsidebar {
     width: 70vw;
@@ -1731,9 +1738,56 @@
   }
   .banter-header {
     width: 100vw;
+    padding: 20px 10px 20px 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    left: 0;
+    border-bottom: 0.1px solid #5a5959;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+    position: fixed;
+    background-color: #15202b;
+  }
+  .banter-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #fff;
+    padding: 0 20px 0 20px;
+    font-family: Roboto;
+    bottom: 0;
+    font-size: 1.2rem;
+    height: 50px;
+    width: 100vw;
+    background-color: #15202b;
+    border-top: 0.1px solid #5a5959;
+    position: fixed;
+    cursor: pointer;
   }
   .s {
-    padding: 0;
+    padding-bottom: 100px;
+    width: 100vw;
+    overflow: hidden;
+  }
+  .s .actions-container {
+    gap: 45px;
+  }
+  .create-banter-container {
+    padding-top: 90px;
   }
 }
 /*# sourceMappingURL=main.css.map */

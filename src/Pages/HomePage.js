@@ -21,10 +21,10 @@ const HomePage = () => {
           banters.loading) && <div className="animated yt-loader"></div>}
       <div className="home-container">
         <div>{width < 768 ? "" : <LeftSideBar />}</div>
-        <div className={width < 768 ? "mainbar-mobile" : "mainbar"}>
+        <div className={width < 640 ? "mainbar-mobile" : "mainbar"}>
           <Main />
         </div>
-        {width > 620 && (
+        {width > 640 && (
           <div className="rightsidebar">
             <RightSideBar />
           </div>

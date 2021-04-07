@@ -1,6 +1,14 @@
 import React, { useState, createRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { StarOutlined, CloseOutlined } from "@ant-design/icons";
+import {
+  StarOutlined,
+  CloseOutlined,
+  MenuOutlined,
+  HomeFilled,
+  BellOutlined,
+  SearchOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 import { message } from "antd";
 //import Picker from "emoji-picker-react";
 import NewBanter from "./NewBanter";
@@ -8,6 +16,7 @@ import { getClassMediaNames, readURI } from "../util";
 import { postBanter } from "../actions/banterActions";
 import "../Pages/styles/main/main.scss";
 import BanterBase from "./BanterBase";
+import { useViewport } from "../util";
 
 const Main = () => {
   const user = useSelector((state) => state.users.credentials);
@@ -15,6 +24,7 @@ const Main = () => {
   const [images, setImages] = useState([]);
   const [banter, setBanter] = useState("");
   const [imageFiles, setImageFiles] = useState([]);
+  const { width } = useViewport();
 
   const dispatch = useDispatch();
   const textRef = createRef();
@@ -56,7 +66,14 @@ const Main = () => {
     <div>
       <div className="s">
         <div className="banter-header">
-          <div>Home</div>
+          <div className="flex">
+            <div className="menuicon">
+              <MenuOutlined />
+            </div>
+            &nbsp;
+            <div>Home</div>
+          </div>
+
           <div>
             <StarOutlined className="secondary-color" />
           </div>
@@ -125,6 +142,21 @@ const Main = () => {
           </div>
           <div className="banter-spacer"></div>
           <NewBanter />
+        </div>
+
+        <div className="banter-footer">
+          <div>
+            <HomeFilled />
+          </div>
+          <div>
+            <SearchOutlined />
+          </div>
+          <div>
+            <BellOutlined />
+          </div>
+          <div>
+            <MailOutlined />
+          </div>
         </div>
       </div>
     </div>
