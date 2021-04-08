@@ -67,7 +67,10 @@ const Banter = ({ bant, i, location }) => {
                     </span>
                   </div>
                   <div>
-                    <span id="handle">- {dayjs(bant.createdAt).twitter()}</span>
+                    <span id="handle">
+                      {" "}
+                      - {dayjs(bant.createdAt).twitter()}
+                    </span>
                   </div>
                 </div>
               </div>
