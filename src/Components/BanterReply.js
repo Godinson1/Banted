@@ -11,8 +11,8 @@ import {
   UserAddOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
+import dayjsTwitter from "dayjs-twitter";
 import { Markup } from "interweave";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { deleteBanter } from "../actions/banterActions";
 import LikeButton from "./likeButton";
 import "./styles/reply-banter/index.scss";
@@ -33,7 +33,8 @@ const BanterReply = ({ banter, index, location }) => {
   const wrapperRef = useRef(null);
   useCloseOnClickOutside(wrapperRef, setShowRetweet, setAllowLink, setShow);
 
-  dayjs.extend(relativeTime);
+  dayjs.extend(dayjsTwitter);
+
   return (
     <div>
       <div>
@@ -58,7 +59,7 @@ const BanterReply = ({ banter, index, location }) => {
                       {banter.name}{" "}
                       <span id="handle">
                         @{banter.banterHandle} -{" "}
-                        {dayjs(banter.createdAt).fromNow()}
+                        {dayjs(banter.createdAt).twitter()}
                       </span>
                     </span>
                   </div>

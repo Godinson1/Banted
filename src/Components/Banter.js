@@ -14,7 +14,8 @@ import {
 } from "@ant-design/icons";
 import LikeButton from "./likeButton";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import dayjsTwitter from "dayjs-twitter";
+//import relativeTime from "dayjs/plugin/relativeTime";
 import {
   getClassMediaNames,
   checkHashtag,
@@ -29,7 +30,8 @@ const Banter = ({ bant, i, location }) => {
   const [allowLink, setAllowLink] = useState(true);
   const user = useSelector((state) => state.users.credentials);
   const dispatch = useDispatch();
-  dayjs.extend(relativeTime);
+  //dayjs.extend(relativeTime);
+  dayjs.extend(dayjsTwitter);
   const wrapperRef = useRef(null);
   useCloseOnClickOutside(wrapperRef, setShowRetweet, setAllowLink, setShow);
 
@@ -62,7 +64,7 @@ const Banter = ({ bant, i, location }) => {
                   <span id="name">
                     {bant.name}{" "}
                     <span id="handle">
-                      @{bant.banterHandle} - {dayjs(bant.createdAt).fromNow()}
+                      @{bant.banterHandle} - {dayjs(bant.createdAt).twitter()}
                     </span>
                   </span>
                 </div>

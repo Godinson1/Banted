@@ -8,7 +8,7 @@ import {
   MessageOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import dayjsTwitter from "dayjs-twitter";
 import { getCommentsOnBanter } from "../actions/banterActions";
 import LikeButton from "./likeButton";
 import { getClassMediaNames, checkHashtag } from "../util";
@@ -21,7 +21,7 @@ const Reply = ({ bant, location }) => {
     dispatch(getCommentsOnBanter(bant._id));
   }, [bant._id, dispatch]);
 
-  dayjs.extend(relativeTime);
+  dayjs.extend(dayjsTwitter);
 
   return (
     <div>
@@ -57,7 +57,7 @@ const Reply = ({ bant, location }) => {
                         </div>
                         <div>
                           <span id="handle">
-                            - {dayjs(banter.createdAt).fromNow()}
+                            - {dayjs(banter.createdAt).twitter()}
                           </span>
                           <div className="dots">...</div>
                         </div>

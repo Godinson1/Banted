@@ -302,6 +302,12 @@
   @include avatar-image;
 }
 
+.avatar-banter-menu {
+  width: 30px !important;
+  height: 30px !important;
+  @include avatar-image;
+}
+
 .avatar-banter-bant {
   @include avatar-image;
 }
@@ -494,7 +500,7 @@
 }
 
 .dots {
-  margin: -20px 0 0 50px;
+  margin: -40px 0 0 50px;
   color: $primary-color;
 }
 
@@ -1200,18 +1206,15 @@
   width: 100vw;
 }
 
-.menuicon {
-  //display: none;
-}
-
 @include media-sm {
   .mainbar {
     width: 100vw;
     overflow: hidden;
-  }
-
-  .menuicon {
-    //display: flex;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
   }
 
   .account-bottom-banter {
@@ -1242,6 +1245,7 @@
     font-size: 1.5rem;
     position: fixed;
     background-color: $background-color;
+    z-index: 20;
   }
 
   .banter-footer {
@@ -1250,16 +1254,36 @@
     align-items: center;
     color: $primary-color;
     padding: 0 20px 0 20px;
-    @include FONT;
+    font-weight: 900;
     bottom: 0;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     height: 50px;
     width: 100vw;
     background-color: $background-color;
     border-top: 0.1px solid rgb(90, 89, 89);
     position: fixed;
-
     cursor: pointer;
+  }
+
+  .banter-fab {
+    color: $primary-color;
+    @include FONT;
+    top: 30;
+
+    font-size: 1.2rem;
+    height: 450px;
+    width: 450px;
+    background-color: red;
+    position: fixed;
+    cursor: pointer;
+    z-index: 300;
+
+    .fab {
+      height: 50px;
+      width: 50px;
+      background-color: $secondary-color;
+      border-radius: 50px;
+    }
   }
 
   .s {
