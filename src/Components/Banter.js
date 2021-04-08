@@ -60,15 +60,18 @@ const Banter = ({ bant, i, location }) => {
             </div>
             <div className="flex-between">
               <div className="nameHandle-container-banter">
-                <div>
-                  <span id="name">
-                    {bant.name}{" "}
-                    <span id="handle">
-                      @{bant.banterHandle} - {dayjs(bant.createdAt).twitter()}
+                <div className="flexname">
+                  <div className="nh">
+                    <span id="name">
+                      {bant.name} <span id="handle">@{bant.banterHandle} </span>
                     </span>
-                  </span>
+                  </div>
+                  <div>
+                    <span id="handle">- {dayjs(bant.createdAt).twitter()}</span>
+                  </div>
                 </div>
               </div>
+
               <div className="action-flex">
                 <div
                   id="dots"

@@ -1,5 +1,6 @@
 import React, { useState, createRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import {
   StarOutlined,
   CloseOutlined,
@@ -153,22 +154,35 @@ const Main = () => {
           <div className="banter-spacer"></div>
           <NewBanter />
         </div>
-        <div className="banter-fab">
-          <div className="fab"></div>
-        </div>
+
         <div className="banter-footer">
           <div>
-            <HomeFilled />
+            <NavLink className="link" to="/home" activeClassName="selected">
+              <HomeFilled />
+            </NavLink>
           </div>
           <div>
-            <SearchOutlined />
+            <NavLink className="link" to="/explore" activeClassName="selected">
+              <SearchOutlined />
+            </NavLink>
           </div>
           <div>
-            <BellOutlined />
+            <NavLink
+              className="link"
+              to="/notifications"
+              activeClassName="selected"
+            >
+              <BellOutlined />
+            </NavLink>
           </div>
           <div>
-            <MailOutlined />
+            <NavLink className="link" to="/messages" activeClassName="selected">
+              <MailOutlined />
+            </NavLink>
           </div>
+        </div>
+        <div className="banter-fab">
+          <div className="fab"></div>
         </div>
       </div>
     </div>

@@ -1836,5 +1836,32 @@
   .create-banter-container {
     padding-top: 90px;
   }
+  .media-two {
+    height: 185px !important;
+  }
+  .media-three {
+    height: 185px !important;
+  }
+  .media-full {
+    height: 250px !important;
+  }
+  .flexname {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .nh {
+    width: 170px;
+    white-space: nowrap;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 /*# sourceMappingURL=main.css.map */

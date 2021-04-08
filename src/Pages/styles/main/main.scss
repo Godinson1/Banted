@@ -1300,4 +1300,26 @@
   .create-banter-container {
     padding-top: 90px;
   }
+
+  .media-two {
+    height: 185px !important;
+  }
+  .media-three {
+    height: 185px !important;
+  }
+  .media-full {
+    height: 250px !important;
+  }
+
+  .flexname {
+    @include flex;
+  }
+
+  .nh {
+    width: 170px;
+    white-space: nowrap;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
