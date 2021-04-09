@@ -728,7 +728,7 @@
 }
 
 .overlay {
-  height: 100%;
+  height: 100vh;
   width: 0;
   position: fixed;
   visibility: hidden;
@@ -762,6 +762,8 @@
   height: 100vh;
   background-color: #15202b;
   font-weight: bold;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .overlay .overlay-content .navHeader {
@@ -1899,7 +1901,7 @@
     background-color: #1da1f2;
     position: fixed;
     cursor: pointer;
-    z-index: 3000;
+    z-index: 50;
     border-radius: 50px;
   }
   .s {
