@@ -15,7 +15,7 @@ import { LeftSideBar, RightSideBar, Main } from "../Components";
 import { useViewport } from "../util";
 import "./styles/main/main.scss";
 
-const HomePage = () => {
+const HomePage = ({ location }) => {
   const [nav, setNav] = useState(false);
   const banters = useSelector((state) => state.banters);
   const { width } = useViewport();
@@ -144,7 +144,7 @@ const HomePage = () => {
       <div className="home-container">
         <div>{width < 768 ? "" : <LeftSideBar />}</div>
         <div className={width < 640 ? "mainbar-mobile" : "mainbar"}>
-          <Main nav={nav} setNav={setNav} />
+          <Main nav={nav} setNav={setNav} location={location} />
         </div>
         {width > 640 && (
           <div className="rightsidebar">

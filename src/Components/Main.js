@@ -1,6 +1,6 @@
 import React, { useState, createRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   StarOutlined,
   CloseOutlined,
@@ -19,7 +19,7 @@ import "../Pages/styles/main/main.scss";
 import BanterBase from "./BanterBase";
 import { useViewport } from "../util";
 
-const Main = ({ nav, setNav }) => {
+const Main = ({ nav, setNav, location }) => {
   const user = useSelector((state) => state.users.credentials);
   const banters = useSelector((state) => state.banters);
   const [images, setImages] = useState([]);
@@ -63,11 +63,6 @@ const Main = ({ nav, setNav }) => {
   return (
     <div>
       <div className="s">
-        <div className="banter-fas">
-          <div className="fab">
-            <PlusOutlined />
-          </div>
-        </div>
         <div className="banter-header">
           <div className="flex">
             <div className="menuicon">
@@ -160,7 +155,22 @@ const Main = ({ nav, setNav }) => {
           <div className="banter-spacer"></div>
           <NewBanter />
         </div>
-
+        <div className="banter-fas">
+          <Link
+            to={{
+              pathname: `/compose/banter`,
+              state: {
+                background: location,
+                banter: null,
+              },
+            }}
+            className="link"
+          >
+            <div className="fab">
+              <PlusOutlined />
+            </div>
+          </Link>
+        </div>
         <div className="banter-footer">
           <div>
             <NavLink className="link" to="/home" activeClassName="selected">

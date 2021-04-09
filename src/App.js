@@ -65,6 +65,7 @@ const App = () => {
             <AuthRoute path="/lists" component={HomePage} />
             <Route exact path="/modal/:id" component={Modals} />
             <Route exact path="/:id/status/:id" component={Banter} />
+
             <Route component={NotFound} />
           </Switch>
         </Suspense>

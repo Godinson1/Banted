@@ -719,6 +719,10 @@
   z-index: 1;
 }
 
+.banter-fas {
+  visibility: hidden;
+}
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
@@ -727,6 +731,7 @@
   height: 100%;
   width: 0;
   position: fixed;
+  visibility: hidden;
   z-index: 50;
   top: 0;
   left: 0;
@@ -1814,6 +1819,9 @@
     scrollbar-width: none;
     /* Firefox */
   }
+  .overlay {
+    visibility: visible;
+  }
   .account-bottom-banter {
     padding: 10px 20px 0 10px;
     width: 100vw;
@@ -1871,6 +1879,7 @@
     cursor: pointer;
   }
   .banter-fas {
+    visibility: visible;
     color: #fff;
     display: -webkit-box;
     display: -ms-flexbox;
