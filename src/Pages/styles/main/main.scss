@@ -528,6 +528,49 @@
   visibility: visible;
 }
 
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  & a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: $secondary-color;
+    }
+  }
+
+  .overlay-content {
+    position: relative;
+    width: 70%;
+    height: 100vh;
+    background-color: $background-color;
+    font-weight: bold;
+
+    .navHeader {
+      padding: 10px;
+      color: $primary-color;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 0.1px solid rgb(90, 89, 89);
+    }
+  }
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -1098,6 +1141,17 @@
   }
 }
 
+.flexname {
+  @include flex;
+}
+
+.nh {
+  white-space: nowrap;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .dropdown-profile {
   @include dropdown;
   width: 270px;
@@ -1265,24 +1319,23 @@
     cursor: pointer;
   }
 
-  .banter-fab {
+  .banter-fas {
     color: $primary-color;
+    @include flex;
     @include FONT;
-    top: 30;
-
     font-size: 1.2rem;
-    height: 450px;
-    width: 450px;
-    background-color: red;
+    font-weight: bold;
+    height: 60px;
+    width: 60px;
+    top: 82%;
+    right: 2%;
+    background-color: $secondary-color;
     position: fixed;
     cursor: pointer;
-    z-index: 300;
+    z-index: 3000;
+    border-radius: 50px;
 
     .fab {
-      height: 50px;
-      width: 50px;
-      background-color: $secondary-color;
-      border-radius: 50px;
     }
   }
 
@@ -1302,10 +1355,10 @@
   }
 
   .media-two {
-    height: 180px !important;
+    height: 170px !important;
   }
   .media-three {
-    height: 180px !important;
+    height: 170px !important;
   }
   .media-full {
     height: 250px !important;

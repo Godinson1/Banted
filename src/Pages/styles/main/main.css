@@ -723,6 +723,50 @@
   visibility: visible;
 }
 
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.overlay a {
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #1da1f2;
+}
+
+.overlay .overlay-content {
+  position: relative;
+  width: 70%;
+  height: 100vh;
+  background-color: #15202b;
+  font-weight: bold;
+}
+
+.overlay .overlay-content .navHeader {
+  padding: 10px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 0.1px solid #5a5959;
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -1598,6 +1642,25 @@
   background-color: #1c2732;
 }
 
+.flexname {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nh {
+  white-space: nowrap;
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .dropdown-profile {
   right: 0;
   background-color: #15202b;
@@ -1807,22 +1870,28 @@
     position: fixed;
     cursor: pointer;
   }
-  .banter-fab {
+  .banter-fas {
     color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     font-family: Roboto;
-    top: 30;
     font-size: 1.2rem;
-    height: 450px;
-    width: 450px;
-    background-color: red;
+    font-weight: bold;
+    height: 60px;
+    width: 60px;
+    top: 82%;
+    right: 2%;
+    background-color: #1da1f2;
     position: fixed;
     cursor: pointer;
-    z-index: 300;
-  }
-  .banter-fab .fab {
-    height: 50px;
-    width: 50px;
-    background-color: #1da1f2;
+    z-index: 3000;
     border-radius: 50px;
   }
   .s {
@@ -1837,10 +1906,10 @@
     padding-top: 90px;
   }
   .media-two {
-    height: 180px !important;
+    height: 170px !important;
   }
   .media-three {
-    height: 180px !important;
+    height: 170px !important;
   }
   .media-full {
     height: 250px !important;

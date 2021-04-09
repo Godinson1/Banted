@@ -6,6 +6,7 @@ import {
   CloseOutlined,
   HomeFilled,
   BellOutlined,
+  PlusOutlined,
   SearchOutlined,
   MailOutlined,
 } from "@ant-design/icons";
@@ -18,7 +19,7 @@ import "../Pages/styles/main/main.scss";
 import BanterBase from "./BanterBase";
 import { useViewport } from "../util";
 
-const Main = () => {
+const Main = ({ nav, setNav }) => {
   const user = useSelector((state) => state.users.credentials);
   const banters = useSelector((state) => state.banters);
   const [images, setImages] = useState([]);
@@ -62,10 +63,15 @@ const Main = () => {
   return (
     <div>
       <div className="s">
+        <div className="banter-fas">
+          <div className="fab">
+            <PlusOutlined />
+          </div>
+        </div>
         <div className="banter-header">
           <div className="flex">
             <div className="menuicon">
-              <div className="avatar-banter-menu">
+              <div onClick={() => setNav(!nav)} className="avatar-banter-menu">
                 {user && user.credentials && user.credentials[0].userImage && (
                   <img src={user.credentials[0].userImage} alt="user" />
                 )}
@@ -180,9 +186,6 @@ const Main = () => {
               <MailOutlined />
             </NavLink>
           </div>
-        </div>
-        <div className="banter-fab">
-          <div className="fab"></div>
         </div>
       </div>
     </div>
