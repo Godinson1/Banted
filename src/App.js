@@ -3,14 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import store from "./store";
 import { AuthRoute, ViewportProvider } from "./util/";
 //Pages
-import {
-  LoginScreen,
-  NotFound,
-  Banter,
-  Login,
-  RegisterScreen,
-  Profile,
-} from "./Pages";
+import { Banter, Profile } from "./Pages";
 import { Modals, Compose } from "./Components/Utils";
 import Preloader from "./Components/Preloader";
 //Config
@@ -21,6 +14,10 @@ import { logoutUser, getUserData, getUsers } from "./actions/userActions";
 import { getBanters } from "./actions/banterActions";
 
 const HomePage = lazy(() => import("./Pages/HomePage"));
+const LoginScreen = lazy(() => import("./Pages/LoginScreen"));
+const NotFound = lazy(() => import("./Pages/NotFound"));
+const Login = lazy(() => import("./Pages/Login"));
+const RegisterScreen = lazy(() => import("./Pages/RegisterScreen"));
 
 //axios.defaults.baseURL = "http://localhost:5000";
 axios.defaults.baseURL = "https://banted.herokuapp.com";
