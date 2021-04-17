@@ -3,7 +3,14 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import store from "./store";
 import { AuthRoute, ViewportProvider } from "./util/";
 //Pages
-import { LoginScreen, NotFound, Banter, Login, RegisterScreen } from "./Pages";
+import {
+  LoginScreen,
+  NotFound,
+  Banter,
+  Login,
+  RegisterScreen,
+  Profile,
+} from "./Pages";
 import { Modals, Compose } from "./Components/Utils";
 import Preloader from "./Components/Preloader";
 //Config
@@ -59,12 +66,13 @@ const App = () => {
             <AuthRoute path="/home" component={HomePage} />
             <AuthRoute path="/explore" component={HomePage} />
             <AuthRoute path="/notifications" component={HomePage} />
-            <AuthRoute path="/profile" component={HomePage} />
+            <AuthRoute path="/profile" component={Profile} />
+            <Route exact path="/:id/status/:id" component={Banter} />
             <AuthRoute path="/messages" component={HomePage} />
             <AuthRoute path="/bookmarks" component={Preloader} />
+            <AuthRoute path="/:id" component={Profile} />
             <AuthRoute path="/lists" component={HomePage} />
             <Route exact path="/modal/:id" component={Modals} />
-            <Route exact path="/:id/status/:id" component={Banter} />
 
             <Route component={NotFound} />
           </Switch>

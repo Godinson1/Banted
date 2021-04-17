@@ -29,6 +29,28 @@ label {
   cursor: pointer;
 }
 
+.ant-tabs {
+}
+
+.ant-tabs-nav {
+  color: #748491;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.ant-tabs-tab:hover {
+  background-color: #162d40;
+  border-bottom: none;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+  color: #1da1f2;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active:hover {
+  background-color: #162d40;
+}
+
 [contenteditable]:focus {
   outline: 0px solid transparent;
   color: white;

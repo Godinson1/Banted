@@ -1,0 +1,126 @@
+@import "../../../config/config";
+
+#profile-head-base {
+  margin-top: -5px;
+  font-size: 0.8rem;
+  color: $light-grey;
+}
+
+#icon-arrow {
+  font-family: bolder;
+}
+
+.flex-profile {
+  @include flex;
+  justify-content: flex-start !important;
+  gap: 20px;
+}
+
+.profile-details {
+  position: absolute;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.cover-profile {
+  height: 200px;
+  width: 100%;
+  background-color: $secondary-color;
+  cursor: pointer;
+}
+
+.avatar-profile {
+  margin: -80px 0 0 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: $light-grey;
+  border: 5px solid $background-color;
+  cursor: pointer;
+}
+
+.edit-profile-button {
+  display: flex;
+  justify-content: flex-end;
+  margin: -60px 30px 0 0;
+
+  button {
+    background: transparent;
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: #162d40;
+    }
+  }
+}
+
+.profile-info {
+  margin-left: 15px;
+
+  .base {
+    margin-bottom: 5px;
+  }
+
+  .bantext {
+    color: $primary-color;
+  }
+
+  .profile-name {
+    margin-top: 20px;
+    color: $primary-color;
+    @include FONT;
+    font-size: 1.2rem;
+  }
+
+  .profile-handle {
+    margin-top: -5px;
+    color: $light-grey;
+    font-size: 1rem;
+  }
+
+  .profile-location {
+    color: $light-grey;
+    font-size: 1rem;
+  }
+
+  .profile-join-date {
+    color: $light-grey;
+    font-size: 1rem;
+  }
+
+  .profile-following {
+    color: $light-grey;
+    font-size: 1rem;
+    cursor: pointer;
+
+    span {
+      color: $primary-color;
+      @include FONT;
+    }
+  }
+
+  .profile-followers {
+    color: $light-grey;
+    font-size: 1rem;
+    cursor: pointer;
+
+    span {
+      @include FONT;
+      color: $primary-color;
+    }
+  }
+
+  .tab-container {
+    margin: 20px 0 0 -15px;
+  }
+}

@@ -1,0 +1,146 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#profile-head-base {
+  margin-top: -5px;
+  font-size: 0.8rem;
+  color: #748491;
+}
+
+#icon-arrow {
+  font-family: bolder;
+}
+
+.flex-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important;
+  gap: 20px;
+}
+
+.profile-details {
+  position: absolute;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.cover-profile {
+  height: 200px;
+  width: 100%;
+  background-color: #1da1f2;
+  cursor: pointer;
+}
+
+.avatar-profile {
+  margin: -80px 0 0 10px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #748491;
+  border: 5px solid #15202b;
+  cursor: pointer;
+}
+
+.edit-profile-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: -60px 30px 0 0;
+}
+
+.edit-profile-button button {
+  background: transparent;
+  color: #1da1f2;
+  border: 1px solid #1da1f2;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 5px 10px 5px 10px;
+  cursor: pointer;
+}
+
+.edit-profile-button button:focus {
+  outline: none;
+}
+
+.edit-profile-button button:hover {
+  background-color: #162d40;
+}
+
+.profile-info {
+  margin-left: 15px;
+}
+
+.profile-info .base {
+  margin-bottom: 5px;
+}
+
+.profile-info .bantext {
+  color: #fff;
+}
+
+.profile-info .profile-name {
+  margin-top: 20px;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 1.2rem;
+}
+
+.profile-info .profile-handle {
+  margin-top: -5px;
+  color: #748491;
+  font-size: 1rem;
+}
+
+.profile-info .profile-location {
+  color: #748491;
+  font-size: 1rem;
+}
+
+.profile-info .profile-join-date {
+  color: #748491;
+  font-size: 1rem;
+}
+
+.profile-info .profile-following {
+  color: #748491;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.profile-info .profile-following span {
+  color: #fff;
+  font-family: Roboto;
+}
+
+.profile-info .profile-followers {
+  color: #748491;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.profile-info .profile-followers span {
+  font-family: Roboto;
+  color: #fff;
+}
+
+.profile-info .tab-container {
+  margin: 20px 0 0 -15px;
+}
+/*# sourceMappingURL=profile.css.map */

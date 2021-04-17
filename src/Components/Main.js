@@ -66,11 +66,20 @@ const Main = ({ nav, setNav, location }) => {
         <div className="banter-header">
           <div className="flex">
             <div className="menuicon">
-              <div onClick={() => setNav(!nav)} className="avatar-banter-menu">
-                {user && user.credentials && user.credentials[0].userImage && (
-                  <img src={user.credentials[0].userImage} alt="user" />
-                )}
-              </div>
+              {width > 620 ? (
+                ""
+              ) : (
+                <div
+                  onClick={() => setNav(!nav)}
+                  className="avatar-banter-menu"
+                >
+                  {user &&
+                    user.credentials &&
+                    user.credentials[0].userImage && (
+                      <img src={user.credentials[0].userImage} alt="user" />
+                    )}
+                </div>
+              )}
             </div>
             &nbsp;
             <div>Home</div>
