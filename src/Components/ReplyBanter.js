@@ -32,7 +32,12 @@ const ReplyBanter = ({ bant, location }) => {
           {banters &&
             banters.comments &&
             banters.comments.map((banter, index) => (
-              <BanterReply banter={banter} index={index} location={location} />
+              <BanterReply
+                bant={bant}
+                banter={banter}
+                index={index}
+                location={location}
+              />
             ))}
         </div>
       )}

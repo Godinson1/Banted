@@ -99,17 +99,25 @@ const LeftSideBar = () => {
             </NavLink>
           </div>
           <div className="menued">
-            <NavLink className="link" to="/profile" activeClassName="selected">
-              <div className="flex-start">
-                <div>
-                  <UserOutlined />
+            {user && user.credentials ? (
+              <NavLink
+                className="link"
+                to={user.credentials[0].handle}
+                activeClassName="selected"
+              >
+                <div className="flex-start">
+                  <div>
+                    <UserOutlined />
+                  </div>
+                  <div>Profile</div>
                 </div>
-                <div>Profile</div>
-              </div>
-            </NavLink>
+              </NavLink>
+            ) : (
+              ""
+            )}
           </div>
           <div className="menued">
-            <NavLink className="link" to="/login" activeClassName="selected">
+            <NavLink className="link" to="/home" activeClassName="selected">
               <div className="flex-start">
                 <div>
                   <MinusCircleOutlined />

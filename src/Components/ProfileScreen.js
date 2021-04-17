@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import dayjs from "dayjs";
+import React from "react";
+
+import { useSelector } from "react-redux";
 import { CalendarOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import { Tabs, Empty, Button } from "antd";
 import "../Pages/styles/main/main.scss";
 import "../Pages/styles/profile/profile.scss";
+
 const ProfileScreen = ({ historyObject, location }) => {
+  const user = useSelector((state) => state.users.credentials);
   const { TabPane } = Tabs;
+
   return (
     <div>
       <div className="s">
@@ -27,9 +31,21 @@ const ProfileScreen = ({ historyObject, location }) => {
         <div className="profile-details">
           <div className="cover-profile"></div>
           <div className="avatar-profile"></div>
-          <div className="edit-profile-button">
-            <button>Edit Profile</button>
-          </div>
+          {user && user.credentials ? (
+            <div>
+              {user.credentials[0].handle === location.pathname.slice(1) ? (
+                <div className="edit-profile-button">
+                  <button>Edit Profile</button>
+                </div>
+              ) : (
+                <div className="edit-profile-button">
+                  <button>Follow</button>
+                </div>
+              )}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="profile-info">
             <div className="base">
               <div className="profile-name">Joseph Godwin</div>

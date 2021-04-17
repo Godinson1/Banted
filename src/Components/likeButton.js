@@ -22,7 +22,7 @@ const LikeButton = (props) => {
     <Link to="/login">
       <HeartOutlined />
     </Link>
-  ) : likedBanter() ? (
+  ) : likedBanter() && props.likeCount > 0 ? (
     <div className="icon-action-like tooltip">
       <HeartFilled
         style={{ color: "#E0245E" }}

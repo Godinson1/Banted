@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import store from "./store";
 import { AuthRoute, ViewportProvider } from "./util/";
@@ -41,17 +41,6 @@ const App = () => {
   const location = useLocation();
   const background = location && location.state && location.state.background;
 
-  useEffect(() => {
-    if (
-      location &&
-      location.state &&
-      location.state.background &&
-      location.state.background.pathname !== "/home"
-    ) {
-      //location.state.background.pathname = "/home";
-    }
-  }, [location]);
-
   return (
     <div className="container">
       <ViewportProvider>
@@ -63,7 +52,6 @@ const App = () => {
             <AuthRoute path="/home" component={HomePage} />
             <AuthRoute path="/explore" component={HomePage} />
             <AuthRoute path="/notifications" component={HomePage} />
-            <AuthRoute path="/profile" component={Profile} />
             <Route exact path="/:id/status/:id" component={Banter} />
             <AuthRoute path="/messages" component={HomePage} />
             <AuthRoute path="/bookmarks" component={Preloader} />

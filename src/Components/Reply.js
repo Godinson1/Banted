@@ -68,7 +68,7 @@ const Reply = ({ bant, location }) => {
                 <div className="reply-to">
                   <span id="reply">
                     Replying to{" "}
-                    <span id="reply-handle">@{banter.banterHandle}</span>
+                    <span id="reply-handle">@{bant.banterHandle}</span>
                   </span>
                 </div>
                 <div className="banter-text">
@@ -131,7 +131,11 @@ const Reply = ({ bant, location }) => {
                       <div className="action-flex">
                         <div className="actions-flex-actions">
                           <div>
-                            <LikeButton banterId={banter._id} /> {""}
+                            <LikeButton
+                              likeCount={banter.likeCount}
+                              banterId={banter._id}
+                            />{" "}
+                            {""}
                           </div>
                           <div>
                             <span

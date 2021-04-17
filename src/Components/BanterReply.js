@@ -22,7 +22,7 @@ import {
   useCloseOnClickOutside,
 } from "../util";
 
-const BanterReply = ({ banter, index, location }) => {
+const BanterReply = ({ bant, banter, index, location }) => {
   const user = useSelector((state) => state.users.credentials);
   const dispatch = useDispatch();
 
@@ -125,8 +125,7 @@ const BanterReply = ({ banter, index, location }) => {
             </div>
             <div className="reply-to-bant">
               <span id="reply">
-                Replying to{" "}
-                <span id="reply-handle">@{banter.banterHandle}</span>
+                Replying to <span id="reply-handle">@{bant.banterHandle}</span>
               </span>
             </div>
             <div className="banter-text">
@@ -219,7 +218,10 @@ const BanterReply = ({ banter, index, location }) => {
                 </div>
 
                 <div className="action-flex">
-                  <LikeButton banterId={banter._id} />
+                  <LikeButton
+                    likeCount={banter.likeCount}
+                    banterId={banter._id}
+                  />
                   <div>
                     <span
                       style={{

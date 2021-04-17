@@ -56,16 +56,33 @@ const Banter = ({ bant, i, location }) => {
 
           <div className="flex-start-banter">
             <div className="avatar-banter">
-              <img src={bant.userImage} alt="profile" />
+              <Link
+                to={{
+                  pathname: allowLink ? `/${bant.banterHandle}` : "",
+                  state: { banter: bant },
+                }}
+                className="link"
+              >
+                <img src={bant.userImage} alt="profile" />
+              </Link>
             </div>
             <div className="flex-between">
               <div className="nameHandle-container-banter">
                 <div className="flexname">
-                  <div className="nh">
-                    <span id="name">
-                      {bant.name} <span id="handle">@{bant.banterHandle} </span>
-                    </span>
-                  </div>
+                  <Link
+                    to={{
+                      pathname: allowLink ? `/${bant.banterHandle}` : "",
+                      state: { banter: bant },
+                    }}
+                    className="link"
+                  >
+                    <div className="nh">
+                      <span id="name">
+                        {bant.name}{" "}
+                        <span id="handle">@{bant.banterHandle} </span>
+                      </span>
+                    </div>
+                  </Link>
                   <div>
                     <span id="handle">
                       {" "}
@@ -223,7 +240,11 @@ const Banter = ({ bant, i, location }) => {
               </div>
 
               <div className="action-flex">
-                <LikeButton setAllowLink={setAllowLink} banterId={bant._id} />
+                <LikeButton
+                  setAllowLink={setAllowLink}
+                  likeCount={bant.likeCount}
+                  banterId={bant._id}
+                />
                 <div>
                   <span
                     style={{ color: bant.likeCount !== 0 ? "#E0245E" : "" }}

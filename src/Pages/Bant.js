@@ -64,7 +64,6 @@ const Bant = ({ historyObject }) => {
               </div>
             </div>
             <div className="font-white">
-              {" "}
               <p className="bantext">
                 {<Markup content={checkHashtag(bant.banter)} />}
               </p>
