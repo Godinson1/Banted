@@ -63,8 +63,16 @@ const Landing = ({ history }) => {
               </p>
             </div>
           </div>
+          <div id="triangle-rightss"></div>
+          <div id="triangle-right"></div>
+          <div id="triangle-rights"></div>
+          <div id="triangle-rightss"></div>
+          <div id="triangle-rightss"></div>
         </div>
         <div className="second">
+          <div className="ring"></div>
+          <div className="ring-two"></div>
+          <div className="ring-three"></div>
           <div>
             <h1>
               Join an amazing community of football lovers today and share

@@ -1,7 +1,7 @@
 .landing {
   width: 100vw;
   height: 100vh;
-
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@ h1 {
   height: 100%;
   background-color: white;
   padding: 50px;
-
+  overflow: hidden;
   font-size: 0.7rem;
   display: flex;
   justify-content: center;
@@ -77,6 +77,83 @@ label {
   margin-top: -15px;
 }
 
+.ring {
+  width: 200px;
+  height: 200px;
+  top: -10%;
+  right: -10%;
+  position: absolute;
+  background: transparent;
+  border: 30px rgb(239, 241, 243) solid;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.ring-two {
+  width: 200px;
+  height: 200px;
+  top: -10%;
+  left: -10%;
+  position: absolute;
+  background: transparent;
+  border: 30px rgb(239, 241, 243) solid;
+  opacity: 0.3;
+  border-radius: 50%;
+}
+
+.ring-three {
+  width: 200px;
+  height: 200px;
+  bottom: 0;
+  left: -10%;
+  position: absolute;
+  background: transparent;
+  border: 30px rgb(239, 241, 243) solid;
+  opacity: 0.1;
+  transform: rotate(0.5turn);
+}
+
+#triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 50px solid transparent;
+  border-left: 100px solid rgb(246, 248, 250);
+  border-bottom: 50px solid transparent;
+  opacity: 0.08;
+  margin: -7% 0 0 45%;
+  animation: pulse 5s infinite;
+}
+
+#triangle-rights {
+  width: 0;
+  height: 0;
+  border-top: 70px solid transparent;
+  border-right: 140px solid rgb(246, 248, 250);
+  border-bottom: 70px solid transparent;
+  opacity: 0.08;
+  margin: -25% 0 0 85%;
+  animation: pulse 5s infinite;
+}
+
+#triangle-rightss {
+  width: 0;
+  height: 0;
+  border: 40px solid rgb(246, 248, 250);
+  opacity: 0.08;
+  margin: -8% 0 40px 65%;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    border-left: 100px solid rgb(246, 248, 250);
+  }
+  50% {
+    border-left: 100px solid rgb(44, 122, 201);
+  }
+}
+
 .base-texts {
   font-size: 1rem;
   cursor: pointer;
@@ -97,6 +174,9 @@ label {
   }
 
   .first {
+    display: none;
+  }
+  .ring {
     display: none;
   }
 }
