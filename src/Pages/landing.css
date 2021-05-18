@@ -1,0 +1,105 @@
+.landing {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(4, 19, 66);
+}
+
+.first {
+  background-color: rgb(8, 59, 100);
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-family: "Roboto";
+
+  color: rgb(8, 59, 100);
+}
+
+.slanted {
+  background-color: #ffffff;
+  height: 500px;
+  padding: 50px;
+  list-style: 3rem;
+  font-size: 6rem;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 0%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 66%, 0 100%);
+}
+
+.base-desc {
+  margin: -150px 0 0 10px;
+}
+
+.second {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 50px;
+
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  text-align: center;
+}
+
+p {
+  font-size: 1.3rem;
+}
+
+.authContainer {
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: -1px 1px 8px 2px rgb(235, 240, 250);
+  background-color: white;
+  padding: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: auto;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  float: left;
+}
+
+.base-text {
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: -15px;
+}
+
+.base-texts {
+  font-size: 1rem;
+  cursor: pointer;
+  color: rgb(56, 55, 55);
+}
+
+.form {
+  width: 100%;
+}
+
+@media screen and (max-width: 1050px) {
+  .landing {
+    flex-wrap: wrap-reverse;
+  }
+
+  .second {
+    padding: 30px;
+  }
+
+  .first {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 320px) {
+}

@@ -12,12 +12,11 @@ import axios from "axios";
 import { SET_AUTHENTICATED } from "./actions/types";
 import { logoutUser, getUserData, getUsers } from "./actions/userActions";
 import { getBanters } from "./actions/banterActions";
+import Landing from "./Pages/Landing";
+import NewRegister from "./Pages/NewRegister";
 
 const HomePage = lazy(() => import("./Pages/HomePage"));
-const LoginScreen = lazy(() => import("./Pages/LoginScreen"));
 const NotFound = lazy(() => import("./Pages/NotFound"));
-const Login = lazy(() => import("./Pages/Login"));
-const RegisterScreen = lazy(() => import("./Pages/RegisterScreen"));
 
 //axios.defaults.baseURL = "http://localhost:5000";
 axios.defaults.baseURL = "https://banted.herokuapp.com";
@@ -46,9 +45,11 @@ const App = () => {
       <ViewportProvider>
         <Suspense fallback={<Preloader />}>
           <Switch location={background || location}>
-            <Route exact path="/" component={LoginScreen} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={RegisterScreen} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Landing} />
+            <Route exact path="/register" component={NewRegister} />
+            <Route exact path="/newregister" component={NewRegister} />
+            <Route exact path="/landing" component={Landing} />
             <AuthRoute path="/home" component={HomePage} />
             <AuthRoute path="/explore" component={HomePage} />
             <AuthRoute path="/notifications" component={HomePage} />
