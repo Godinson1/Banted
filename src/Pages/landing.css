@@ -50,7 +50,8 @@ h1 {
 }
 
 p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  font-family: "roboto";
 }
 
 .authContainer {
@@ -104,44 +105,40 @@ label {
 .ring-three {
   width: 200px;
   height: 200px;
-  bottom: 0;
+  bottom: 10%;
   left: -10%;
   position: absolute;
   background: transparent;
   border: 30px rgb(239, 241, 243) solid;
   opacity: 0.1;
-  transform: rotate(0.5turn);
+  margin-top: -30%;
+  transform: rotate(40deg);
 }
 
 #triangle-right {
   width: 0;
   height: 0;
+  bottom: 25;
+  position: absolute;
   border-top: 50px solid transparent;
   border-left: 100px solid rgb(246, 248, 250);
   border-bottom: 50px solid transparent;
   opacity: 0.08;
-  margin: -7% 0 0 45%;
+  margin: 3% 0 0 50%;
   animation: pulse 5s infinite;
 }
 
 #triangle-rights {
   width: 0;
   height: 0;
+  bottom: 10;
   border-top: 70px solid transparent;
   border-right: 140px solid rgb(246, 248, 250);
   border-bottom: 70px solid transparent;
   opacity: 0.08;
-  margin: -25% 0 0 85%;
+  margin: -8% 0 0 35%;
+  transform: rotate(40deg);
   animation: pulse 5s infinite;
-}
-
-#triangle-rightss {
-  width: 0;
-  height: 0;
-  border: 40px solid rgb(246, 248, 250);
-  opacity: 0.08;
-  margin: -8% 0 40px 65%;
-  border-radius: 50%;
 }
 
 @keyframes pulse {

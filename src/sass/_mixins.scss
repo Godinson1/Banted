@@ -1,0 +1,141 @@
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin dropdown {
+  right: 0;
+  background-color: $background-color;
+  position: absolute;
+  z-index: 200;
+  border-radius: 10px;
+  box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+}
+
+@mixin banter-flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+@mixin image-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@mixin avatar-image {
+  width: 50px;
+  height: 50px;
+  @include avatar;
+  cursor: pointer;
+  overflow: hidden;
+
+  img {
+    @include image-cover;
+  }
+}
+
+@mixin loader {
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+    border: 4px solid $secondary-color;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: $secondary-color transparent transparent transparent;
+
+    &:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+  }
+}
+
+@mixin avatar {
+  border-radius: 50px;
+  background-color: $secondary-color;
+  margin-top: 5px;
+}
+
+@mixin media-container {
+  height: 300px;
+  background-color: #162d40;
+  border-radius: 10px;
+  margin: -5px 0 15px 0;
+  display: grid;
+  grid-gap: 3px;
+  overflow: hidden;
+}
+
+@mixin button {
+  height: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0 50px 0 70px;
+}
+
+@mixin flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin FONT {
+  font-family: Roboto;
+}
+
+@mixin media-xsm {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media screen and (min-width: 718px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}

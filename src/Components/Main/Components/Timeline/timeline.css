@@ -1,0 +1,149 @@
+.timeline-banter-container {
+  width: 100%;
+  padding: 10px 20px 0 20px;
+  cursor: pointer;
+  border-bottom: 0.1px solid #5a5959;
+}
+
+.timeline-banter-container .banter-top-info {
+  margin: 0 0 10px 30px;
+  color: #748491;
+}
+
+.timeline-banter-container .tooltips {
+  position: relative;
+  display: inline-block;
+}
+
+.timeline-banter-container .tooltips .tooltiptext {
+  visibility: hidden;
+  background-color: #1da1f2;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0 5px 0 5px;
+  margin: 0 0 0 -35px;
+  position: absolute;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.timeline-banter-container .tooltips:hover .tooltiptext {
+  visibility: visible;
+}
+
+.timeline-banter-container .banter-container {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 10px;
+}
+
+.timeline-banter-container .banter-container .user-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.timeline-banter-container .banter-container .user-avatar img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container {
+  height: 100%;
+  width: 90%;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container .bantext {
+  color: #fff;
+  font-family: "roboto";
+  font-size: 0.9rem;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container .header-between {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container .header-between .dots {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #748491;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container .header-between .name-handle-time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container .header-between .name-handle-time .name {
+  color: #fff;
+  font-family: "roboto";
+  font-size: 1rem;
+}
+
+.timeline-banter-container .banter-container .timeline-content-container .header-between .name-handle-time .handle,
+.timeline-banter-container .banter-container .timeline-content-container .header-between .name-handle-time .date {
+  color: #748491;
+  font-size: 1rem;
+}
+
+.timeline-banter-container .base-actions-container {
+  width: 100%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.timeline-banter-container .base-actions-container .icon-action {
+  font-size: 1.2rem;
+  color: #748491;
+}
+
+.banter-button-container {
+  margin-top: 20px;
+}
+
+.banter-button-container #banter-button {
+  width: 200px;
+  height: 50px;
+  background-color: #1da1f2;
+  color: #fff;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.banter-button-container #banter-button :focus {
+  outline: none;
+}
+/*# sourceMappingURL=timeline.css.map */

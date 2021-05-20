@@ -1,0 +1,125 @@
+@import "../../../sass/variables";
+@import "../../../sass/mixins";
+@import "../../../sass/typography";
+
+.main-header {
+  width: 44.3vw;
+  background-color: $background-color;
+  border-bottom: 0.1px solid $border-color;
+  top: 0;
+  z-index: 3;
+  padding: 15px 20px 15px 20px;
+  position: fixed;
+  position: absolute;
+  @include flex-between;
+  font-size: 1.5rem;
+  font-family: $font-family;
+  color: $secondary-color;
+}
+
+.compose-header {
+  width: 100%;
+  margin-top: 70px;
+  background-color: $background-color;
+  border-bottom: 0.1px solid $border-color;
+  top: 0;
+  padding: 10px 10px 10px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 1rem;
+  font-family: $font-family;
+  flex-wrap: wrap;
+  color: $secondary-color;
+
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .media-header {
+    height: 290px;
+    width: 100%;
+    margin-top: 20px;
+    background-color: $background-color;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .input-container {
+    width: 505px;
+    border: none;
+    color: $light-grey;
+    white-space: pre-line;
+    max-height: 250px;
+    overflow: auto;
+    font-size: 1rem;
+  }
+
+  .compose-header-base {
+    @include flex-between;
+    width: 100%;
+    margin-top: 50px;
+
+    .flex-base-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+
+      #desc {
+        font-size: 1rem;
+      }
+
+      .input-icon {
+        display: none;
+      }
+
+      .label-icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    .tooltips {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltips .tooltiptext {
+      visibility: hidden;
+      background-color: $secondary-color;
+      color: $primary-color;
+      border-radius: 6px;
+      padding: 0 5px 0 5px;
+      margin: 33px 0 0 -35px;
+      position: absolute;
+      z-index: 1;
+    }
+    .tooltips:hover .tooltiptext {
+      visibility: visible;
+    }
+
+    .custom-btn {
+      background-color: $secondary-color;
+      color: $primary-color;
+      border-radius: 50px;
+      padding: 5px 15px 5px 15px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      :focus {
+        outline: none;
+      }
+
+      :disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

@@ -1,11 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Timeline } from "./Main/Components";
+import Timeline from "../../Timeline";
+import "./styles.scss";
 
-import "../Pages/styles/main/main.scss";
-
-const NewBanter = () => {
+const BanterCheck = () => {
   const banters = useSelector((state) => state.banters);
   const location = useLocation();
 
@@ -40,4 +39,4 @@ const NewBanter = () => {
   );
 };
 
-export default NewBanter;
+export default BanterCheck;

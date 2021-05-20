@@ -1,0 +1,45 @@
+.layout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.layout .left-side-bar {
+  background-color: #15202b;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 25vw;
+  border-right: 0.1px solid #5a5959;
+  padding: 20px 20px 20px 30px;
+}
+
+.layout .main-bar {
+  background-color: #15202b;
+  height: 100vh;
+  width: 45vw;
+}
+
+.layout .right-side-bar {
+  background-color: #15202b;
+  border-left: 0.1px solid #5a5959;
+  height: 100vh;
+  width: 30vw;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  right: 0;
+  padding: 20px;
+}
+/*# sourceMappingURL=layout.css.map */

@@ -63,11 +63,8 @@ const Landing = ({ history }) => {
               </p>
             </div>
           </div>
-          <div id="triangle-rightss"></div>
           <div id="triangle-right"></div>
           <div id="triangle-rights"></div>
-          <div id="triangle-rightss"></div>
-          <div id="triangle-rightss"></div>
         </div>
         <div className="second">
           <div className="ring"></div>

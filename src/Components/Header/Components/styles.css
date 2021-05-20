@@ -1,0 +1,148 @@
+.main-header {
+  width: 44.3vw;
+  background-color: #15202b;
+  border-bottom: 0.1px solid #5a5959;
+  top: 0;
+  z-index: 3;
+  padding: 15px 20px 15px 20px;
+  position: fixed;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.5rem;
+  font-family: "roboto";
+  color: #1da1f2;
+}
+
+.compose-header {
+  width: 100%;
+  margin-top: 70px;
+  background-color: #15202b;
+  border-bottom: 0.1px solid #5a5959;
+  top: 0;
+  padding: 10px 10px 10px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 10px;
+  font-size: 1rem;
+  font-family: "roboto";
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  color: #1da1f2;
+}
+
+.compose-header .user-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.compose-header .media-header {
+  height: 290px;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #15202b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.compose-header .input-container {
+  width: 505px;
+  border: none;
+  color: #748491;
+  white-space: pre-line;
+  max-height: 250px;
+  overflow: auto;
+  font-size: 1rem;
+}
+
+.compose-header .compose-header-base {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.compose-header .compose-header-base .flex-base-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.compose-header .compose-header-base .flex-base-icons #desc {
+  font-size: 1rem;
+}
+
+.compose-header .compose-header-base .flex-base-icons .input-icon {
+  display: none;
+}
+
+.compose-header .compose-header-base .flex-base-icons .label-icon {
+  font-size: 1.5rem;
+}
+
+.compose-header .compose-header-base .tooltips {
+  position: relative;
+  display: inline-block;
+}
+
+.compose-header .compose-header-base .tooltips .tooltiptext {
+  visibility: hidden;
+  background-color: #1da1f2;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0 5px 0 5px;
+  margin: 33px 0 0 -35px;
+  position: absolute;
+  z-index: 1;
+}
+
+.compose-header .compose-header-base .tooltips:hover .tooltiptext {
+  visibility: visible;
+}
+
+.compose-header .compose-header-base .custom-btn {
+  background-color: #1da1f2;
+  color: #fff;
+  border-radius: 50px;
+  padding: 5px 15px 5px 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.compose-header .compose-header-base .custom-btn :focus {
+  outline: none;
+}
+
+.compose-header .compose-header-base .custom-btn :disabled {
+  cursor: not-allowed;
+}
+/*# sourceMappingURL=styles.css.map */
