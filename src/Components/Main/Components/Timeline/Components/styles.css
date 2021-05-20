@@ -1,9 +1,31 @@
+@-webkit-keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
-  margin: 30% 0 0 20px;
+  margin: 30% 0 0 5px;
   left: 44%;
 }
 
@@ -74,25 +96,31 @@
           animation-delay: -0.15s;
 }
 
-@-webkit-keyframes lds-ring {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.timeline-dropdown-banter {
+  background-color: #15202b;
+  position: absolute;
+  width: 250px;
+  z-index: 20;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+          box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
 }
 
-@keyframes lds-ring {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.timeline-dropdown-banter .option-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  width: 100%;
+  padding: 10px;
+}
+
+.timeline-dropdown-banter .option-container:hover {
+  background-color: #1c2732;
+}
+
+.timeline-dropdown-banter #delete {
+  color: #ee2222;
 }
 /*# sourceMappingURL=styles.css.map */

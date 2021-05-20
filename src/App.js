@@ -16,6 +16,7 @@ import Landing from "./Pages/Landing";
 import NewRegister from "./Pages/NewRegister";
 import Layout from "./Components/Layout";
 import Main from "./Components/Main/index";
+import ViewBanter from "./Components/ViewBanter/index";
 
 const HomePage = lazy(() => import("./Pages/HomePage"));
 const NotFound = lazy(() => import("./Pages/NotFound"));
@@ -55,6 +56,7 @@ const App = () => {
             <AuthRoute path="/home" component={Main} />
             <AuthRoute path="/explore" component={HomePage} />
             <AuthRoute path="/notifications" component={HomePage} />
+            <Route exact path="/:id/status/:id" component={ViewBanter} />
             <Route exact path="/:id/status/:id" component={Banter} />
             <AuthRoute exact path="/layout" component={Layout} />
             <AuthRoute exact path="/main" component={Main} />

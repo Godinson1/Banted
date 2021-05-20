@@ -1,27 +1,30 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Markup } from "interweave";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import dayjsTwitter from "dayjs-twitter";
-import {
-  HeartFilled,
-  HeartOutlined,
-  RetweetOutlined,
-  UploadOutlined,
-  MessageOutlined,
-} from "@ant-design/icons";
-import { BanterMedia } from "./Components";
-import { checkHashtag } from "../../../../util";
+import { HeartFilled } from "@ant-design/icons";
+import { BanterMedia, BanterActions } from "./Components";
+import { checkHashtag, useCloseOnClickOutside } from "../../../../util";
 import "./timeline.scss";
+import BanterDropdown from "./Components/BanterDropdown";
 
 const Timeline = ({ bant, i, location }) => {
+  const [show, setShow] = useState(false);
+  const [showRetweet, setShowRetweet] = useState(false);
+  const [allowLink, setAllowLink] = useState(true);
+
+  dayjs.extend(dayjsTwitter);
+  const wrapperRef = useRef(null);
+  console.log(showRetweet);
+  useCloseOnClickOutside(wrapperRef, setShowRetweet, setAllowLink, setShow);
   dayjs.extend(dayjsTwitter);
 
   return (
     <div>
       <Link
         to={{
-          pathname: `/${bant.banterHandle}/status/${bant._id}`,
+          pathname: allowLink ? `/${bant.banterHandle}/status/${bant._id}` : "",
           state: { banter: bant },
         }}
         className="link"
@@ -51,11 +54,16 @@ const Timeline = ({ bant, i, location }) => {
                     - {dayjs(bant.createdAt).twitter()}
                   </div>
                 </div>
-                <div className="dots tooltips">
+                <div
+                  onMouseOver={() => setAllowLink(false)}
+                  onClick={() => setShow(!show)}
+                  className="dots tooltips"
+                >
                   ...
                   <span id="desc" className="tooltiptext">
                     more
                   </span>
+                  <BanterDropdown show={show} bant={bant} setShow={setShow} />
                 </div>
               </div>
               <div>
@@ -64,23 +72,7 @@ const Timeline = ({ bant, i, location }) => {
                 </p>
                 <BanterMedia imageBant={bant} imagelocation={location} />
               </div>
-              <div className="base-actions-container">
-                <div className="icon-action">
-                  <MessageOutlined />{" "}
-                  <span className="count"> &nbsp; {bant.commentCount}</span>
-                </div>
-                <div className="icon-action">
-                  <RetweetOutlined />
-                  <span className="count"> &nbsp; {bant.rebantCount}</span>
-                </div>
-                <div className="icon-action">
-                  <HeartOutlined />
-                  <span className="count"> &nbsp; {bant.likeCount}</span>
-                </div>
-                <div className="icon-action">
-                  <UploadOutlined />
-                </div>
-              </div>
+              <BanterActions bant={bant} />
             </div>
           </div>
         </div>

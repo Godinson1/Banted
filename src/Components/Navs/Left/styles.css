@@ -1,0 +1,50 @@
+.banter-logo {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  color: #1da1f2;
+  font-family: "roboto";
+  border-radius: 50%;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.7rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 10px;
+}
+
+.flex-icon-name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  width: 70%;
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 5px 0 5px 0;
+}
+
+.flex-icon-name:hover {
+  background-color: #162d40;
+  border-radius: 70px;
+  color: #1da1f2;
+  cursor: pointer;
+}
+
+.account-bottom {
+  margin-top: 60px;
+}
+/*# sourceMappingURL=styles.css.map */

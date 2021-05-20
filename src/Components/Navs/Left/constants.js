@@ -1,0 +1,51 @@
+export const SIDEBAR_LINKS = [
+  {
+    title: "Home",
+    icon: "HomeFilled",
+    path: "/home",
+    exact: true,
+    activeClassName: "selected",
+  },
+  {
+    title: "Explore",
+    icon: "NumberOutlined",
+    path: "/explore",
+    exact: false,
+    activeClassName: "selected",
+  },
+  {
+    title: "Notifications",
+    icon: "BellOutlined",
+    path: "/notifications",
+    exact: false,
+    activeClassName: "selected",
+  },
+  {
+    title: "Messages",
+    icon: "MailOutlined",
+    path: "/message",
+    exact: false,
+    activeClassName: "selected",
+  },
+  {
+    title: "BookMarks",
+    icon: "BorderOuterOutlined",
+    path: "/bookmark",
+    exact: false,
+    activeClassName: "selected",
+  },
+  {
+    title: "Lists",
+    icon: "UnorderedListOutlined",
+    path: "/lists",
+    exact: false,
+    activeClassName: "selected",
+  },
+  {
+    title: "Profile",
+    icon: "UserOutlined",
+    path: "/profile",
+    exact: false,
+    activeClassName: "selected",
+  },
+];

@@ -1,11 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {
-  SearchOutlined,
-  CloseOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import "../Pages/styles/main/main.scss";
+import { SearchOutlined, CloseOutlined } from "@ant-design/icons";
+import "./styles.scss";
 
 const RightSidebarBanter = () => {
   const user = useSelector((state) => state.users.credentials);
@@ -13,7 +9,7 @@ const RightSidebarBanter = () => {
     <div>
       <div className="t">
         <div>
-          <div className="search-container">
+          <div className="right-bar-search-container">
             <div className="search-flex-between">
               <div className="search-flex">
                 <div>
@@ -55,17 +51,6 @@ const RightSidebarBanter = () => {
             ) : (
               ""
             )}
-          </div>
-        </div>
-        <div className="trend-container">
-          <div className="trend-header">
-            <div>Bantrends</div>
-            <div style={{ marginTop: "5px" }} className="tooltip">
-              <SettingOutlined className="secondary-color" />
-              <span style={{ fontSize: 14 }} className="tooltiptext">
-                settings
-              </span>
-            </div>
           </div>
         </div>
         <div className="banted-footer">Banted - &copy; 2021.</div>

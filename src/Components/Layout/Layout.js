@@ -1,25 +1,24 @@
 import React from "react";
-import { LeftSideBar } from "../index";
 import { Header } from "../Header";
-import { RightSidebar } from "../Navs";
+import { RightSidebar, LeftSidebar, RightSidebarBanter } from "../Navs";
 import "./layout.scss";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, page }) => {
   return (
     <div>
       <div className="layout">
         <div className="left-side-bar">
           <div>
-            <LeftSideBar />
+            <LeftSidebar />
           </div>
         </div>
         <div className="main-bar">
-          <Header />
+          <Header page={page} />
           {children}
         </div>
         <div className="right-side-bar">
           <div>
-            <RightSidebar />
+            {page === "view-banter" ? <RightSidebarBanter /> : <RightSidebar />}
           </div>
         </div>
       </div>

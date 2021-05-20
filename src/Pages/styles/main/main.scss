@@ -4,54 +4,6 @@
   @include flex;
   background-color: #15202b;
 
-  //make mixin
-  .leftsidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 25vw;
-    height: 100vh;
-    background-color: red;
-  }
-
-  .leftsidebar-mobile {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    background-color: red;
-  }
-
-  .f {
-    height: 100vh;
-    width: 100%;
-    padding: 10px 20px 20px 40px;
-    background-color: #15202b;
-    border-right: 0.1px solid rgb(90, 89, 89);
-
-    .logo {
-      @include FONT;
-      margin-left: 10px;
-      color: $primary-color;
-      font-size: 1.5rem;
-    }
-  }
-
-  .fm {
-    height: 100vh;
-    width: 60px;
-    padding: 10px 10px 20px 10px;
-    background-color: #15202b;
-    border-right: 0.1px solid rgb(90, 89, 89);
-
-    .logo {
-      @include FONT;
-      margin-left: 10px;
-      color: $primary-color;
-      font-size: 1.5rem;
-    }
-  }
-
   .mainbar {
     width: 45vw;
     background-color: blueviolet;
@@ -791,6 +743,7 @@
   }
 
   .base-info {
+    width: 100%;
     margin: 0 20px 10px 10px;
     padding-bottom: 15px;
     color: #8394a1;

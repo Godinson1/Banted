@@ -1,12 +1,13 @@
 @import "../../../../../sass/mixins";
 @import "../../../../../sass/variables";
+@import "../../../../../sass/animations";
 
 .lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
-  margin: 30% 0 0 20px;
+  margin: 30% 0 0 5px;
   left: 44%;
   @include loader;
 }
@@ -19,11 +20,26 @@
   @include loader;
 }
 
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
+.timeline-dropdown-banter {
+  background-color: $background-color;
+  position: absolute;
+  width: 250px;
+  z-index: 20;
+  border-radius: 10px;
+  box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+
+  .option-container {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    width: 100%;
+    padding: 10px;
+    &:hover {
+      background-color: #1c2732;
+    }
   }
-  100% {
-    transform: rotate(360deg);
+
+  #delete {
+    color: rgb(238, 34, 34);
   }
 }

@@ -18,53 +18,6 @@
   background-color: #15202b;
 }
 
-.home-container .leftsidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 25vw;
-  height: 100vh;
-  background-color: red;
-}
-
-.home-container .leftsidebar-mobile {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  background-color: red;
-}
-
-.home-container .f {
-  height: 100vh;
-  width: 100%;
-  padding: 10px 20px 20px 40px;
-  background-color: #15202b;
-  border-right: 0.1px solid #5a5959;
-}
-
-.home-container .f .logo {
-  font-family: Roboto;
-  margin-left: 10px;
-  color: #fff;
-  font-size: 1.5rem;
-}
-
-.home-container .fm {
-  height: 100vh;
-  width: 60px;
-  padding: 10px 10px 20px 10px;
-  background-color: #15202b;
-  border-right: 0.1px solid #5a5959;
-}
-
-.home-container .fm .logo {
-  font-family: Roboto;
-  margin-left: 10px;
-  color: #fff;
-  font-size: 1.5rem;
-}
-
 .home-container .mainbar {
   width: 45vw;
   background-color: blueviolet;
@@ -1130,6 +1083,7 @@
 }
 
 .banter-view .base-info {
+  width: 100%;
   margin: 0 20px 10px 10px;
   padding-bottom: 15px;
   color: #8394a1;
