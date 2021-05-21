@@ -1,14 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ArrowLeftOutlined, CalendarOutlined } from "@ant-design/icons";
-import { useHistory, useLocation } from "react-router-dom";
+import { CalendarOutlined } from "@ant-design/icons";
+import { useLocation } from "react-router-dom";
 import { ProfileTabs } from "./Components";
 import Layout from "../Layout";
 import "./profile.scss";
 
 const Profile = () => {
   const user = useSelector((state) => state.users.credentials);
-  const history = useHistory();
   const location = useLocation();
   const bant = location.state.banter;
 
