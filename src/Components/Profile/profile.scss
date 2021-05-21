@@ -1,4 +1,5 @@
-@import "../../../config/config";
+@import "../../sass/variables";
+@import "../../sass/mixins";
 
 #profile-head-base {
   margin-top: -5px;
@@ -22,11 +23,12 @@
   width: 100%;
 }
 
-.cover-profile {
+.cover-banner {
   height: 200px;
   width: 100%;
   background-color: $secondary-color;
   cursor: pointer;
+  margin-top: 80px;
 }
 
 .avatar-profile {
@@ -37,6 +39,12 @@
   background-color: $light-grey;
   border: 5px solid $background-color;
   cursor: pointer;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    object-fit: cover;
+  }
 }
 
 .edit-profile-button {

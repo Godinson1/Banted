@@ -4,8 +4,9 @@ import { StarOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
 
-const Header = ({ page }) => {
+const Header = ({ page, pageName }) => {
   const history = useHistory();
+
   return (
     <div>
       <div className="main-header">
@@ -13,14 +14,24 @@ const Header = ({ page }) => {
           {page === "view-banter" ? (
             <div>
               <ArrowLeftOutlined onClick={() => history.goBack()} size={20} />{" "}
-              Banter
+              &nbsp;Banter
+            </div>
+          ) : page === "profile" ? (
+            <div className="flex">
+              <div>
+                <ArrowLeftOutlined onClick={() => history.goBack()} size={20} />
+              </div>
+              <div>
+                <span className="white">{pageName}</span>
+                <div id="profile-head-base">1232 banters</div>
+              </div>
             </div>
           ) : (
             "Home"
           )}
         </div>
         <div>
-          {page === "view-banter" ? (
+          {page === "view-banter" || page === "profile" ? (
             ""
           ) : (
             <StarOutlined className="icon-header" />

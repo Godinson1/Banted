@@ -84,7 +84,7 @@ const ViewBanter = () => {
                   </div>
                 </div>
               </div>
-              <BanterActions />
+              <BanterActions location={location} bant={bant} />
             </div>
           </div>
           <ReplyBanterCheck bant={bant} location={location} />

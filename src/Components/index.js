@@ -4,7 +4,7 @@ import RightSideBar from "./RightSideBar";
 import RightSideBarBanter from "./RightSideBarBanter";
 import Main from "./Main";
 import LikeButton from "./likeButton";
-import Navbar from "./Navbar";
+import Navbar from "./Navs/Nav/Navbar";
 
 export {
   LeftSideBar,

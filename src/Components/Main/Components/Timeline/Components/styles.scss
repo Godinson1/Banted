@@ -20,26 +20,31 @@
   @include loader;
 }
 
+.icon-action {
+  .action-tooltip {
+    @include custom-tooltip;
+  }
+}
+
 .timeline-dropdown-banter {
-  background-color: $background-color;
-  position: absolute;
+  @include custom-menu-dropdown;
   width: 250px;
-  z-index: 20;
-  border-radius: 10px;
-  box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+}
 
-  .option-container {
-    display: flex;
-    gap: 10px;
-    padding: 5px;
-    width: 100%;
-    padding: 10px;
-    &:hover {
-      background-color: #1c2732;
-    }
-  }
+.timeline-dropdown-rebant {
+  @include custom-menu-dropdown;
+  width: 150px;
+}
 
-  #delete {
-    color: rgb(238, 34, 34);
-  }
+#delete {
+  color: rgb(238, 34, 34);
+}
+
+.no-banter {
+  margin-top: 200px;
+  @include FONT;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-left: -20px;
+  color: grey;
 }

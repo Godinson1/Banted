@@ -1,5 +1,4 @@
 import React from "react";
-import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import "../../Pages/css/utils/auth/auth.scss";
 
 const Input = ({

@@ -3,7 +3,7 @@ import { Header } from "../Header";
 import { RightSidebar, LeftSidebar, RightSidebarBanter } from "../Navs";
 import "./layout.scss";
 
-const Layout = ({ children, page }) => {
+const Layout = ({ children, page, pageName }) => {
   return (
     <div>
       <div className="layout">
@@ -13,7 +13,7 @@ const Layout = ({ children, page }) => {
           </div>
         </div>
         <div className="main-bar">
-          <Header page={page} />
+          <Header page={page} pageName={pageName} />
           {children}
         </div>
         <div className="right-side-bar">

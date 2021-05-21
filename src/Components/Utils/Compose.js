@@ -11,7 +11,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import BanterBase from "../BanterBase";
-import "../../Pages/styles/main/main.scss";
+//import "../../Pages/styles/main/main.scss";
 
 const Compose = () => {
   const banters = useSelector((state) => state.banters);

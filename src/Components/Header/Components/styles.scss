@@ -17,6 +17,18 @@
   color: $secondary-color;
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.white {
+  color: $primary-color;
+  font-size: 1.2rem;
+}
+
 .compose-header {
   width: 100%;
   margin-top: 70px;
@@ -40,6 +52,11 @@
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+
+    img {
+      max-width: 100%;
+      object-fit: cover;
+    }
   }
 
   .media-header {

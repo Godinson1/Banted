@@ -12,6 +12,7 @@ const HeaderCompose = () => {
   const [images, setImages] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const banters = useSelector((state) => state.banters);
+  const user = useSelector((state) => state.users.credentials);
   const dispatch = useDispatch();
 
   const handleImage = (e) => {
@@ -47,7 +48,11 @@ const HeaderCompose = () => {
   return (
     <div>
       <div className="compose-header">
-        <div className="user-avatar"></div>
+        <div className="user-avatar">
+          {user && user.credentials && user.credentials[0].userImage && (
+            <img src={user.credentials[0].userImage} alt="user" />
+          )}
+        </div>
         <div>
           <div>
             <div

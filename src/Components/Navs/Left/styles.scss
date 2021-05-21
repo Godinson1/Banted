@@ -35,6 +35,35 @@
   }
 }
 
+.selected {
+  color: $secondary-color;
+}
+
+.dots {
+  margin: -20px 0 0 50px;
+  color: $primary-color;
+}
+
 .account-bottom {
   margin-top: 60px;
+}
+
+.dropdown-profile {
+  @include dropdown;
+  width: 270px;
+  margin: -200px 50px 0 100px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-top: solid 10px $background-color;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+  }
 }

@@ -11,6 +11,7 @@ const BanterDropdown = ({ show, bant, setShow }) => {
   const user = useSelector((state) => state.users.credentials);
   const dispatch = useDispatch();
   const wrapperRef = useRef(null);
+
   return (
     <div>
       {show && (

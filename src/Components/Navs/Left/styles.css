@@ -44,7 +44,42 @@
   cursor: pointer;
 }
 
+.selected {
+  color: #1da1f2;
+}
+
+.dots {
+  margin: -20px 0 0 50px;
+  color: #fff;
+}
+
 .account-bottom {
   margin-top: 60px;
+}
+
+.dropdown-profile {
+  right: 0;
+  background-color: #15202b;
+  position: absolute;
+  z-index: 200;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+          box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+  width: 270px;
+  margin: -200px 50px 0 100px;
+}
+
+.dropdown-profile:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-top: solid 10px #15202b;
+  border-left: solid 10px transparent;
+  border-right: solid 10px transparent;
 }
 /*# sourceMappingURL=styles.css.map */

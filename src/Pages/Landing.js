@@ -11,6 +11,8 @@ const Landing = ({ history }) => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  console.log(errorMessage);
+
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
 

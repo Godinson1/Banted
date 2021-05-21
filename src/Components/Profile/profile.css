@@ -1,10 +1,3 @@
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 #profile-head-base {
   margin-top: -5px;
   font-size: 0.8rem;
@@ -37,11 +30,12 @@
   width: 100%;
 }
 
-.cover-profile {
+.cover-banner {
   height: 200px;
   width: 100%;
   background-color: #1da1f2;
   cursor: pointer;
+  margin-top: 80px;
 }
 
 .avatar-profile {
@@ -52,6 +46,13 @@
   background-color: #748491;
   border: 5px solid #15202b;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.avatar-profile img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .edit-profile-button {

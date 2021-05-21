@@ -137,6 +137,15 @@
   }
 }
 
+.reply-container {
+  color: #8394a1;
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  #reply-handle {
+    color: $secondary-color;
+  }
+}
+
 .banter-button-container {
   margin-top: 20px;
   #banter-button {

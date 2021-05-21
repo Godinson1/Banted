@@ -21,7 +21,6 @@ import {
   checkHashtag,
   useCloseOnClickOutside,
 } from "../util";
-import "../Pages/styles/main/main.scss";
 import { deleteBanter } from "../actions/banterActions";
 
 const Banter = ({ bant, i, location }) => {

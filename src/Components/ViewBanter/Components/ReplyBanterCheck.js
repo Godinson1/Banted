@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCommentsOnBanter } from "../../../actions/banterActions";
-import BanterReply from "./ReplyBanter";
+import ReplyBanter from "./ReplyBanter";
 
 const ReplyBanterCheck = ({ bant, location }) => {
   const banters = useSelector((state) => state.banters);
@@ -31,7 +31,7 @@ const ReplyBanterCheck = ({ bant, location }) => {
           {banters &&
             banters.comments &&
             banters.comments.map((banter, index) => (
-              <BanterReply
+              <ReplyBanter
                 bant={bant}
                 banter={banter}
                 index={index}

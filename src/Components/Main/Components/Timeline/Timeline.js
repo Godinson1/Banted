@@ -72,7 +72,11 @@ const Timeline = ({ bant, i, location }) => {
                 </p>
                 <BanterMedia imageBant={bant} imagelocation={location} />
               </div>
-              <BanterActions bant={bant} />
+              <BanterActions
+                setShow={setShow}
+                setAllowLink={setAllowLink}
+                bant={bant}
+              />
             </div>
           </div>
         </div>

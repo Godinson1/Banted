@@ -20,6 +20,54 @@
   }
 }
 
+@-webkit-keyframes horizontalProgressBar {
+  0% {
+    width: 0%;
+  }
+  20% {
+    width: 10%;
+  }
+  30% {
+    width: 15%;
+  }
+  40% {
+    width: 18%;
+  }
+  50% {
+    width: 20%;
+  }
+  60% {
+    width: 22%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes horizontalProgressBar {
+  0% {
+    width: 0%;
+  }
+  20% {
+    width: 10%;
+  }
+  30% {
+    width: 15%;
+  }
+  40% {
+    width: 18%;
+  }
+  50% {
+    width: 20%;
+  }
+  60% {
+    width: 22%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -96,14 +144,36 @@
           animation-delay: -0.15s;
 }
 
+.icon-action .action-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-action .action-tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #1da1f2;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0 5px 0 5px;
+  margin: -20px 0 0 -35px;
+  position: absolute;
+  font-size: 0.8rem;
+  z-index: 3;
+}
+
+.icon-action .action-tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 .timeline-dropdown-banter {
   background-color: #15202b;
   position: absolute;
-  width: 250px;
   z-index: 20;
   border-radius: 10px;
+  right: 5%;
   -webkit-box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
           box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+  width: 250px;
 }
 
 .timeline-dropdown-banter .option-container {
@@ -120,7 +190,41 @@
   background-color: #1c2732;
 }
 
-.timeline-dropdown-banter #delete {
+.timeline-dropdown-rebant {
+  background-color: #15202b;
+  position: absolute;
+  z-index: 20;
+  border-radius: 10px;
+  right: 5%;
+  -webkit-box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+          box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+  width: 150px;
+}
+
+.timeline-dropdown-rebant .option-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  padding: 5px;
+  width: 100%;
+  padding: 10px;
+}
+
+.timeline-dropdown-rebant .option-container:hover {
+  background-color: #1c2732;
+}
+
+#delete {
   color: #ee2222;
+}
+
+.no-banter {
+  margin-top: 200px;
+  font-family: Roboto;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-left: -20px;
+  color: grey;
 }
 /*# sourceMappingURL=styles.css.map */

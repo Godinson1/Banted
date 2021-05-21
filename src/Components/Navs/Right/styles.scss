@@ -51,6 +51,14 @@
   }
 }
 
+.search-flex {
+  @include flex;
+  gap: 10px;
+}
+.search-flex-between {
+  @include flex-between;
+}
+
 .right-bar-trend-container {
   width: 100%;
   height: 500px;
@@ -83,22 +91,5 @@
 }
 
 .tooltips {
-  position: relative;
-  display: inline-block;
-
-  .tooltiptext {
-    visibility: hidden;
-    background-color: $secondary-color;
-    color: $primary-color;
-    border-radius: 6px;
-    padding: 0 5px 0 5px;
-    margin: -20px 0 0 -35px;
-    position: absolute;
-    font-size: 0.8rem;
-    z-index: 3;
-  }
-
-  &:hover .tooltiptext {
-    visibility: visible;
-  }
+  @include custom-tooltip;
 }

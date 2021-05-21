@@ -13,6 +13,47 @@
   box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
 }
 
+@mixin custom-menu-dropdown {
+  background-color: $background-color;
+  position: absolute;
+  z-index: 20;
+  border-radius: 10px;
+  right: 5%;
+  box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
+
+  .option-container {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    width: 100%;
+    padding: 10px;
+    &:hover {
+      background-color: #1c2732;
+    }
+  }
+}
+
+@mixin custom-tooltip {
+  position: relative;
+  display: inline-block;
+
+  .tooltiptext {
+    visibility: hidden;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border-radius: 6px;
+    padding: 0 5px 0 5px;
+    margin: -20px 0 0 -35px;
+    position: absolute;
+    font-size: 0.8rem;
+    z-index: 3;
+  }
+
+  &:hover .tooltiptext {
+    visibility: visible;
+  }
+}
+
 @mixin banter-flex-start {
   display: flex;
   justify-content: flex-start;

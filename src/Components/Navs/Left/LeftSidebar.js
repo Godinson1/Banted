@@ -1,17 +1,10 @@
 import React, { useState, useRef } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  HomeFilled,
-  NumberOutlined,
-  BellOutlined,
-  MailOutlined,
-  UserOutlined,
-  BorderOuterOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+
 import { Divider } from "antd";
 import { SIDEBAR_LINKS } from "./constants";
+import { renderIcon } from "./renderIcon";
 import "./styles.scss";
 import { logoutUser } from "../../../actions/userActions";
 import { useCloseOnClickOutside } from "../../../util";
@@ -32,32 +25,25 @@ const LeftSidebar = () => {
         {SIDEBAR_LINKS.map((data, index) => {
           const { activeClassName, title, icon, path } = data;
           return (
-            <div>
+            <div key={index}>
               <NavLink
                 className="link"
-                to={path}
+                to={{
+                  pathname:
+                    title === "Profile"
+                      ? user &&
+                        user.credentials &&
+                        user.credentials[0] &&
+                        user.credentials[0].handle
+                      : path,
+                  state: {
+                    banter: user.credentials && user.credentials[0],
+                  },
+                }}
                 activeClassName={activeClassName}
               >
                 <div className="flex-icon-name">
-                  <div>
-                    {icon === "HomeFilled" ? (
-                      <HomeFilled />
-                    ) : icon === "NumberOutlined" ? (
-                      <NumberOutlined />
-                    ) : icon === "BellOutlined" ? (
-                      <BellOutlined />
-                    ) : icon === "MailOutlined" ? (
-                      <MailOutlined />
-                    ) : icon === "BorderOuterOutlined" ? (
-                      <BorderOuterOutlined />
-                    ) : icon === "UnorderedListOutlined" ? (
-                      <UnorderedListOutlined />
-                    ) : icon === "UserOutlined" ? (
-                      <UserOutlined />
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                  <div>{renderIcon(icon)}</div>
                   <div>{title}</div>
                 </div>
               </NavLink>
