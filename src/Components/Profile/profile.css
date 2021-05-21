@@ -84,6 +84,13 @@
   background-color: #162d40;
 }
 
+.loading-profile {
+  width: 100%;
+  padding: 30px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
 .profile-info {
   margin-left: 15px;
 }

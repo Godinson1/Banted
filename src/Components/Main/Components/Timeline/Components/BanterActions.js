@@ -7,9 +7,11 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 import { useCloseOnClickOutside } from "../../../../../util";
+import { useLocation, Link } from "react-router-dom";
 
 const BanterActions = ({ bant, setShow, setAllowLink }) => {
   const [showRetweet, setShowRetweet] = useState(false);
+  const location = useLocation();
 
   const wrapperRef = useRef(null);
   useCloseOnClickOutside(wrapperRef, setShowRetweet, setAllowLink, setShow);
@@ -17,11 +19,22 @@ const BanterActions = ({ bant, setShow, setAllowLink }) => {
   return (
     <div className="base-actions-container">
       <div className="icon-action">
-        <div className="action-tooltip">
-          <MessageOutlined />{" "}
-          <span className="count"> &nbsp; {bant.commentCount}</span>
-          <span className="tooltiptext">comment</span>
-        </div>
+        <Link
+          to={{
+            pathname: `/compose/banter`,
+            state: {
+              background: location,
+              banter: bant,
+            },
+          }}
+          className="link"
+        >
+          <div className="action-tooltip">
+            <MessageOutlined />{" "}
+            <span className="count"> &nbsp; {bant.commentCount}</span>
+            <span className="tooltiptext">comment</span>
+          </div>
+        </Link>
       </div>
       <div
         onClick={() => setShowRetweet(!showRetweet)}

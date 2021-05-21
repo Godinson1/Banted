@@ -6,6 +6,7 @@ export const LOADING_UI = "LOADING_UI";
 export const LOADING_COMMENTS = "LOADING_COMMENTS";
 export const LOADING = "LOADING";
 export const SET_USER = "SET_USER";
+export const LOADING_PROFILE = "LOADING_PROFILE";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const LIKE = "LIKE";
 export const UNLIKE = "UNLIKE";

@@ -20,6 +20,26 @@
   }
 }
 
+@-webkit-keyframes pulse {
+  0%,
+  100% {
+    border-left: 100px solid #f6f8fa;
+  }
+  50% {
+    border-left: 100px solid #2c7ac9;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    border-left: 100px solid #f6f8fa;
+  }
+  50% {
+    border-left: 100px solid #2c7ac9;
+  }
+}
+
 @-webkit-keyframes horizontalProgressBar {
   0% {
     width: 0%;

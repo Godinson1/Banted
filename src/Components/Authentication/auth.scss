@@ -1,3 +1,8 @@
+@import "../../sass/mixins";
+@import "../../sass/variables";
+@import "../../sass/animations";
+@import "../../sass/breakpoint";
+
 .landing {
   width: 100vw;
   height: 100vh;
@@ -9,15 +14,20 @@
 }
 
 .first {
-  background-color: rgb(8, 59, 100);
+  background-color: $secondary-color;
   width: 100%;
   height: 100%;
 }
 
-h1 {
-  font-family: "Roboto";
-
+.auth-desc {
   color: rgb(8, 59, 100);
+  font-size: 1.4rem;
+  font-family: $font-family;
+}
+
+h1 {
+  font-family: $font-family;
+  color: $secondary-color;
 }
 
 .slanted {
@@ -49,9 +59,14 @@ h1 {
   text-align: center;
 }
 
+.banter-auth-logo {
+  @include banted-logo;
+  text-align: center;
+}
+
 p {
   font-size: 1.1rem;
-  font-family: "roboto";
+  font-weight: 600;
 }
 
 .authContainer {
@@ -141,16 +156,6 @@ label {
   animation: pulse 5s infinite;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    border-left: 100px solid rgb(246, 248, 250);
-  }
-  50% {
-    border-left: 100px solid rgb(44, 122, 201);
-  }
-}
-
 .base-texts {
   font-size: 1rem;
   cursor: pointer;
@@ -176,7 +181,4 @@ label {
   .ring {
     display: none;
   }
-}
-
-@media screen and (max-width: 320px) {
 }

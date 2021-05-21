@@ -1,6 +1,20 @@
 @import "../../sass/mixins";
 @import "../../sass/variables";
 
+.no-mobile {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $primary-color;
+  text-align: center;
+  font-size: 1rem;
+  flex-direction: column;
+}
+
 .layout {
   @include flex;
   height: 100vh;

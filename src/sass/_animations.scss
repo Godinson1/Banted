@@ -7,6 +7,16 @@
   }
 }
 
+@keyframes pulse {
+  0%,
+  100% {
+    border-left: 100px solid rgb(246, 248, 250);
+  }
+  50% {
+    border-left: 100px solid rgb(44, 122, 201);
+  }
+}
+
 @keyframes horizontalProgressBar {
   0% {
     width: 0%;

@@ -2,17 +2,7 @@
 @import "../../../sass/variables";
 
 .banter-logo {
-  width: 40px;
-  height: 40px;
-  background-color: $primary-color;
-  color: $secondary-color;
-  font-family: $font-family;
-  border-radius: 50%;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  font-size: 1.7rem;
-  align-items: center;
+  @include banted-logo;
   margin-left: 10px;
 }
 

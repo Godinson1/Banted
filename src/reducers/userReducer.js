@@ -9,11 +9,13 @@ import {
   SET_PROFILE,
   FOLLOW_USER,
   UNFOLLOW_USER,
+  LOADING_PROFILE,
 } from "../actions/types";
 
 const initialState = {
   authenticated: false,
   loading_fol: false,
+  loading_profile: false,
   likes: [],
   credentials: {},
   users: [],
@@ -49,6 +51,11 @@ export default function (state = initialState, action) {
         ...state,
         loading_fol: true,
       };
+    case LOADING_PROFILE:
+      return {
+        ...state,
+        loading_profile: true,
+      };
     case LIKE:
       return {
         ...state,
@@ -66,6 +73,7 @@ export default function (state = initialState, action) {
     case SET_PROFILE:
       return {
         ...state,
+        loading_profile: false,
         profile: action.payload,
       };
     case FOLLOW_USER:

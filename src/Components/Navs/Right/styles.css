@@ -79,6 +79,10 @@
           align-items: center;
 }
 
+.secondary-color {
+  color: #1da1f2;
+}
+
 .right-bar-trend-container {
   width: 100%;
   height: 500px;

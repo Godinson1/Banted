@@ -59,6 +59,10 @@
   @include flex-between;
 }
 
+.secondary-color {
+  color: $secondary-color;
+}
+
 .right-bar-trend-container {
   width: 100%;
   height: 500px;

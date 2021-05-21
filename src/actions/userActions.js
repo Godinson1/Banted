@@ -10,6 +10,7 @@ import {
   LOADING_LOG,
   SET_PROFILE,
   SET_USERS,
+  LOADING_PROFILE,
 } from "../actions/types";
 import axios from "axios";
 import { getBanters } from "./banterActions";
@@ -36,29 +37,28 @@ export const LoginUser = (user, history, setErrorMessage) => (dispatch) => {
     });
 };
 
-export const RegisterUser = (newData, history, setErrorMessage) => (
-  dispatch
-) => {
-  dispatch({ type: LOADING_REG });
-  axios
-    .post("/users/register", newData)
-    .then((res) => {
-      setAuthorization(res.data.token);
-      dispatch(getUserData());
-      dispatch(getBanters());
-      dispatch({ type: CLEAR_ERROR });
-      history.push("/home");
-    })
-    .catch((err) => {
-      if (err.response && err.response.data) {
-        setErrorMessage(err.response.data.error);
-        dispatch({
-          type: SET_ERROR,
-          payload: err.response.data,
-        });
-      }
-    });
-};
+export const RegisterUser =
+  (newData, history, setErrorMessage) => (dispatch) => {
+    dispatch({ type: LOADING_REG });
+    axios
+      .post("/users/register", newData)
+      .then((res) => {
+        setAuthorization(res.data.token);
+        dispatch(getUserData());
+        dispatch(getBanters());
+        dispatch({ type: CLEAR_ERROR });
+        history.push("/home");
+      })
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          setErrorMessage(err.response.data.error);
+          dispatch({
+            type: SET_ERROR,
+            payload: err.response.data,
+          });
+        }
+      });
+  };
 
 export const getUserData = () => (dispatch) => {
   axios
@@ -74,7 +74,11 @@ export const getUserData = () => (dispatch) => {
 
 export const getUser = (handle) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING_PROFILE,
+    });
     const res = await axios.get(`/users/${handle}`);
+    console.log(res.data);
     dispatch({
       type: SET_PROFILE,
       payload: res.data,

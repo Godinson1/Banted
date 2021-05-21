@@ -1,0 +1,100 @@
+@import "../../../../sass/mixins";
+@import "../../../../sass/variables";
+
+#left-modal-compose {
+  @include overlay;
+  @include flex;
+  height: 100vh;
+  position: fixed;
+  z-index: 7;
+  scrollbar-width: 0;
+
+  .picture-view {
+    height: 100vh;
+    width: 100vw;
+    background-color: transparent;
+    overflow: auto;
+    position: fixed;
+    color: white;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+
+    .compose {
+      width: 600px;
+      max-height: 600px;
+      background-color: #15202b;
+      overflow: auto;
+      border-radius: 15px;
+
+      .main-compose-banter {
+        margin: 10px 0 0 20px;
+      }
+
+      .main-compose {
+        padding: 10px 0 10px 0;
+
+        .image-compose-container {
+          width: 100%;
+        }
+
+        .compose-header {
+          width: 100%;
+          background-color: $background-color;
+          margin: 0;
+          border: none;
+          flex-wrap: wrap;
+          top: 0;
+          display: flex;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 1rem;
+          font-family: $font-family;
+
+          color: $secondary-color;
+        }
+
+        .flex-start-banter {
+          .avatar-banter {
+            width: 65px;
+            height: 55px;
+          }
+        }
+      }
+
+      .banter-text {
+        margin: -23px 0 0 67px;
+        .bantext {
+          overflow: hidden;
+        }
+
+        .reply-to {
+          margin-top: 10px;
+          color: #748491;
+          font-size: 1.1rem;
+
+          #reply-handle {
+            color: $secondary-color;
+          }
+        }
+      }
+
+      #compose-edit {
+        font-size: 1rem;
+      }
+
+      .close {
+        padding: 10px 10px 10px 20px;
+        font-size: 1.3rem;
+        color: $secondary-color;
+        font-weight: 700;
+        cursor: pointer;
+        border-bottom: 0.1px solid rgb(90, 89, 89);
+      }
+    }
+  }
+}

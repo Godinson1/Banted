@@ -13,6 +13,20 @@
   box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
 }
 
+@mixin banted-logo {
+  width: 40px;
+  height: 40px;
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-family: $font-family;
+  border-radius: 50%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  font-size: 1.7rem;
+  align-items: center;
+}
+
 @mixin custom-menu-dropdown {
   background-color: $background-color;
   position: absolute;
