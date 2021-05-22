@@ -56,12 +56,9 @@ const ReplyBanter = ({ bant, banter, index, location }) => {
                   <div
                     onMouseOver={() => setAllowLink(false)}
                     onClick={() => setShow(!show)}
-                    className="dots tooltips"
+                    className="dots "
                   >
                     ...
-                    <span id="desc" className="tooltiptext">
-                      more
-                    </span>
                     <BD show={show} bant={banter} setShow={setShow} />
                   </div>
                 </div>

@@ -35,13 +35,6 @@
   color: $primary-color;
 }
 
-.flex-start:hover {
-  background-color: #162d40;
-  border-radius: 70px;
-  color: #1da1f2;
-  cursor: pointer;
-}
-
 .link {
   color: white;
 }
@@ -73,7 +66,7 @@
 }
 
 .avatar-banter {
-  width: 60px !important;
+  width: 50px !important;
   @include avatar-image;
 }
 
@@ -89,70 +82,6 @@
 
 .account-bottom {
   margin-top: 60px;
-}
-
-.account-bottom-banter {
-  .banter-text {
-    .displays {
-      height: 275px;
-      width: 100%;
-      background-color: rebeccapurple;
-    }
-
-    .media-full {
-      @include media-container;
-      grid-template-columns: repeat(1, 1fr);
-      .media-container:nth-child(1) {
-        background-color: rgb(120, 134, 96);
-      }
-    }
-
-    .media-two {
-      @include media-container;
-      grid-template-columns: repeat(2, 1fr);
-
-      .media-container:nth-child(1) {
-        background-color: red;
-      }
-      .media-container:nth-child(2) {
-        background-color: brown;
-      }
-      .media-container:nth-child(3) {
-        background-color: yellowgreen;
-      }
-      .media-container:nth-child(4) {
-        background-color: white;
-      }
-    }
-
-    .media-three {
-      @include media-container;
-      grid-template-columns: repeat(2, 1fr);
-
-      .media-container:nth-child(1) {
-        grid-row: 1 / span 3;
-        background-color: yellow;
-      }
-      .media-container:nth-child(2) {
-        background-color: pink;
-      }
-      .media-container:nth-child(3) {
-        background-color: yellowgreen;
-      }
-    }
-
-    .media-container {
-      width: 100%;
-      height: 100%;
-      background-color: $secondary-color;
-
-      img {
-        max-width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
-    }
-  }
 }
 
 .secondary-color {
@@ -179,16 +108,25 @@
 .nameHandle-container-banter {
   margin: -18px 0 0 -10px;
 }
+
 #name {
   @include FONT;
   font-size: 1rem;
   color: white;
   line-height: 1rem;
 }
+
 #handle {
   @include FONT;
   font-size: 0.9rem;
   color: grey;
+}
+
+#date-handle {
+  @include FONT;
+  font-size: 0.9rem;
+  color: grey;
+  margin-top: -10px;
 }
 
 .handle-container {
@@ -201,34 +139,6 @@
   }
 }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 80px;
-  background-color: $background-color;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  top: 100%;
-  left: 50%;
-  margin-left: -10px;
-  position: absolute;
-  z-index: 1;
-}
-
-.banter-fas {
-  visibility: hidden;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -236,14 +146,6 @@
   height: 80px;
   margin: 30% 0 0 20px;
   left: 44%;
-  @include loader;
-}
-
-.preloader-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
   @include loader;
 }
 
@@ -396,18 +298,11 @@
 
     .reply-to {
       color: #8394a1;
-      margin: -10px 0 0 55px;
+      margin: -15px 0 0 55px;
       font-size: 1rem;
 
       #reply-handle {
         color: $secondary-color;
-      }
-    }
-
-    .flex-start-banter {
-      .avatar-banter {
-        width: 50px;
-        height: 50px;
       }
     }
 
@@ -418,7 +313,7 @@
     }
 
     .dots {
-      margin: -45px 0 0 120px;
+      margin: -35px 0 0 120px;
       cursor: pointer;
       color: #8394a1;
     }
@@ -430,6 +325,7 @@
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: -20px;
   }
 }
 
@@ -542,119 +438,9 @@
   cursor: pointer;
 }
 
-.animated {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-}
-
-.yt-loader {
-  -webkit-animation-name: horizontalProgressBar;
-  animation-name: horizontalProgressBar;
-  -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-  background: $secondary-color;
-  height: 3px;
-  left: 0;
-  top: 0;
-  width: 0%;
-  z-index: 9999;
-  position: relative;
-
-  &:after {
-    display: block;
-    position: absolute;
-    content: "";
-    right: 0px;
-    width: 100px;
-    height: 100%;
-    box-shadow: $secondary-color 1px 0 6px 1px;
-    opacity: 0.5;
-  }
-}
-
-.flexname {
-  @include flex;
-}
-
 .nh {
   white-space: nowrap;
   color: white;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.blue {
-  color: $secondary-color;
-}
-
-#base-bottom {
-  margin-top: -25px;
-  padding: 0 10px 10px 10px;
-
-  &:hover {
-    background-color: #1c2732;
-  }
-}
-.prof {
-  margin-left: 10px;
-}
-#dots {
-  margin-top: -60px;
-  color: #8394a1;
-
-  &:hover {
-    color: $secondary-color;
-  }
-}
-
-.create-banter-base {
-  margin: 10px 10px 0 61px;
-
-  .flex {
-    @include flex;
-    gap: 20px;
-    @include FONT;
-    font-size: 1.3rem;
-    color: $secondary-color;
-    cursor: pointer;
-
-    #desc {
-      font-size: 0.9rem;
-    }
-  }
-
-  button {
-    width: 80px;
-    height: 30px;
-    background-color: $secondary-color;
-    color: $primary-color;
-    border-radius: 50px;
-    border: none;
-    @include FONT;
-    font-size: 0.9rem;
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-.banter-footer {
-  display: none;
-}
-
-.line {
-  width: 3px;
-  height: 60px;
-  position: absolute;
-  background-color: rgb(90, 89, 89);
-  margin: 130px 0 0 25px;
-}
-
-.preloader {
-  @include flex;
-  height: 100vh;
-  width: 100vw;
 }

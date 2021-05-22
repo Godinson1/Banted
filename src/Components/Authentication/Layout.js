@@ -11,8 +11,8 @@ const Layout = ({ children, page }) => {
             <h1>Banted.</h1>
             <div className="base-desc">
               <p>
-                Connect with other football lovers and experience banter like
-                never before.
+                Connect with other amazing football lovers and experience banter
+                like never before.
               </p>
             </div>
           </div>

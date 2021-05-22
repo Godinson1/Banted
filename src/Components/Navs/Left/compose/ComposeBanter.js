@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, createRef } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Markup } from "interweave";
 import { postBanter, commentOnBanter } from "../../../../actions/banterActions";
@@ -9,7 +9,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import "./styles.scss";
 import Base from "./Base";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import dayjsTwitter from "dayjs-twitter";
 
 const ComposeBanter = () => {
   const banters = useSelector((state) => state.banters);
@@ -22,6 +22,7 @@ const ComposeBanter = () => {
   const textRef = createRef();
   const dispatch = useDispatch();
   const bant = location.state.banter;
+  dayjs.extend(dayjsTwitter);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -67,7 +68,6 @@ const ComposeBanter = () => {
   };
 
   const history = useHistory();
-  dayjs.extend(relativeTime);
 
   useEffect(() => {
     const setFocus = () =>
@@ -102,33 +102,39 @@ const ComposeBanter = () => {
             </div>
             {bant !== null && (
               <div className="main-compose-banter">
-                <div className="flex-start-banter">
-                  <div className="avatar-banter">
-                    <img src={bant.userImage} alt="no-profile" />
-                  </div>
-                  <div className="flex-between">
-                    <div className="nameHandle-container-banter">
+                <div className="timeline-banter-container">
+                  <div className="banter-container">
+                    <div className="user-avatar">
+                      <Link
+                        to={{
+                          pathname: `/${bant.banterHandle}`,
+                          state: { banter: bant },
+                        }}
+                        className="link"
+                      >
+                        <img src={bant.userImage} alt="profile" />
+                      </Link>
+                    </div>
+                    <div className="timeline-content-container">
+                      <div className="header-between">
+                        <div className="name-handle-time">
+                          <div className="name">{bant.name}</div>
+                          <div className="handle">@{bant.banterHandle}</div>
+                          <div className="date">
+                            - {dayjs(bant.createdAt).twitter()}
+                          </div>
+                        </div>
+                      </div>
                       <div>
-                        <span id="name">
-                          {bant.name} {""}
-                          <span id="handle">
-                            {" "}
-                            @{bant.banterHandle} -{" "}
-                            {dayjs(bant.createdAt).fromNow()}
-                          </span>
-                        </span>
+                        <p className="bantext">
+                          {<Markup content={checkHashtag(bant.banter)} />}
+                        </p>
+                      </div>
+                      <div className="reply-to">
+                        Replying to
+                        <span id="reply-handle"> @{bant.banterHandle}</span>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="banter-text">
-                  <div className="bantext">
-                    {<Markup content={checkHashtag(bant.banter)} />}
-                  </div>
-                  <div className="reply-to">
-                    <span id="reply-to">Replying to </span>
-                    {""}
-                    <span id="reply-handle">@{bant.banterHandle}</span>
                   </div>
                 </div>
               </div>

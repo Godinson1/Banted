@@ -50,11 +50,30 @@
 }
 
 #left-modal-compose .picture-view .compose .main-compose-banter {
-  margin: 10px 0 0 20px;
+  margin-top: 10px;
+}
+
+#left-modal-compose .picture-view .compose .main-compose-banter .user-avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#left-modal-compose .picture-view .compose .main-compose-banter .user-avatar img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+#left-modal-compose .picture-view .compose .main-compose-banter .timeline-banter-container {
+  border: none;
 }
 
 #left-modal-compose .picture-view .compose .main-compose {
-  padding: 10px 0 10px 0;
+  padding: 10px 0 20px 0;
 }
 
 #left-modal-compose .picture-view .compose .main-compose .image-compose-container {
@@ -84,31 +103,14 @@
   color: #1da1f2;
 }
 
-#left-modal-compose .picture-view .compose .main-compose .flex-start-banter .avatar-banter {
-  width: 65px;
-  height: 55px;
-}
-
-#left-modal-compose .picture-view .compose .banter-text {
-  margin: -23px 0 0 67px;
-}
-
-#left-modal-compose .picture-view .compose .banter-text .bantext {
-  overflow: hidden;
-}
-
-#left-modal-compose .picture-view .compose .banter-text .reply-to {
+#left-modal-compose .picture-view .compose .reply-to {
   margin-top: 10px;
   color: #748491;
   font-size: 1.1rem;
 }
 
-#left-modal-compose .picture-view .compose .banter-text .reply-to #reply-handle {
+#left-modal-compose .picture-view .compose .reply-to #reply-handle {
   color: #1da1f2;
-}
-
-#left-modal-compose .picture-view .compose #compose-edit {
-  font-size: 1rem;
 }
 
 #left-modal-compose .picture-view .compose .close {

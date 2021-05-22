@@ -23,17 +23,15 @@ const LikeButton = (props) => {
       <HeartOutlined />
     </Link>
   ) : likedBanter() && props.likeCount > 0 ? (
-    <div className="icon-action-like tooltip">
+    <div className="icon-action-like">
       <HeartFilled
         style={{ color: "#E0245E" }}
         onClick={() => dispatch(unlikeBanter(props.banterId))}
       />
-      <span className="tooltiptext">unlike</span>
     </div>
   ) : (
-    <div className="icon-action-like tooltip">
+    <div className="icon-action-like">
       <HeartOutlined onClick={() => dispatch(likeBanter(props.banterId))} />
-      <span className="tooltiptext">like</span>
     </div>
   );
   return Like;

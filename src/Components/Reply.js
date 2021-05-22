@@ -56,9 +56,9 @@ const Reply = ({ bant, location }) => {
                           </span>
                         </div>
                         <div>
-                          <span id="handle">
+                          <div id="date-handle">
                             - {dayjs(banter.createdAt).twitter()}
-                          </span>
+                          </div>
                           <div className="dots">...</div>
                         </div>
                       </div>
@@ -150,9 +150,8 @@ const Reply = ({ bant, location }) => {
                         </div>
                       </div>
                       <div className="action-flex">
-                        <div className="icon-action tooltip">
+                        <div className="icon-action">
                           <UploadOutlined />
-                          <span class="tooltiptext">share</span>
                         </div>
                         <div>
                           <span className="count"></span>

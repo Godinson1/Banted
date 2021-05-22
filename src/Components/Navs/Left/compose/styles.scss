@@ -31,12 +31,17 @@
       border-radius: 15px;
 
       .main-compose-banter {
-        margin: 10px 0 0 20px;
+        margin-top: 10px;
+        .user-avatar {
+          @include custom-avatar;
+        }
+        .timeline-banter-container {
+          border: none;
+        }
       }
 
       .main-compose {
-        padding: 10px 0 10px 0;
-
+        padding: 10px 0 20px 0;
         .image-compose-container {
           width: 100%;
         }
@@ -54,37 +59,18 @@
           gap: 10px;
           font-size: 1rem;
           font-family: $font-family;
-
           color: $secondary-color;
         }
-
-        .flex-start-banter {
-          .avatar-banter {
-            width: 65px;
-            height: 55px;
-          }
-        }
       }
 
-      .banter-text {
-        margin: -23px 0 0 67px;
-        .bantext {
-          overflow: hidden;
+      .reply-to {
+        margin-top: 10px;
+        color: #748491;
+        font-size: 1.1rem;
+
+        #reply-handle {
+          color: $secondary-color;
         }
-
-        .reply-to {
-          margin-top: 10px;
-          color: #748491;
-          font-size: 1.1rem;
-
-          #reply-handle {
-            color: $secondary-color;
-          }
-        }
-      }
-
-      #compose-edit {
-        font-size: 1rem;
       }
 
       .close {

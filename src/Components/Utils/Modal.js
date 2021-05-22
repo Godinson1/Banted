@@ -8,6 +8,7 @@ import {
   ArrowLeftOutlined,
   DoubleLeftOutlined,
   MessageOutlined,
+  HeartOutlined,
 } from "@ant-design/icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -67,17 +68,13 @@ const Modals = () => {
                     </div>
                     <div
                       onClick={() => setShowBanter(!showBanter)}
-                      className="right-icon icon-action tooltip"
+                      className="right-icon icon-action"
                     >
                       {showBanter ? (
                         <DoubleRightOutlined />
                       ) : (
                         <DoubleLeftOutlined />
                       )}
-
-                      <span class="tooltiptext">
-                        {showBanter ? "hide" : "show"}
-                      </span>
                     </div>
                   </div>
                   <div style={{ marginTop: "220px" }} className="flex-between">
@@ -124,20 +121,18 @@ const Modals = () => {
                     </div>
                     <div>
                       <div className="action-flex">
-                        <div className="icon-action-rebant tooltip">
+                        <div className="icon-action-rebant">
                           <RetweetOutlined /> &nbsp; &nbsp;{" "}
                           <span className="count">{bant.rebantCount}</span>
-                          <span class="tooltiptext">rebanter</span>
                         </div>
                       </div>
                     </div>
                     <div>
                       <div className="action-flex">
-                        <div className="icon-action-rebant tooltip">
-                          <LikeButton banterId={bant._id} />
+                        <div className="icon-action-rebant ">
+                          <HeartOutlined />
                           &nbsp; &nbsp;{" "}
                           <span className="count">{bant.likeCount}</span>
-                          <span class="tooltiptext">rebanter</span>
                         </div>
                       </div>
                     </div>
