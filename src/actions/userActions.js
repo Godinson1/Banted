@@ -78,7 +78,6 @@ export const getUser = (handle) => async (dispatch) => {
       type: LOADING_PROFILE,
     });
     const res = await axios.get(`/users/${handle}`);
-    console.log(res.data);
     dispatch({
       type: SET_PROFILE,
       payload: res.data,

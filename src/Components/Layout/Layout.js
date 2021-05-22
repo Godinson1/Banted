@@ -4,7 +4,7 @@ import { RightSidebar, LeftSidebar, RightSidebarBanter } from "../Navs";
 import { useViewport } from "../../util";
 import "./layout.scss";
 
-const Layout = ({ children, page, pageName }) => {
+const Layout = ({ children, page, pageName, banterLength }) => {
   const { width } = useViewport();
   return (
     <div>
@@ -23,7 +23,11 @@ const Layout = ({ children, page, pageName }) => {
             </div>
           </div>
           <div className="main-bar">
-            <Header page={page} pageName={pageName} />
+            <Header
+              page={page}
+              pageName={pageName}
+              banterLength={banterLength}
+            />
             {children}
           </div>
           <div className="right-side-bar">

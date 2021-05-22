@@ -21,7 +21,16 @@ const Profile = () => {
 
   return (
     <div>
-      <Layout page="profile" pageName={bant.name}>
+      <Layout
+        page="profile"
+        pageName={bant.name}
+        banterLength={
+          user &&
+          user.profile &&
+          user.profile.banters &&
+          user.profile.banters.length
+        }
+      >
         <div className="s">
           <div className="cover-banner">
             <div className="flex-profile"></div>

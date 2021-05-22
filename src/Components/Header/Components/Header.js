@@ -4,7 +4,7 @@ import { StarOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
 
-const Header = ({ page, pageName }) => {
+const Header = ({ page, pageName, banterLength }) => {
   const history = useHistory();
 
   return (
@@ -23,7 +23,7 @@ const Header = ({ page, pageName }) => {
               </div>
               <div>
                 <span className="white">{pageName}</span>
-                <div id="profile-head-base">1232 banters</div>
+                <div id="profile-head-base">{banterLength} banters</div>
               </div>
             </div>
           ) : (

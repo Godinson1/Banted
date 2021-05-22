@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs } from "antd";
-import { Banters, BanterAndReplies, Images, Video, Likes } from "./index";
+import { Banters, BanterAndReplies, Images, Likes } from "./index";
 
 const ProfileTabs = () => {
   const { TabPane } = Tabs;
@@ -15,13 +15,10 @@ const ProfileTabs = () => {
           <TabPane tab="Banters & Replies" key="2">
             <BanterAndReplies />
           </TabPane>
-          <TabPane tab="Images" key="3">
+          <TabPane tab="Banters with Images" key="3">
             <Images />
           </TabPane>
-          <TabPane tab="Videos" key="4">
-            <Video />
-          </TabPane>
-          <TabPane tab="Likes" key="5">
+          <TabPane tab="Likes" key="4">
             <Likes />
           </TabPane>
         </Tabs>

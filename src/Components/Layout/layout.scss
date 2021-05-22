@@ -23,7 +23,6 @@
 
   .left-side-bar {
     background-color: $background-color;
-    //background-color: red;
     position: sticky;
     top: 0;
     left: 0;
@@ -34,13 +33,11 @@
   }
   .main-bar {
     background-color: $background-color;
-
     height: 100vh;
     width: 45vw;
   }
   .right-side-bar {
     background-color: $background-color;
-    //background-color: green;
     border-left: 0.1px solid $border-color;
     height: 100vh;
     width: 30vw;

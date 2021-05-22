@@ -46,7 +46,6 @@
   width: 600px;
   max-height: 600px;
   background-color: #15202b;
-  overflow: auto;
   border-radius: 15px;
 }
 
@@ -67,8 +66,8 @@
   background-color: #15202b;
   margin: 0;
   border: none;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   top: 0;
   display: -webkit-box;
   display: -ms-flexbox;

@@ -3,7 +3,6 @@ import { Markup } from "interweave";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import dayjsTwitter from "dayjs-twitter";
-import { HeartFilled } from "@ant-design/icons";
 import { BanterMedia, BanterActions } from "./Components";
 import { checkHashtag, useCloseOnClickOutside } from "../../../../util";
 import "./timeline.scss";
@@ -30,9 +29,9 @@ const Timeline = ({ bant, i, location }) => {
         className="link"
       >
         <div className="timeline-banter-container">
-          <div className="banter-top-info">
+          {/*<div className="banter-top-info">
             <HeartFilled /> Somebody and 4 others liked
-          </div>
+            </div>*/}
           <div className="banter-container">
             <div className="user-avatar">
               <Link

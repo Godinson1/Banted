@@ -3,7 +3,7 @@ import React from "react";
 const Likes = () => {
   return (
     <div>
-      <div className="history-container">Create Now</div>
+      <div className="history-container"></div>
     </div>
   );
 };
