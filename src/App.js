@@ -20,7 +20,7 @@ import Profile from "./Components/Profile";
 const NotFound = lazy(() => import("./Pages/NotFound"));
 
 //axios.defaults.baseURL = "http://localhost:5000";
-axios.defaults.baseURL = "https://banted.herokuapp.com";
+axios.defaults.baseURL = "https://banted-api.onrender.com";
 
 const token = localStorage.BToken;
 if (token) {
