@@ -6,7 +6,7 @@
     "@ant-design/icons": "^4.2.1",
     "@fontsource/roboto": "^4.3.0",
     "antd": "^3.26.6",
-    "axios": "^0.19.1",
+    "axios": "^0.21.2",
     "bootstrap": "^4.5.0",
     "dayjs": "^1.8.19",
     "dayjs-twitter": "^0.4.0",
