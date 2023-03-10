@@ -20,9 +20,7 @@ export default ({
     pathname = to || location.pathname;
   }
 
-  const newQuery = keepOldQuery
-    ? new URLSearchParams(location.search)
-    : new URLSearchParams();
+  const newQuery = keepOldQuery ? new URLSearchParams(location.search) : new URLSearchParams();
 
   Object.entries(query).forEach(([key, value]) => {
     newQuery.set(key, value);

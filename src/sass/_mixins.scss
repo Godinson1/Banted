@@ -8,8 +8,10 @@
   right: 0;
   background-color: $background-color;
   position: absolute;
+  align-items: center;
   z-index: 200;
   border-radius: 10px;
+  padding: 0 0 15px 15px;
   box-shadow: 0px 4px 16px 0px rgba(99, 96, 96, 0.2);
 }
 

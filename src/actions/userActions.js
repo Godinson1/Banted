@@ -37,37 +37,30 @@ export const LoginUser = (user, history, setErrorMessage) => (dispatch) => {
     });
 };
 
-export const RegisterUser =
-  (newData, history, setErrorMessage) => (dispatch) => {
-    dispatch({ type: LOADING_REG });
-    axios
-      .post("/users/register", newData)
-      .then((res) => {
-        setAuthorization(res.data.token);
-        dispatch(getUserData());
-        dispatch(getBanters());
-        dispatch({ type: CLEAR_ERROR });
-        history.push("/home");
-      })
-      .catch((err) => {
-        if (err.response && err.response.data) {
-          setErrorMessage(err.response.data.error);
-          dispatch({
-            type: SET_ERROR,
-            payload: err.response.data,
-          });
-        }
-      });
-  };
+export const RegisterUser = (newData, history, setErrorMessage) => (dispatch) => {
+  dispatch({ type: LOADING_REG });
+  axios
+    .post("/users/register", newData)
+    .then((res) => {
+      setAuthorization(res.data.token);
+      dispatch(getUserData());
+      dispatch(getBanters());
+      dispatch({ type: CLEAR_ERROR });
+      history.push("/home");
+    })
+    .catch((err) => {
+      if (err.response && err.response.data) {
+        setErrorMessage(err.response.data.error);
+        dispatch({ type: SET_ERROR, payload: err.response.data });
+      }
+    });
+};
 
 export const getUserData = () => (dispatch) => {
   axios
     .get("/users/")
     .then((res) => {
-      dispatch({
-        type: SET_USER,
-        payload: res.data,
-      });
+      dispatch({ type: SET_USER, payload: res.data });
     })
     .catch((err) => console.log(err));
 };

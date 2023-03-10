@@ -31,8 +31,7 @@ const HeaderCompose = () => {
     for (const key of Object.keys(imageFiles)) {
       data.append("banterImage", imageFiles[key]);
     }
-    const emptyText = () =>
-      (document.getElementsByClassName("input-container")[0].innerHTML = "");
+    const emptyText = () => (document.getElementsByClassName("input-container")[0].innerHTML = "");
     data.append("banter", banter);
     dispatch(postBanter(data, setImages, emptyText));
     setImageFiles([]);
@@ -47,36 +46,31 @@ const HeaderCompose = () => {
   const textRef = createRef();
   return (
     <div>
-      <div className="compose-header">
-        <div className="user-avatar">
+      <div className='compose-header'>
+        <div className='user-avatar'>
           {user && user.credentials && user.credentials[0].userImage && (
-            <img src={user.credentials[0].userImage} alt="user" />
+            <img src={user.credentials[0].userImage} alt='user' />
           )}
         </div>
         <div>
           <div>
             <div
               placeholder="What's happening?"
-              className="input-container"
+              className='input-container'
               contentEditable
               ref={textRef}
               onInput={(e) => setBanter(e.currentTarget.textContent)}
             ></div>
             {images.length !== 0 ? (
-              <div className="media-header">
+              <div className='media-header'>
                 <div className={getClassMediaNames(images)}>
                   {images.map((image, index) => {
                     return (
-                      <div className="media-container" key={index}>
-                        <div
-                          className="close-image"
-                          onClick={() =>
-                            removeImage(image, images.indexOf(image))
-                          }
-                        >
+                      <div className='media-container' key={index}>
+                        <div className='close-image' onClick={() => removeImage(image, images.indexOf(image))}>
                           <CloseOutlined />
                         </div>
-                        {<img src={image} alt="banter" />}
+                        {<img src={image} alt='banter' />}
                       </div>
                     );
                   })}
@@ -96,7 +90,7 @@ const HeaderCompose = () => {
           </div>
         </div>
       </div>
-      <div className="banter-spacer"></div>
+      <div className='banter-spacer'></div>
     </div>
   );
 };

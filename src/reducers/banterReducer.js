@@ -25,49 +25,33 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case LOADING_BANTERS:
-      return {
-        loading_banters: true,
-      };
+      return { loading_banters: true };
     case LOADING_BANTER:
-      return {
-        ...state,
-        loading_banter: true,
-      };
+      return { ...state, loading_banter: true };
     case LOADING_COMMENTS:
-      return {
-        ...state,
-        loading_comments: true,
-      };
+      return { ...state, loading_comments: true };
     case LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
+      return { ...state, loading: true };
     case COMMENT_BANTER:
       return {
         ...state,
         loading: false,
-        banters: state.banters.map((banter) =>
-          banter._id === action.payload.data._id ? action.payload.data : banter
-        ),
+        banters: state.banters.map((banter) => (banter._id === action.payload.data._id ? action.payload.data : banter)),
         comments: state.comments.concat(action.payload.comment).reverse(),
       };
     case DELETE_BANTER:
       return {
         ...state,
         loading: false,
-        banters: state.banters.filter(
-          (banter) => banter._id !== action.payload._id
-        ),
+        banters: state.banters.filter((banter) => banter._id !== action.payload._id),
       };
     case UNLIKE:
     case LIKE:
+      console.log("I am here for like...");
       return {
         ...state,
         loading: false,
-        banters: state.banters.map((banter) =>
-          banter._id === action.payload.data._id ? action.payload.data : banter
-        ),
+        banters: state.banters.map((banter) => (banter._id === action.payload.data._id ? action.payload.data : banter)),
       };
     case GET_ALL_BANTER:
       return {

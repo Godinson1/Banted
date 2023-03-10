@@ -12,7 +12,7 @@ const BanterCheck = () => {
     <div>
       {banters && banters.loading_banters ? (
         <div>
-          <div className="lds-ring">
+          <div className='lds-ring'>
             <div></div>
             <div></div>
             <div></div>
@@ -20,18 +20,16 @@ const BanterCheck = () => {
           </div>
         </div>
       ) : banters && banters.banters && banters.banters.length === 0 ? (
-        <div className="no-banter">
+        <div className='no-banter'>
           Create or follow other users to see banters.
-          <div className="menued">
-            <div className="banter-button-container">
-              <button id="banter-button">See Suggestions</button>
+          <div className='menued'>
+            <div className='banter-button-container'>
+              <button id='banter-button'>See Suggestions</button>
             </div>
           </div>
         </div>
       ) : banters && banters.banters ? (
-        banters.banters.map((bant, i) => (
-          <Timeline bant={bant} location={location} i={i} />
-        ))
+        banters.banters.map((bant, i) => <Timeline bant={bant} key={i} location={location} i={i} />)
       ) : (
         ""
       )}

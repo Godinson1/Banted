@@ -47,7 +47,7 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy": "https://banted-api.onrender.com",
+    "proxy": "http://localhost:5000",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

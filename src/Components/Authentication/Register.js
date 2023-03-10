@@ -12,15 +12,11 @@ const Register = ({ history }) => {
   const [name, setName] = useState("");
   const [handle, setHandle] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  console.log(errorMessage);
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.auth);
 
   const handleOnChange = (e) => {
-    console.log(e.target);
     if (e.target.name === "name") setName(e.target.value);
     if (e.target.name === "password") setPassword(e.target.value);
     if (e.target.name === "email") setEmail(e.target.value);
@@ -29,47 +25,24 @@ const Register = ({ history }) => {
 
   const onBoardUser = (e) => {
     e.preventDefault();
-    const { valid, error } = validateRegistration({
-      name,
-      handle,
-      email,
-      password,
-    });
+    const { valid, error } = validateRegistration({ name, handle, email, password });
     if (!valid) {
       message.error(error);
     } else {
-      setErrorMessage("");
-      const user = {
-        name,
-        handle,
-        email,
-        password,
-      };
+      const user = { name, handle, email, password };
       dispatch(RegisterUser(user, history, message.error));
     }
   };
-  const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 100,
-    },
-  };
-  const tailLayout = {
-    wrapperCol: {
-      offset: 0,
-      span: 100,
-    },
-  };
+  const layout = { labelCol: { span: 8 }, wrapperCol: { span: 100 } };
+  const tailLayout = { wrapperCol: { offset: 0, span: 100 } };
 
   return (
     <div>
-      <Layout page="Register">
+      <Layout page='Register'>
         {REGISTER_FORM.map(({ name, className, label, placeholder }, index) => (
           <Form
             {...layout}
-            name="basic"
+            name='basic'
             initialValues={{
               remember: true,
             }}
@@ -78,17 +51,9 @@ const Register = ({ history }) => {
               <label>{label}</label>
               <Form.Item name={name}>
                 {name === "password" ? (
-                  <Input.Password
-                    name={name}
-                    placeholder={placeholder}
-                    onChange={(e) => handleOnChange(e)}
-                  />
+                  <Input.Password name={name} placeholder={placeholder} onChange={(e) => handleOnChange(e)} />
                 ) : (
-                  <Input
-                    name={name}
-                    placeholder={placeholder}
-                    onChange={(e) => handleOnChange(e)}
-                  />
+                  <Input name={name} placeholder={placeholder} onChange={(e) => handleOnChange(e)} />
                 )}
               </Form.Item>
             </div>
@@ -104,8 +69,8 @@ const Register = ({ history }) => {
                 : false
             }
             onClick={onBoardUser}
-            type="primary"
-            size="large"
+            type='primary'
+            size='large'
           >
             {state && state.loading_reg ? "Loading..." : "Register"}
           </Button>

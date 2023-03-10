@@ -26,56 +26,44 @@ const Timeline = ({ bant, i, location }) => {
           pathname: allowLink ? `/${bant.banterHandle}/status/${bant._id}` : "",
           state: { banter: bant },
         }}
-        className="link"
+        className='link'
       >
-        <div className="timeline-banter-container">
+        <div className='timeline-banter-container'>
           {/*<div className="banter-top-info">
             <HeartFilled /> Somebody and 4 others liked
             </div>*/}
-          <div className="banter-container">
-            <div className="user-avatar">
+          <div className='banter-container'>
+            <div className='user-avatar'>
               <Link
                 to={{
                   pathname: `/${bant.banterHandle}`,
                   state: { banter: bant },
                 }}
-                className="link"
+                className='link'
               >
-                <img src={bant.userImage} alt="profile" />
+                <img src={bant.userImage} alt='profile' />
               </Link>
             </div>
-            <div className="timeline-content-container">
-              <div className="header-between">
-                <div className="name-handle-time">
-                  <div className="name">{bant.name}</div>
-                  <div className="handle">@{bant.banterHandle}</div>
-                  <div className="date">
-                    - {dayjs(bant.createdAt).twitter()}
-                  </div>
+            <div className='timeline-content-container'>
+              <div className='header-between'>
+                <div className='name-handle-time'>
+                  <div className='name'>{bant.name}</div>
+                  <div className='handle'>@{bant.banterHandle}</div>
+                  <div className='date'>- {dayjs(bant.createdAt).twitter()}</div>
                 </div>
-                <div
-                  onMouseOver={() => setAllowLink(false)}
-                  onClick={() => setShow(!show)}
-                  className="dots tooltips"
-                >
+                <div onMouseOver={() => setAllowLink(false)} onClick={() => setShow(!show)} className='dots tooltips'>
                   ...
-                  <span id="desc" className="tooltiptext">
+                  <span id='desc' className='tooltiptext'>
                     more
                   </span>
                   <BanterDropdown show={show} bant={bant} setShow={setShow} />
                 </div>
               </div>
               <div>
-                <p className="bantext">
-                  {<Markup content={checkHashtag(bant.banter)} />}
-                </p>
+                <p className='bantext'>{<Markup content={checkHashtag(bant.banter)} />}</p>
                 <BanterMedia imageBant={bant} imagelocation={location} />
               </div>
-              <BanterActions
-                setShow={setShow}
-                setAllowLink={setAllowLink}
-                bant={bant}
-              />
+              <BanterActions setShow={setShow} setAllowLink={setAllowLink} bant={bant} />
             </div>
           </div>
         </div>

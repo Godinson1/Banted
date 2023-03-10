@@ -1,3 +1,9 @@
+import JwtDecode from "jwt-decode";
+import axios from "axios";
+import { SET_AUTHENTICATED } from "../actions/types";
+import { logoutUser, getUserData, getUsers } from "../actions/userActions";
+import { getBanters } from "../actions/banterActions";
+
 const getClassMediaNames = (data) => {
   return data.length === 1
     ? "media-full"
@@ -59,4 +65,21 @@ const checkHashtag = (text) => {
   return repl;
 };
 
-export { getClassMediaNames, readURI, getDataUrl, checkHashtag };
+const checkUserAuthentication = (store) => {
+  const token = localStorage.BToken;
+  if (token) {
+    const decoded = JwtDecode(token);
+    if (decoded.exp * 1000 < Date.now()) {
+      store.dispatch(logoutUser());
+      window.location.href = "/";
+    } else {
+      store.dispatch({ type: SET_AUTHENTICATED });
+      axios.defaults.headers.common["banted-token"] = token;
+      store.dispatch(getUserData());
+      store.dispatch(getBanters());
+      store.dispatch(getUsers());
+    }
+  }
+};
+
+export { getClassMediaNames, readURI, getDataUrl, checkHashtag, checkUserAuthentication };
