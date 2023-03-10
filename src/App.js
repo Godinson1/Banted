@@ -16,8 +16,8 @@ import { checkUserAuthentication } from "./util/helpers";
 
 const NotFound = lazy(() => import("./Pages/NotFound"));
 
-axios.defaults.baseURL = "http://localhost:5000";
-// axios.defaults.baseURL = "https://banted-api.onrender.com";
+// axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://banted-api.onrender.com";
 
 checkUserAuthentication(store);
 

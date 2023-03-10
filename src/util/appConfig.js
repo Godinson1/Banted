@@ -4,7 +4,7 @@ import { message } from "antd";
 import { LIKE } from "../actions/types";
 import { LIKE_EVENT } from "./constants";
 
-const STREAM_URL = "http://localhost:5000/stream";
+const STREAM_URL = "https://banted-api.onrender.com/stream";
 const ssEvents = new EventSource(STREAM_URL);
 const AppContext = React.createContext({});
 
